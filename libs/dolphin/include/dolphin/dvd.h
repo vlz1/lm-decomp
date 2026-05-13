@@ -75,6 +75,8 @@ typedef struct DVDDriveInfo {
     /* 0x08 */ u8 padding[24];
 } DVDDriveInfo;
 
+typedef void (*DVDLowCallback)(u32);
+
 void DVDDumpWaitingQueue(void);
 int DVDLowRead(void * addr, unsigned long length, unsigned long offset, void (* callback)(unsigned long));
 int DVDLowSeek(unsigned long offset, void (* callback)(unsigned long));
@@ -100,7 +102,7 @@ int DVDReadAbsAsyncForBS(struct DVDCommandBlock * block, void * addr, long lengt
 int DVDReadDiskID(struct DVDCommandBlock * block, struct DVDDiskID * diskID, void (* callback)(long, struct DVDCommandBlock *));
 int DVDPrepareStreamAbsAsync(struct DVDCommandBlock * block, unsigned long length, unsigned long offset, void (* callback)(long, struct DVDCommandBlock *));
 int DVDCancelStreamAsync(struct DVDCommandBlock * block, void (* callback)(long, struct DVDCommandBlock *));
-long DVDCancelStream(struct DVDCommandBlock * block);
+BOOL DVDCancelStream(struct DVDCommandBlock * block);
 int DVDStopStreamAtEndAsync(struct DVDCommandBlock * block, void (* callback)(long, struct DVDCommandBlock *));
 long DVDStopStreamAtEnd(struct DVDCommandBlock * block);
 int DVDGetStreamErrorStatusAsync(struct DVDCommandBlock * block, void (* callback)(long, struct DVDCommandBlock *));

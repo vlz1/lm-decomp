@@ -15,6 +15,7 @@ void __DVDFSInit();
 
 // dvdlow.c
 void __DVDInterruptHandler(short unused, struct OSContext * context);
+void __DVDInitWA();
 
 // dvdqueue.c
 void __DVDClearWaitingQueue();

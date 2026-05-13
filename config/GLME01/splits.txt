@@ -133,6 +133,13 @@ dvd/dvdfs.c:
 	.sdata      start:0x804D7ED0 end:0x804D7ED8
 	.sbss       start:0x804D9660 end:0x804D9680
 
+dvd/dvd.c:
+	.text       start:0x801E4384 end:0x801E6970
+	.data       start:0x803955E0 end:0x803956F8
+	.bss        start:0x804CBEA0 end:0x804CBF78
+	.sdata      start:0x804D7ED8 end:0x804D7EE0
+	.sbss       start:0x804D9680 end:0x804D96C8
+
 dvd/dvdqueue.c:
 	.text       start:0x801E6970 end:0x801E6B68
 	.bss        start:0x804CBF78 end:0x804CBF98
