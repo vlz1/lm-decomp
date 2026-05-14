@@ -16,6 +16,21 @@ void __DVDFSInit();
 // dvdlow.c
 void __DVDInterruptHandler(short unused, struct OSContext * context);
 void __DVDInitWA();
+void __DVDLowSetWAType(u32 type, u32 location);
+
+typedef struct DVDBuffer {
+	void* addr;
+	u32 length;
+	u32 offset;
+} DVDBuffer;
+
+typedef struct DVDCommand {
+	s32 cmd;
+	void* addr;
+	u32 length;
+	u32 offset;
+	DVDLowCallback callback;
+} DVDCommand;
 
 // dvdqueue.c
 void __DVDClearWaitingQueue();
