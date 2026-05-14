@@ -38,11 +38,4 @@ typedef int BOOL;
 #define NULL ((void*)0)
 #endif
 
-#include <stdio.h>
-#include <stdarg.h>
-#include <string.h>
-#include <ctype.h>
-
-#include <math.h>
-
 #endif

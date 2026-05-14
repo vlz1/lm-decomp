@@ -2,6 +2,8 @@
 #define _DOLPHIN_MTX_H_
 
 #include <dolphin/types.h>
+//needs to be here for vec.c linking
+#include <math.h>
 
 #ifdef __cplusplus
 extern "C" {
