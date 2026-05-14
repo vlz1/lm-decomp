@@ -127,6 +127,11 @@ db/db.c:
 	.data       start:0x8038A170 end:0x8038A188
 	.sbss       start:0x804A2110 end:0x804A2118
 
+mtx/mtx.c:
+	.text       start:0x801DC640 end:0x801DCEA0
+	.sdata      start:0x804A0A30 end:0x804A0A38
+	.sdata2     start:0x804A6190 end:0x804A61A8
+
 dvd/dvdlow.c:
 	.text       start:0x801DD4A8 end:0x801DE408
 	.bss        start:0x80495560 end:0x80495640

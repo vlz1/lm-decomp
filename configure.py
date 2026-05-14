@@ -351,6 +351,11 @@ config.libs = [
     DolphinLib("db", [
         Object(Matching, "db/db.c")
     ]),
+
+    DolphinLib("mtx", [
+        Object(Matching, "mtx/mtx.c", extra_cflags=["-fp_contract off"])
+    ]),
+
     DolphinLib("dvd", [
         Object(Matching, "dvd/dvdlow.c"),
         Object(Matching, "dvd/dvdfs.c"),
