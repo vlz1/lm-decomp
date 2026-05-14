@@ -257,7 +257,7 @@ cflags_rel = [
     "-sdata2 0",
 ]
 
-config.linker_version = "GC/1.0"
+config.linker_version = "GC/1.1"
 
 
 # Helper function for Dolphin libraries
@@ -265,7 +265,7 @@ def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
         "src_dir" : "libs/dolphin/src",
-        "mw_version": "GC/1.0",
+        "mw_version": "GC/1.1",
         "cflags": cflags_base,
         "progress_category": "sdk",
         "objects": objects,
@@ -353,7 +353,9 @@ config.libs = [
     ]),
 
     DolphinLib("mtx", [
-        Object(Matching, "mtx/mtx.c", extra_cflags=["-fp_contract off"])
+        Object(Matching, "mtx/mtx.c", extra_cflags=["-fp_contract off"]),
+        Object(NonMatching, "mtx/mtx44.c", extra_cflags=["-fp_contract off"]),
+        Object(MatchingFor("GLME01"), "mtx/vec.c", extra_cflags=["-fp_contract off"]),
     ]),
 
     DolphinLib("dvd", [

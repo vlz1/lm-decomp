@@ -132,6 +132,14 @@ mtx/mtx.c:
 	.sdata      start:0x804D7EC0 end:0x804D7EC8
 	.sdata2     start:0x804DD6E0 end:0x804DD6F8
 
+mtx/mtx44.c:
+	.text       start:0x801E2400 end:0x801E2604
+	.sdata2     start:0x804DD6F8 end:0x804DD710
+
+mtx/vec.c:
+	.text       start:0x801E2604 end:0x801E2938
+	.sdata2     start:0x804DD710 end:0x804DD734
+
 dvd/dvdlow.c:
 	.text       start:0x801E2A08 end:0x801E3968
 	.bss        start:0x804CBDC0 end:0x804CBEA0
