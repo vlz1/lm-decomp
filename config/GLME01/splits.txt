@@ -198,6 +198,15 @@ ai/ai.c:
 	.text       start:0x801EABD4 end:0x801EB4DC
 	.sbss       start:0x804D9748 end:0x804D9788
 
+ar/ar.c:
+	.text       start:0x801EB4DC end:0x801EC6C0
+	.sbss       start:0x804D9788 end:0x804D97A0
+	.sdata2     start:0x804DD738 end:0x804DD748
+
+ar/arq.c:
+	.text       start:0x801EC6C0 end:0x801ECA54
+	.sbss       start:0x804D97A0 end:0x804D97C8
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x80200094 end:0x80200188
 

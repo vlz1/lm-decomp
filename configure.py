@@ -377,6 +377,10 @@ config.libs = [
     DolphinLib("ai", [
         Object(Matching, "ai/ai.c")
     ]),
+    DolphinLib("ar", [
+        Object(Matching, "ar/ar.c"),
+        Object(Matching, "ar/arq.c"),
+    ]),
     Runtime([
         Object(Matching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
         Object(Matching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
