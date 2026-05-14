@@ -207,6 +207,9 @@ ar/arq.c:
 	.text       start:0x801EC6C0 end:0x801ECA54
 	.sbss       start:0x804D97A0 end:0x804D97C8
 
+dsp/dsp.c:
+	.text       start:0x801ECA54 end:0x801ECAA0
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x80200094 end:0x80200188
 
