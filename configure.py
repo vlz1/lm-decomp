@@ -354,8 +354,8 @@ config.libs = [
 
     DolphinLib("mtx", [
         Object(Matching, "mtx/mtx.c", extra_cflags=["-fp_contract off"]),
-        Object(NonMatching, "mtx/mtx44.c", extra_cflags=["-fp_contract off"]),
-        Object(MatchingFor("GLME01"), "mtx/vec.c", extra_cflags=["-fp_contract off"]),
+        Object(Matching, "mtx/mtx44.c", extra_cflags=["-fp_contract off"]),
+        Object(Matching, "mtx/vec.c", extra_cflags=["-fp_contract off"]),
     ]),
 
     DolphinLib("dvd", [
