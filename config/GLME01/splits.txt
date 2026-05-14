@@ -138,7 +138,10 @@ mtx/mtx44.c:
 
 mtx/vec.c:
 	.text       start:0x801E2604 end:0x801E2938
-	.sdata2     start:0x804DD710 end:0x804DD734
+	.sdata2     start:0x804DD710 end:0x804DD738
+
+mtx/mtxvec.c:
+	.text       start:0x801E2938 end:0x801E2A08
 
 dvd/dvdlow.c:
 	.text       start:0x801E2A08 end:0x801E3968
