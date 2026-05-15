@@ -219,6 +219,9 @@ card/CARDBios.c:
 card/CARDRdwr.c:
 	.text       start:0x801E8858 end:0x801E8AD8
 
+card/CARDBlock.c:
+	.text       start:0x801E8AD8 end:0x801E8E40
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801F508C end:0x801F5180
 
