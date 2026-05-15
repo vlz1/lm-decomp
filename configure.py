@@ -294,6 +294,17 @@ def Runtime(objects: List[Object]) -> Dict[str, Any]:
         "objects": objects,
     }
 
+
+def MSL_C(objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": "MSL_C",
+        "mw_version": config.linker_version,
+        "cflags": cflags_runtime,
+        "progress_category": "sdk",
+        "src_dir": "libs/",
+        "objects": objects,
+    }
+
 def Game(objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": "Game",
@@ -392,6 +403,14 @@ config.libs = [
         Object(Matching, "card/CARDCheck.c"),
         Object(Matching, "card/CARDMount.c"),
         Object(Matching, "card/CARDFormat.c"),
+        Object(Matching, "card/CARDOpen.c"),
+        Object(Matching, "card/CARDCreate.c"),
+        Object(Matching, "card/CARDRead.c"),
+        Object(Matching, "card/CARDWrite.c"),
+        Object(Matching, "card/CARDStat.c"),
+    ]),
+    MSL_C([
+        Object(Matching, "MSL/MSL_C/MSL_Common/src/string.c"),
     ]),
     Runtime([
         Object(Matching, "Runtime.PPCEABI.H/global_destructor_chain.c"),

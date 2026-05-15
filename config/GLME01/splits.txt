@@ -235,6 +235,21 @@ card/CARDMount.c:
 card/CARDFormat.c:
 	.text       start:0x801EFEC8 end:0x801F06AC
 
+card/CARDOpen.c:
+	.text       start:0x801F06AC end:0x801F0998
+
+card/CARDCreate.c:
+	.text       start:0x801F0998 end:0x801F0D28
+
+card/CARDRead.c:
+	.text       start:0x801F0D28 end:0x801F119C
+
+card/CARDWrite.c:
+	.text       start:0x801F119C end:0x801F1514
+
+card/CARDStat.c:
+	.text       start:0x801F1514 end:0x801F19EC
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x80200094 end:0x80200188
 
@@ -248,6 +263,10 @@ Runtime.PPCEABI.H/__init_cpp_exceptions.cpp:
 	.ctors      start:0x8020BAC0 end:0x8020BAC4
 	.dtors      start:0x8020BDE0 end:0x8020BDE8
 	.sdata      start:0x804D7FB0 end:0x804D7FB8
+
+MSL/MSL_C/MSL_Common/src/string.c:
+	.text       start:0x80205130 end:0x802054C8
+	.sdata      start:0x804D7FC8 end:0x804D7FD0
 
 amcstubs/AmcExi2Stubs.c:
 	.text       start:0x8020AFFC end:0x8020B02C

@@ -187,6 +187,10 @@ typedef struct CARDID {
 #define CARDGetBannerFormat(stat) (((stat)->bannerFormat) & CARD_STAT_BANNER_MASK)
 #define CARDGetIconFormat(stat, n) (((stat)->iconFormat >> (2 * (n))) & CARD_STAT_ICON_MASK)
 #define CARDGetDirCheck(dir) ((CARDDirCheck *)&(dir)[CARD_MAX_FILE])
+#define CARDSetIconSpeed(stat, n, f)                                           \
+	((stat)->iconSpeed                                                         \
+	 = (u16)(((stat)->iconSpeed & ~(CARD_STAT_SPEED_MASK << (2 * (n))))        \
+	         | ((f) << (2 * (n)))))
 
 void CARDInit(void);
 s32 CARDGetResultCode(s32 chan);
