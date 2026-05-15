@@ -22,7 +22,7 @@ A work-in-progress decompilation of Luigi's Mansion.
 This repository does **not** contain any game assets or assembly whatsoever. An existing copy of the game is required.
 
 > [!WARNING]
-> Using AI software to contribute to this decompilation is ___strictly prohibited___ and will result in being banned from contributing. AI is known to use code from illegally leaked sources, which prevents a big legality risk the maintainers of this project want to avoid.
+> Using AI software to contribute to this decompilation is ___strictly prohibited___ and will result in being banned from contributing. AI is known to use code from illegally leaked sources, which presents legal concerns the maintainers of this project want to avoid.
 
 Supported versions:
 
