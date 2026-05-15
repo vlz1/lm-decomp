@@ -55,33 +55,6 @@ DSPTaskInfo *__DSP_last_task;
 DSPTaskInfo *__DSP_curr_task;
 DSPTaskInfo *__DSP_tmp_task;
 
-void DSPInit(void)
-{
-    BOOL old;
-    u16 tmp;
-
-    __DSP_debug_printf("DSPInit(): Build Date: %s %s\n", BUILD_DATE, BUILD_TIME);
-
-    if (__DSP_init_flag == 1)
-        return;
-
-    old = OSDisableInterrupts();
-    __OSSetInterruptHandler(7, __DSPHandler);
-    __OSUnmaskInterrupts(OS_INTERRUPTMASK_DSP_DSP);
-
-    tmp = __DSPRegs[5];
-    tmp = (tmp & ~0xA8) | 0x800;
-    __DSPRegs[5] = tmp;
-
-    tmp = __DSPRegs[5];
-    __DSPRegs[5] = tmp = tmp & ~0xAC;
-
-    __DSP_first_task = __DSP_last_task = __DSP_curr_task = __DSP_tmp_task = NULL;
-    __DSP_init_flag = 1;
-
-    OSRestoreInterrupts(old);
-}
-
 BOOL DSPCheckInit(void)
 {
     return __DSP_init_flag;
