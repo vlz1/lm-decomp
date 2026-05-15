@@ -208,7 +208,14 @@ ar/arq.c:
 	.sbss       start:0x804A22A0 end:0x804A22C8
 
 dsp/dsp.c:
-	.text start:0x801E74F4 end:0x801E7540
+	.text       start:0x801E74F4 end:0x801E7540
+
+card/CARDBios.c:
+	.text       start:0x801E7540 end:0x801E8858
+	.data       start:0x8038A8D8 end:0x8038A8E8
+	.bss        start:0x80495960 end:0x80495B90
+	.sbss       start:0x804A22C8 end:0x804A22D0
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801F508C end:0x801F5180
 
