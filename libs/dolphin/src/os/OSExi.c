@@ -3,6 +3,9 @@
 #include <dolphin.h>
 #include <string.h>
 
+
+typedef void (*EXICallback)(s32 chan, OSContext *context);
+
 struct EXIControl {
     EXICallback exiCallback;
     EXICallback tcCallback;

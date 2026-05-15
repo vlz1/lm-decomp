@@ -330,7 +330,7 @@ config.libs = [
         Object(Matching, "os/OSCache.c"),
         Object(Matching, "os/OSContext.c"),
         Object(Matching, "os/OSError.c"),
-        Object(NonMatching, "os/OSExi.c"),
+        Object(Matching, "os/OSExi.c"),
         Object(Matching, "os/OSFont.c"),
         Object(Matching, "os/OSInterrupt.c"),
         Object(Matching, "os/OSLink.c"),
@@ -390,6 +390,7 @@ config.libs = [
         Object(Matching, "card/CARDBlock.c"),
         Object(Matching, "card/CARDDir.c"),
         Object(Matching, "card/CARDCheck.c"),
+        Object(Matching, "card/CARDMount.c"),
     ]),
     Runtime([
         Object(Matching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
