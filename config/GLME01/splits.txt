@@ -222,6 +222,9 @@ card/CARDRdwr.c:
 card/CARDBlock.c:
 	.text       start:0x801EE038 end:0x801EE3A0
 
+card/CARDDir.c:
+	.text       start:0x801EE3A0 end:0x801EE604
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x80200094 end:0x80200188
 
