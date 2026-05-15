@@ -14,12 +14,15 @@ See https://decomp.dev/api for an API overview.
 [Code Progress_USA]: https://decomp.dev/theplayerrolo/lm-decomp/GLME01.svg?mode=shield&measure=code&label=USA%20Code
 [Data Progress_USA]: https://decomp.dev/theplayerrolo/lm-decomp/GLME01.svg?mode=shield&measure=data&label=USA%20Data
 [Code Progress_JPN]: https://decomp.dev/theplayerrolo/lm-decomp/GLMJ01.svg?mode=shield&measure=code&label=JPN%20Code
-[Data Progress_JPN]: https://decomp.dev/theplayerrolo/lm-decomp/GLME01.svg?mode=shield&measure=data&label=JPN%20Data
+[Data Progress_JPN]: https://decomp.dev/theplayerrolo/lm-decomp/GLMJ01.svg?mode=shield&measure=data&label=JPN%20Data
 [progress]: https://decomp.dev/theplayerrolo/lm-decomp
 
 A work-in-progress decompilation of Luigi's Mansion.
 
 This repository does **not** contain any game assets or assembly whatsoever. An existing copy of the game is required.
+
+> [!WARNING]
+> Using AI software to contribute to this decompilation is ___strictly prohibited___ and will result in being banned from contributing. AI is known to use code from illegally leaked sources, which prevents a big legality risk the maintainers of this project want to avoid.
 
 Supported versions:
 

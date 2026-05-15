@@ -386,6 +386,7 @@ config.libs = [
     ]),
     DolphinLib("card", [
         Object(Matching, "card/CARDBios.c"),
+        Object(Matching, "card/CARDRdwr.c"),
     ]),
     Runtime([
         Object(Matching, "Runtime.PPCEABI.H/global_destructor_chain.c"),

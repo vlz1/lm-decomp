@@ -216,6 +216,9 @@ card/CARDBios.c:
 	.bss        start:0x80495960 end:0x80495B90
 	.sbss       start:0x804A22C8 end:0x804A22D0
 
+card/CARDRdwr.c:
+	.text       start:0x801E8858 end:0x801E8AD8
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801F508C end:0x801F5180
 
