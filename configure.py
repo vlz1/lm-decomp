@@ -391,6 +391,7 @@ config.libs = [
         Object(Matching, "card/CARDDir.c"),
         Object(Matching, "card/CARDCheck.c"),
         Object(Matching, "card/CARDMount.c"),
+        Object(Matching, "card/CARDFormat.c"),
     ]),
     Runtime([
         Object(Matching, "Runtime.PPCEABI.H/global_destructor_chain.c"),

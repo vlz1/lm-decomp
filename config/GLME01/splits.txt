@@ -232,6 +232,9 @@ card/CARDMount.c:
 	.text       start:0x801EF56C end:0x801EFEC8
 	.data       start:0x80395988 end:0x803959C8
 
+card/CARDFormat.c:
+	.text       start:0x801EFEC8 end:0x801F06AC
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x80200094 end:0x80200188
 
