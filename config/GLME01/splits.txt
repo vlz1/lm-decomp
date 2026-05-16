@@ -283,6 +283,12 @@ gx/GXLight.c:
 	.data       start:0x80395D30 end:0x80395D50
 	.sdata2     start:0x804DD778 end:0x804DD7C8
 
+gx/GXTexture.c:
+	.text       start:0x801F66CC end:0x801F7418
+	.data       start:0x80395D50 end:0x80395F78
+	.sdata      start:0x804D7F38 end:0x804D7F78
+	.sdata2     start:0x804DD7C8 end:0x804DD7F0
+
 hvqmdec/hvqmdec.c:
 	.text       start:0x801FA5EC end:0x80200094
 
