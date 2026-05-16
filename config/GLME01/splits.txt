@@ -261,6 +261,11 @@ gx/GXFifo.c:
 	.text       start:0x801F29CC end:0x801F30E8
 	.sbss       start:0x804D97E0 end:0x804D9800
 
+gx/GXAttr.c:
+	.text       start:0x801F30E8 end:0x801F4A90
+	.data       start:0x803959C8 end:0x80395C40
+	.sdata      start:0x804D7F28 end:0x804D7F38
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x80200094 end:0x80200188
 
