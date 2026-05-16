@@ -257,6 +257,11 @@ cflags_rel = [
     "-sdata2 0",
 ]
 
+cflags_dolphin = [
+    *cflags_base,
+    "-fp_contract off",
+]
+
 config.linker_version = "GC/1.1"
 
 
@@ -266,7 +271,7 @@ def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "lib": lib_name,
         "src_dir" : "libs/dolphin/src",
         "mw_version": "GC/1.1",
-        "cflags": cflags_base,
+        "cflags": cflags_dolphin,
         "progress_category": "sdk",
         "objects": objects,
     }
@@ -289,7 +294,7 @@ def Runtime(objects: List[Object]) -> Dict[str, Any]:
         "lib": "Runtime.PPCEABI.H",
         "mw_version": config.linker_version,
         "cflags": cflags_runtime,
-        "progress_category": "sdk",
+        "progress_category": "msl",
         "src_dir": "libs/",
         "objects": objects,
     }
@@ -300,7 +305,7 @@ def MSL_C(objects: List[Object]) -> Dict[str, Any]:
         "lib": "MSL_C",
         "mw_version": config.linker_version,
         "cflags": cflags_runtime,
-        "progress_category": "sdk",
+        "progress_category": "msl",
         "src_dir": "libs/",
         "objects": objects,
     }
@@ -364,10 +369,10 @@ config.libs = [
     ]),
 
     DolphinLib("mtx", [
-        Object(Matching, "mtx/mtx.c", extra_cflags=["-fp_contract off"]),
-        Object(Matching, "mtx/mtx44.c", extra_cflags=["-fp_contract off"]),
-        Object(Matching, "mtx/vec.c", extra_cflags=["-fp_contract off"]),
-        Object(Matching, "mtx/mtxvec.c", extra_cflags=["-fp_contract off"]),
+        Object(Matching, "mtx/mtx.c"),
+        Object(Matching, "mtx/mtx44.c"),
+        Object(Matching, "mtx/vec.c"),
+        Object(Matching, "mtx/mtxvec.c"),
     ]),
 
     DolphinLib("dvd", [
@@ -417,7 +422,9 @@ config.libs = [
         Object(Matching, "gx/GXMisc.c"),
         Object(Matching, "gx/GXGeometry.c"),
         Object(Matching, "gx/GXFrameBuf.c"),
+        Object(Matching, "gx/GXLight.c"),
     ]),
+
     MSL_C([
         Object(Matching, "MSL/MSL_C/MSL_Common/src/string.c"),
     ]),
@@ -427,6 +434,7 @@ config.libs = [
         Object(Matching, "Runtime.PPCEABI.H/__va_arg.c"),
         Object(Matching, "Runtime.PPCEABI.H/__mem.c"),
     ]),
+
     DolphinLib("amcstubs", [
         Object(Matching, "amcstubs/AmcExi2Stubs.c")
     ]),
@@ -459,6 +467,7 @@ def link_order_callback(module_id: int, objects: List[str]) -> List[str]:
 config.progress_categories = [
     ProgressCategory("game", "Game Code"),
     ProgressCategory("sdk", "SDK Code"),
+    ProgressCategory("msl", "Metroworks Library Code"),
 ]
 config.progress_each_module = args.verbose
 # Optional extra arguments to `objdiff-cli report generate`
