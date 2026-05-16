@@ -409,6 +409,10 @@ config.libs = [
         Object(Matching, "card/CARDWrite.c"),
         Object(Matching, "card/CARDStat.c"),
     ]),
+
+    DolphinLib("gx", [
+        Object(Matching, "gx/GXInit.c"),
+    ]),
     MSL_C([
         Object(Matching, "MSL/MSL_C/MSL_Common/src/string.c"),
     ]),

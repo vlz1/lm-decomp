@@ -250,6 +250,13 @@ card/CARDWrite.c:
 card/CARDStat.c:
 	.text       start:0x801F1514 end:0x801F19EC
 
+gx/GXInit.c:
+	.text       start:0x801F19EC end:0x801F29CC
+	.bss        start:0x804CC3F0 end:0x804CC968
+	.sdata      start:0x804D7F20 end:0x804D7F28
+	.sbss       start:0x804D97D0 end:0x804D97E0
+	.sdata2     start:0x804DD748 end:0x804DD768
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x80200094 end:0x80200188
 
