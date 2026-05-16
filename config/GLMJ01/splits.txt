@@ -293,6 +293,10 @@ gx/GXBump.c:
 	.text       start:0x801F1EB8 end:0x801F2588
 	.sdata2     start:0x804A62A0 end:0x804A62A8
 
+gx/GXTev.c:
+	.text       start:0x801F2588 end:0x801F2F84
+	.data       start:0x8038AED8 end:0x8038AF00
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801F508C end:0x801F5180
 
