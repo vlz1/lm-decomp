@@ -30,4 +30,33 @@
 #define ASSERT(cond) ASSERTLINE(__LINE__, cond)
 #define ARRAY_SIZE(o)        (sizeof((o)) / sizeof(*(o)))   // Array size define
 
+/* Start of rip from  https://github.com/projectPiki/pikmin/blob/main/include/types.h */
+// For undesireable code necessary to produce a matching build, use this instead of a clunky #if #else #endif.
+
+// clang-format off
+#define REPEAT1(x)  x
+#define REPEAT2(x)  REPEAT1(x); x
+#define REPEAT3(x)  REPEAT2(x); x
+#define REPEAT4(x)  REPEAT3(x); x
+#define REPEAT5(x)  REPEAT4(x); x
+#define REPEAT6(x)  REPEAT5(x); x
+#define REPEAT7(x)  REPEAT6(x); x
+#define REPEAT8(x)  REPEAT7(x); x
+#define REPEAT9(x)  REPEAT8(x); x
+#define REPEAT10(x) REPEAT9(x); x
+#define REPEAT11(x) REPEAT10(x); x
+#define REPEAT12(x) REPEAT11(x); x
+#define REPEAT13(x) REPEAT12(x); x
+#define REPEAT14(x) REPEAT13(x); x
+#define REPEAT15(x) REPEAT14(x); x
+#define REPEAT16(x) REPEAT15(x); x
+// clang-format on
+
+#define REPEAT(x, n) REPEAT##n(x)
+
+// Somehow this overwhelms the automatic inlining score and stops unwanted function inlining
+#define FORCE_DONT_INLINE REPEAT((void)0;, 10)
+/*end of rip */
+
+
 #endif // _H_MACROS_

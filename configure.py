@@ -215,6 +215,7 @@ cflags_base = [
     "-i libs/MSL/MSL_C/MSL_Common/include",
     "-i libs/MSL/MSL_C/MSL_Common_Embedded/include",
     "-i libs/dolphin/include",
+    "-i libs/hvqm4/include",
     f"-i build/{config.version}/include",
     f"-DBUILD_VERSION={version_num}",
     f"-DVERSION={version_num}",
@@ -309,6 +310,18 @@ def MSL_C(objects: List[Object]) -> Dict[str, Any]:
         "src_dir": "libs/",
         "objects": objects,
     }
+
+
+def HVQM4(objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": "hvqm4dec",
+        "mw_version": "GC/1.2.5",
+        "cflags": cflags_base,
+        "progress_category": "hvqm4",
+        "src_dir": "libs/hvqm4/src/",
+        "objects": objects,
+    }
+
 
 def Game(objects: List[Object]) -> Dict[str, Any]:
     return {
@@ -433,6 +446,9 @@ config.libs = [
         Object(Matching, "gx/GXTransform.c"),
     ]),
 
+    HVQM4([
+        Object(NonMatching, "hvqm4dec/hvqm4dec.c"),
+    ]),
     MSL_C([
         Object(Matching, "MSL/MSL_C/MSL_Common/src/string.c"),
     ]),
@@ -476,6 +492,7 @@ config.progress_categories = [
     ProgressCategory("game", "Game Code"),
     ProgressCategory("sdk", "SDK Code"),
     ProgressCategory("msl", "Metroworks Library Code"),
+    ProgressCategory("hvqm4", "HVQM4 Library Code"),
 ]
 config.progress_each_module = args.verbose
 # Optional extra arguments to `objdiff-cli report generate`

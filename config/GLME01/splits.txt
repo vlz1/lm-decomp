@@ -320,7 +320,7 @@ gx/GXTransform.c:
 	.text       start:0x801FA004 end:0x801FA5EC
 	.sdata2     start:0x804DD890 end:0x804DD8A0
 
-hvqmdec/hvqmdec.c:
+hvqm4dec/hvqm4dec.c:
 	.text       start:0x801FA5EC end:0x80200094
 
 Runtime.PPCEABI.H/__va_arg.c:
