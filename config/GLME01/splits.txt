@@ -257,6 +257,10 @@ gx/GXInit.c:
 	.sbss       start:0x804D97D0 end:0x804D97E0
 	.sdata2     start:0x804DD748 end:0x804DD768
 
+gx/GXFifo.c:
+	.text       start:0x801F29CC end:0x801F30E8
+	.sbss       start:0x804D97E0 end:0x804D9800
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x80200094 end:0x80200188
 
