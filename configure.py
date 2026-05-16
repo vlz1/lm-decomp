@@ -426,6 +426,11 @@ config.libs = [
         Object(Matching, "gx/GXTexture.c"),
         Object(Matching, "gx/GXBump.c"),
         Object(Matching, "gx/GXTev.c"),
+        Object(Matching, "gx/GXPixel.c"),
+        Object(Matching, "gx/GXDraw.c"),
+        Object(Matching, "gx/GXStubs.c"),
+        Object(Matching, "gx/GXDisplayList.c"),
+        Object(Matching, "gx/GXTransform.c"),
     ]),
 
     MSL_C([
