@@ -424,6 +424,7 @@ config.libs = [
         Object(Matching, "gx/GXFrameBuf.c"),
         Object(Matching, "gx/GXLight.c"),
         Object(Matching, "gx/GXTexture.c"),
+        Object(Matching, "gx/GXBump.c"),
     ]),
 
     MSL_C([
