@@ -270,6 +270,9 @@ gx/GXMisc.c:
 	.text       start:0x801F4A90 end:0x801F4EC0
 	.sbss       start:0x804D9800 end:0x804D9818
 
+gx/GXGeometry.c:
+	.text       start:0x801F4EC0 end:0x801F5278
+
 hvqmdec/hvqmdec.c:
 	.text       start:0x801FA5EC end:0x80200094
 
