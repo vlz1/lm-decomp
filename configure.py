@@ -416,6 +416,7 @@ config.libs = [
         Object(Matching, "gx/GXAttr.c"),
         Object(Matching, "gx/GXMisc.c"),
         Object(Matching, "gx/GXGeometry.c"),
+        Object(Matching, "gx/GXFrameBuf.c"),
     ]),
     MSL_C([
         Object(Matching, "MSL/MSL_C/MSL_Common/src/string.c"),
