@@ -322,6 +322,10 @@ gx/GXTransform.c:
 
 hvqm4dec/hvqm4dec.c:
 	.text       start:0x801FA5EC end:0x80200094
+	.rodata     start:0x80217610 end:0x80217628
+	.data       start:0x803962D0 end:0x803962E0
+	.bss        start:0x804CD108 end:0x804CDB48
+	.sbss       start:0x804D9820 end:0x804D9828
 
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x80200094 end:0x80200188

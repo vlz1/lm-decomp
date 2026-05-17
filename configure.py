@@ -447,7 +447,7 @@ config.libs = [
     ]),
 
     HVQM4([
-        Object(NonMatching, "hvqm4dec/hvqm4dec.c"),
+        Object(Matching, "hvqm4dec/hvqm4dec.c"),
     ]),
     MSL_C([
         Object(Matching, "MSL/MSL_C/MSL_Common/src/string.c"),
