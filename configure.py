@@ -350,6 +350,7 @@ config.libs = [
     DolphinLib("base", [
         Object(Matching, "base/PPCArch.c")
     ]),
+
     DolphinLib("os", [
         Object(Matching, "os/OS.c"),
         Object(Matching, "os/OSAlarm.c"),
@@ -377,6 +378,7 @@ config.libs = [
         Object(Matching, "os/__start.c"),
         Object(Matching, "os/__ppc_eabi_init.c"),
     ]),
+
     DolphinLib("db", [
         Object(Matching, "db/db.c")
     ]),
@@ -396,23 +398,29 @@ config.libs = [
         Object(Matching, "dvd/dvderror.c"),
         Object(Matching, "dvd/fstload.c"),
     ]),
+
     DolphinLib("vi", [
         Object(Matching, "vi/vi.c")
     ]),
+
     DolphinLib("pad", [
         Object(Matching, "pad/Padclamp.c"),
         Object(Matching, "pad/Pad.c")
     ]),
+
     DolphinLib("ai", [
         Object(Matching, "ai/ai.c")
     ]),
+
     DolphinLib("ar", [
         Object(Matching, "ar/ar.c"),
         Object(Matching, "ar/arq.c"),
     ]),
+
     DolphinLib("dsp", [
         Object(Matching, "dsp/dsp.c"),
     ]),
+
     DolphinLib("card", [
         Object(Matching, "card/CARDBios.c"),
         Object(Matching, "card/CARDRdwr.c"),
@@ -449,9 +457,11 @@ config.libs = [
     HVQM4([
         Object(Matching, "hvqm4dec/hvqm4dec.c"),
     ]),
+
     MSL_C([
         Object(Matching, "MSL/MSL_C/MSL_Common/src/string.c"),
     ]),
+
     Runtime([
         Object(Matching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
         Object(Matching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
@@ -462,6 +472,7 @@ config.libs = [
     DolphinLib("amcstubs", [
         Object(Matching, "amcstubs/AmcExi2Stubs.c")
     ]),
+
     Game([
         Object(Matching, "Unsorted/staticData.cpp"),  # TODO Verify this is a seperate file
     ]),
