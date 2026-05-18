@@ -1,4 +1,4 @@
-#include <ctype.h>
+#include "ctype.h"
 
 #define ctrl __control_char
 #define motn __motion_char
@@ -67,17 +67,19 @@ const unsigned char __upper_map[256] = {
 	// clang-format on
 };
 
-int toupper(int __c) {
+int tolower(int __c)
+{
+	if (__c == -1)
+		return -1;
+
+	return __lower_map[__c & 0xff];
+}
+
+int toupper(int __c)
+{
 
 	if (__c == -1)
 		return -1;
 
 	return __upper_map[__c & 0xff];
-}
-
-int tolower(int __c) {
-	if (__c == -1)
-		return -1;
-
-	return __lower_map[__c & 0xff];
 }

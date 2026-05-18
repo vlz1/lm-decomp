@@ -212,8 +212,9 @@ cflags_base = [
     "-multibyte",  # For Wii compilers, replace with `-enc SJIS`
     "-i include",
     "-i libs",
-    "-i libs/MSL/MSL_C/MSL_Common/include",
-    "-i libs/MSL/MSL_C/MSL_Common_Embedded/include",
+    "-i libs/PowerPC_EABI_Support/Runtime.PPCEABI.H/include",
+    "-i libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/include",
+    "-i libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/include",
     "-i libs/dolphin/include",
     "-i libs/hvqm4/include",
     f"-i build/{config.version}/include",
@@ -237,14 +238,13 @@ elif args.warn == "error":
     cflags_base.append("-W error")
 
 # Metrowerks library flags
-cflags_runtime = [
+cflags_metrowerks = [
     *cflags_base,
-    "-i libs/Runtime.PPCEABI.H/include",
     "-use_lmw_stmw on",
     "-str reuse,pool,readonly",
     # "-gccinc",
     "-common off",
-    "-inline auto",
+    "-inline deferred",
 ]
 
 cflags_game = [
@@ -289,23 +289,12 @@ def Rel(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     }
 
 
-# Helper function for Runtime
-def Runtime(objects: List[Object]) -> Dict[str, Any]:
+# Helper function for Metroworks Libraries
+def MetroworksLib(lib_name : str, objects: List[Object]) -> Dict[str, Any]:
     return {
-        "lib": "Runtime.PPCEABI.H",
+        "lib": lib_name,
         "mw_version": config.linker_version,
-        "cflags": cflags_runtime,
-        "progress_category": "msl",
-        "src_dir": "libs/",
-        "objects": objects,
-    }
-
-
-def MSL_C(objects: List[Object]) -> Dict[str, Any]:
-    return {
-        "lib": "MSL_C",
-        "mw_version": config.linker_version,
-        "cflags": cflags_runtime,
+        "cflags": cflags_metrowerks,
         "progress_category": "msl",
         "src_dir": "libs/",
         "objects": objects,
@@ -458,20 +447,24 @@ config.libs = [
         Object(Matching, "hvqm4dec/hvqm4dec.c"),
     ]),
 
-    MSL_C([
-        Object(Matching, "MSL/MSL_C/MSL_Common/src/string.c"),
-        Object(Matching, "MSL/MSL_C/MSL_Common/src/ctype.c"),
-        Object(Matching, "MSL/MSL_C/MSL_Common/src/direct_io.c"),
-        Object(Matching, "MSL/MSL_C/MSL_Common/src/mbstring.c"),
-        Object(Matching, "MSL/MSL_C/MSL_Common/src/mem.c"),
-        Object(Matching, "MSL/MSL_C/MSL_Common/src/mem_funcs.c"),
+    MetroworksLib("MSL_C", [
+        Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/string.c"),
+        Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/ctype.c"),
+        Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/direct_io.c"),
+        Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/mbstring.c"),
+        Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/mem.c"),
+        Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/mem_funcs.c"),
+        Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/misc_io.c"),
+        Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/printf.c"),
+        Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/rand.c"),
+        Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/strtoul.c")
     ]),
 
-    Runtime([
-        Object(Matching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
-        Object(Matching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
-        Object(Matching, "Runtime.PPCEABI.H/__va_arg.c"),
-        Object(Matching, "Runtime.PPCEABI.H/__mem.c"),
+    MetroworksLib("Runtime.PPCEABI.H", [
+        Object(Matching, "PowerPC_EABI_Support/Runtime.PPCEABI.H/src/global_destructor_chain.c"),
+        Object(Matching, "PowerPC_EABI_Support/Runtime.PPCEABI.H/src/__init_cpp_exceptions.cpp"),
+        Object(Matching, "PowerPC_EABI_Support/Runtime.PPCEABI.H/src/__va_arg.c"),
+        Object(Matching, "PowerPC_EABI_Support/Runtime.PPCEABI.H/src/__mem.c"),
     ]),
 
     DolphinLib("amcstubs", [

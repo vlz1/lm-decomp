@@ -320,42 +320,60 @@ gx/GXTransform.c:
 	.text       start:0x801F4AA4 end:0x801F508C
 	.sdata2     start:0x804A6340 end:0x804A6350
 
-Runtime.PPCEABI.H/__va_arg.c:
+PowerPC_EABI_Support/Runtime.PPCEABI.H/src/__va_arg.c:
 	.text       start:0x801F508C end:0x801F5180
 
-Runtime.PPCEABI.H/global_destructor_chain.c:
+PowerPC_EABI_Support/Runtime.PPCEABI.H/src/global_destructor_chain.c:
 	.text       start:0x801F5180 end:0x801F51E0
 	.dtors      start:0x80200FA8 end:0x80200FAC
 	.sbss       start:0x804A2320 end:0x804A2328
 
-Runtime.PPCEABI.H/__init_cpp_exceptions.cpp:
+PowerPC_EABI_Support/Runtime.PPCEABI.H/src/__init_cpp_exceptions.cpp:
 	.text       start:0x801F76EC end:0x801F7768
 	.ctors      start:0x80200C80 end:0x80200C84
 	.dtors      start:0x80200FA0 end:0x80200FA8
 	.sdata      start:0x804A0B20 end:0x804A0B28
 
-MSL/MSL_C/MSL_Common/src/ctype.c:
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/ctype.c:
 	.text       start:0x801F7DF0 end:0x801F7E40
 	.rodata     start:0x8020CB30 end:0x8020CE30
 
-MSL/MSL_C/MSL_Common/src/direct_io.c:
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/direct_io.c:
 	.text       start:0x801F7E40 end:0x801F811C
 
-MSL/MSL_C/MSL_Common/src/mbstring.c:
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/mbstring.c:
 	.text       start:0x801F811C end:0x801F8158
 
-MSL/MSL_C/MSL_Common/src/mem.c:
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/mem.c:
 	.text       start:0x801F8158 end:0x801F82A4
 
-MSL/MSL_C/MSL_Common/src/mem_funcs.c:
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/mem_funcs.c:
 	.text       start:0x801F82A4 end:0x801F8580
 
-MSL/MSL_C/MSL_Common/src/string.c:
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/misc_io.c:
+	.text       start:0x801F8580 end:0x801F8584
+
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/printf.c:
+	.text       start:0x801F8584 end:0x801FA050
+	.rodata     start:0x8020CE30 end:0x8020CE40
+	.data       start:0x8038B458 end:0x8038B678
+	.sdata      start:0x804A0B28 end:0x804A0B30
+	.sdata2     start:0x804A6378 end:0x804A6380
+
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/rand.c:
+	.text       start:0x801FA050 end:0x801FA07C
+	.sdata      start:0x804A0B30 end:0x804A0B38
+
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/string.c:
 	.text       start:0x801FA1C0 end:0x801FA558
 	.sdata      start:0x804A0B38 end:0x804A0B40
+
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/strtoul.c:
+	.text       start:0x801FA558 end:0x801FAB00
+	.data       start:0x8038B678 end:0x8038B6C0
 
 amcstubs/AmcExi2Stubs.c:
 	.text       start:0x8020008C end:0x802000BC
 
-Runtime.PPCEABI.H/__mem.c:
+PowerPC_EABI_Support/Runtime.PPCEABI.H/src/__mem.c:
 	.init       start:0x80003320 end:0x80003464

@@ -16,14 +16,6 @@ asm static char* GetR2()
 extern "C" {
 #endif
 
-void __fini_cpp_exceptions()
-{
-	if (fragmentID != -2) {
-		__unregister_fragment(fragmentID);
-		fragmentID = -2;
-	}
-}
-
 void __init_cpp_exceptions()
 {
 	if (fragmentID == -2) {
@@ -32,14 +24,21 @@ void __init_cpp_exceptions()
 	}
 }
 
+void __fini_cpp_exceptions()
+{
+	if (fragmentID != -2) {
+		__unregister_fragment(fragmentID);
+		fragmentID = -2;
+	}
+}
+
 #ifdef __cplusplus
 }
 #endif
 
-__declspec(section ".dtors") static void* const __destroy_global_chain_reference
-    = __destroy_global_chain;
-
 __declspec(section ".ctors") extern void* const __init_cpp_exceptions_reference
     = __init_cpp_exceptions;
+__declspec(section ".dtors") extern void* const __destroy_global_chain_reference
+    = __destroy_global_chain;
 __declspec(section ".dtors") extern void* const __fini_cpp_exceptions_reference
     = __fini_cpp_exceptions;
