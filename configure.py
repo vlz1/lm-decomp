@@ -460,6 +460,11 @@ config.libs = [
 
     MSL_C([
         Object(Matching, "MSL/MSL_C/MSL_Common/src/string.c"),
+        Object(Matching, "MSL/MSL_C/MSL_Common/src/ctype.c"),
+        Object(Matching, "MSL/MSL_C/MSL_Common/src/direct_io.c"),
+        Object(Matching, "MSL/MSL_C/MSL_Common/src/mbstring.c"),
+        Object(Matching, "MSL/MSL_C/MSL_Common/src/mem.c"),
+        Object(Matching, "MSL/MSL_C/MSL_Common/src/mem_funcs.c"),
     ]),
 
     Runtime([

@@ -341,6 +341,22 @@ Runtime.PPCEABI.H/__init_cpp_exceptions.cpp:
 	.dtors      start:0x8020BDE0 end:0x8020BDE8
 	.sdata      start:0x804D7FB0 end:0x804D7FB8
 
+MSL/MSL_C/MSL_Common/src/ctype.c:
+	.text       start:0x80202D60 end:0x80202DB0
+	.rodata     start:0x80217860 end:0x80217B60
+
+MSL/MSL_C/MSL_Common/src/direct_io.c:
+	.text       start:0x80202DB0 end:0x8020308C
+
+MSL/MSL_C/MSL_Common/src/mbstring.c:
+	.text       start:0x8020308C end:0x802030C8
+
+MSL/MSL_C/MSL_Common/src/mem.c:
+	.text       start:0x802030C8 end:0x80203214
+
+MSL/MSL_C/MSL_Common/src/mem_funcs.c:
+	.text       start:0x80203214 end:0x802034F0
+
 MSL/MSL_C/MSL_Common/src/string.c:
 	.text       start:0x80205130 end:0x802054C8
 	.sdata      start:0x804D7FC8 end:0x804D7FD0
