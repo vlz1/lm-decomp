@@ -34,7 +34,7 @@ bool Koga::CharacterEventObserver::receiveMessage(CharacterEvent* msg) {
         bResult = onCaptureEnd(msg);
         break;
     case CharacterEvent::MESSAGE_UNK8:
-        bResult = vt_10(msg);
+        bResult = vt_18(msg);
         break;
     case CharacterEvent::MESSAGE_COLLIDE_WITH_PLAYER:
         bResult = onCollideWithPlayer(msg);
@@ -70,7 +70,7 @@ bool Koga::CharacterEventObserver::receiveMessage(CharacterEvent* msg) {
         bResult = onPlayerTapped(msg);
         break;
     case CharacterEvent::MESSAGE_UNK_29:
-        bResult = vt_40(msg);
+        bResult = vt_48(msg);
         break;
     }
 
@@ -93,7 +93,7 @@ bool Koga::CharacterEventObserver::onCaptureEnd(CharacterEvent* msg) {
 }
 
 /* TODO: What does this do? */
-bool Koga::CharacterEventObserver::vt_10(CharacterEvent* msg) {
+bool Koga::CharacterEventObserver::vt_18(CharacterEvent* msg) {
     return false;
 }
 
@@ -153,6 +153,6 @@ bool Koga::CharacterEventObserver::onPlayerTapped(CharacterEvent* msg) {
 }
 
 /* TODO: What does this do? */
-bool Koga::CharacterEventObserver::vt_40(CharacterEvent* msg) {
+bool Koga::CharacterEventObserver::vt_48(CharacterEvent* msg) {
     return false;
 }

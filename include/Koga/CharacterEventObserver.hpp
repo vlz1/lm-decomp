@@ -42,49 +42,48 @@ namespace Koga {
 
     class CharacterEventObserver : public Observer< CharacterEvent, bool > {
     public:
-        virtual bool receiveMessage(CharacterEvent* msg);
+        /* 0x08 */ virtual bool receiveMessage(CharacterEvent* msg);
 
         /* Called while the actor is inside the flashlight cone. */
-        virtual bool onEnteredFlashlightBeam(CharacterEvent* msg);
+        /* 0x0C */ virtual bool onEnteredFlashlightBeam(CharacterEvent* msg);
 
         /* Called when the actor's HP hits 0 while being fished. */
-        virtual bool onCaptureBegin(CharacterEvent* msg);
+        /* 0x10 */ virtual bool onCaptureBegin(CharacterEvent* msg);
         /* Called when the actor has been sucked into the Poltergust. */
-        virtual bool onCaptureEnd(CharacterEvent* msg);
-
+        /* 0x14 */ virtual bool onCaptureEnd(CharacterEvent* msg);
         /* TODO: What does this do? */
-        virtual bool vt_10(CharacterEvent* msg);
+        /* 0x18 */ virtual bool vt_18(CharacterEvent* msg);
 
         /* Called when the actor collides with the player. */
-        virtual bool onCollideWithPlayer(CharacterEvent* msg);
+        /* 0x1C */ virtual bool onCollideWithPlayer(CharacterEvent* msg);
 
         /* Called when the actor is exposed to fire. */
-        virtual bool onSprayedWithFire(CharacterEvent* msg);
+        /* 0x20 */ virtual bool onSprayedWithFire(CharacterEvent* msg);
         /* Called when the actor is exposed to ice. */
-        virtual bool onSprayedWithIce(CharacterEvent* msg);
+        /* 0x24 */ virtual bool onSprayedWithIce(CharacterEvent* msg);
         /* Called when the actor is exposed to water. */
-        virtual bool onSprayedWithWater(CharacterEvent* msg);
+        /* 0x28 */ virtual bool onSprayedWithWater(CharacterEvent* msg);
 
         /* Called when the actor is hit with a fire elemental ball. */
-        virtual bool onHitWithFireBall(CharacterEvent* msg);
+        /* 0x2C */ virtual bool onHitWithFireBall(CharacterEvent* msg);
         /* Called when the actor is hit with an ice elemental ball. */
-        virtual bool onHitWithIceBall(CharacterEvent* msg);
+        /* 0x30 */ virtual bool onHitWithIceBall(CharacterEvent* msg);
         /* Called when the actor is hit with a water elemental ball. */
-        virtual bool onHitWithWaterBall(CharacterEvent* msg);
+        /* 0x34 */ virtual bool onHitWithWaterBall(CharacterEvent* msg);
 
         /* Called when the actor is hooked by the Poltergust. */
-        virtual bool onFishingBegin(CharacterEvent* msg);
+        /* 0x38 */ virtual bool onFishingBegin(CharacterEvent* msg);
 
         /* Called when the player leaves the actor's current room. */
-        virtual bool onPlayerLeftRoom(CharacterEvent* msg);
+        /* 0x3C */ virtual bool onPlayerLeftRoom(CharacterEvent* msg);
         /* Called when the player enters the actor's current room. */
-        virtual bool onPlayerEnteredRoom(CharacterEvent* msg);
+        /* 0x40 */ virtual bool onPlayerEnteredRoom(CharacterEvent* msg);
 
         /* Called when the player presses the A button on the actor; treasure chests only? */
-        virtual bool onPlayerTapped(CharacterEvent* msg);
+        /* 0x44 */ virtual bool onPlayerTapped(CharacterEvent* msg);
 
         /* TODO: What does this do? */
-        virtual bool vt_40(CharacterEvent* msg);
+        /* 0x48 */ virtual bool vt_48(CharacterEvent* msg);
     };
 }  // namespace Koga
 
