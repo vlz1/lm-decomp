@@ -448,7 +448,8 @@ config.libs = [
     ]),
 
     MetroworksLib("MSL_C", [
-        Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/string.c"),
+        Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/arith.c"),
+        Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/buffer_io.c"),
         Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/ctype.c"),
         Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/direct_io.c"),
         Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/mbstring.c"),
@@ -457,7 +458,13 @@ config.libs = [
         Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/misc_io.c"),
         Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/printf.c"),
         Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/rand.c"),
-        Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/strtoul.c")
+        Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/string.c"),
+        Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/scanf.c"),
+        Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/signal.c"),
+        Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/strtoul.c"),
+        Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/float.c"),
+        Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/uart_console_io.c"),
+        Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/wchar_io.c"),
     ]),
 
     MetroworksLib("Runtime.PPCEABI.H", [

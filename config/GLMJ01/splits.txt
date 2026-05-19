@@ -334,6 +334,12 @@ PowerPC_EABI_Support/Runtime.PPCEABI.H/src/__init_cpp_exceptions.cpp:
 	.dtors      start:0x80200FA0 end:0x80200FA8
 	.sdata      start:0x804A0B20 end:0x804A0B28
 
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/arith.c:
+	.text       start:0x801F7CDC end:0x801F7CEC
+
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/buffer_io.c:
+	.text       start:0x801F7CEC end:0x801F7DEC
+
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/ctype.c:
 	.text       start:0x801F7DF0 end:0x801F7E40
 	.rodata     start:0x8020CB30 end:0x8020CE30
@@ -364,6 +370,13 @@ PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/rand.c:
 	.text       start:0x801FA050 end:0x801FA07C
 	.sdata      start:0x804A0B30 end:0x804A0B38
 
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/scanf.c:
+	.text       start:0x801FA07C end:0x801FA10C
+
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/signal.c:
+	.text       start:0x801FA10C end:0x801FA1C0
+	.bss        start:0x80496AB8 end:0x80496AD0
+
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/string.c:
 	.text       start:0x801FA1C0 end:0x801FA558
 	.sdata      start:0x804A0B38 end:0x804A0B40
@@ -371,6 +384,16 @@ PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/string.c:
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/strtoul.c:
 	.text       start:0x801FA558 end:0x801FAB00
 	.data       start:0x8038B678 end:0x8038B6C0
+
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/float.c:
+	.data       start:0x8038B6C0 end:0x8038B6C8
+
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/uart_console_io.c:
+	.text       start:0x801FAB00 end:0x801FAC80
+	.sbss       start:0x804A2348 end:0x804A2350
+
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/wchar_io.c:
+	.text       start:0x801FAC80 end:0x801FAD00
 
 amcstubs/AmcExi2Stubs.c:
 	.text       start:0x8020008C end:0x802000BC
