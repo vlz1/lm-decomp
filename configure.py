@@ -483,6 +483,7 @@ config.libs = [
     Game([
         # Koga
         Object(Matching, "Koga/CharacterEventObserver.cpp"),
+        Object(NonMatching, "Koga/Message.cpp"),
         # Unsorted
         Object(Matching, "Unsorted/staticData.cpp"),  # TODO Verify this is a seperate file
 

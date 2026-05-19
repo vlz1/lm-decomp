@@ -5,6 +5,6 @@
 
 
 #define dummy_float_data() \
-    static f32 dummy[6] = {1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f};
+    static f32 dummy_float_data[6] = {1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f};
 
 #endif
