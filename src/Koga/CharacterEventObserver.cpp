@@ -1,5 +1,4 @@
 #include "Koga/CharacterEventObserver.hpp"
-#include "Koga/Observer.hpp"
 #include "macros.h"
 
 // Required for .data to match.
