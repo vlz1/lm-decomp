@@ -15,6 +15,11 @@ Sections:
 Unsorted/staticData.cpp:
 	.data       start:0x80213240 end:0x802F40A0
 
+Koga/CharacterEventObserver.cpp:
+	.text       start:0x800E88E0 end:0x800E8B80
+	.data       start:0x803590A8 end:0x803591DC
+	.sdata      start:0x8049CAE8 end:0x8049CAF8
+
 base/PPCArch.c:
 	.text       start:0x801D4B80 end:0x801D4BE4
 

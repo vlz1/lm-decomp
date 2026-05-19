@@ -15,6 +15,11 @@ Sections:
 Unsorted/staticData.cpp:
 	.data       start:0x8021E000 end:0x802FB380
 
+Koga/CharacterEventObserver.cpp:
+	.text       start:0x800EA1B4 end:0x800EA454
+	.data       start:0x80363FA0 end:0x803640D4
+	.sdata      start:0x804D3F68 end:0x804D3F78
+
 base/PPCArch.c:
 	.text       start:0x801D9F7C end:0x801D9FE0
 
@@ -340,6 +345,11 @@ PowerPC_EABI_Support/Runtime.PPCEABI.H/src/__init_cpp_exceptions.cpp:
 	.ctors      start:0x8020BAC0 end:0x8020BAC4
 	.dtors      start:0x8020BDE0 end:0x8020BDE8
 	.sdata      start:0x804D7FB0 end:0x804D7FB8
+
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/abort_exit.c:
+	.text       start:0x802026D8 end:0x80202898
+	.bss        start:0x804CDB58 end:0x804CDD58
+	.sbss       start:0x804D9830 end:0x804D9848
 
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/arith.c:
 	.text       start:0x80202C4C end:0x80202C5C

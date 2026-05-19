@@ -250,6 +250,7 @@ cflags_metrowerks = [
 cflags_game = [
     *cflags_base,
     "-RTTI on",
+    "-lang c++"
 ]
 # REL flags
 cflags_rel = [
@@ -448,6 +449,7 @@ config.libs = [
     ]),
 
     MetroworksLib("MSL_C", [
+        Object(NonMatching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/abort_exit.c"),
         Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/arith.c"),
         Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/buffer_io.c"),
         Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/ctype.c"),
@@ -479,7 +481,11 @@ config.libs = [
     ]),
 
     Game([
+        # Koga
+        Object(Matching, "Koga/CharacterEventObserver.cpp"),
+        # Unsorted
         Object(Matching, "Unsorted/staticData.cpp"),  # TODO Verify this is a seperate file
+
     ]),
 ]
 
