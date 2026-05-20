@@ -1,5 +1,6 @@
 #include "abort_exit.h"
 #include "critical_regions.h"
+#include "dolphin/macros.h"
 #include "stddef.h"
 #include "NMWException.h"
 #include <signal.h>
@@ -65,6 +66,9 @@ void exit(int status)
 
 void __exit(int status) {
     void (**var_r31)(void);
+
+	//TODO: Remove this
+	FORCE_DONT_INLINE
 
 	while (__atexit_curr_func > 0)
 		__atexit_funcs[--__atexit_curr_func]();
