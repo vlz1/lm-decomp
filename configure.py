@@ -450,7 +450,7 @@ config.libs = [
 
     MetroworksLib("MSL_C", [
         Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/abort_exit.c"),
-        Object(NonMatching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/ansi_fp.c"),
+        Object(NonMatching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/ansi_fp.c", extra_cflags=["-sym on"]),
         Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/arith.c"),
         Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/buffer_io.c"),
         Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/src/ctype.c"),
