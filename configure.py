@@ -217,6 +217,7 @@ cflags_base = [
     "-i libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/include",
     "-i libs/dolphin/include",
     "-i libs/hvqm4/include",
+    "-i libs/JSystem/include",
     f"-i build/{config.version}/include",
     f"-DBUILD_VERSION={version_num}",
     f"-DVERSION={version_num}",
