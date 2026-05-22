@@ -328,7 +328,7 @@ def JSystem(objects: List[Object]) -> Dict[str, Any]:
         "mw_version": "GC/1.2.5",
         "cflags": cflags_jsystem,
         "progress_category": "jsystem",
-        "src_dir": "libs/jsystem/src/",
+        "src_dir": "libs/JSystem/src/",
         "objects": objects,
     }
 
