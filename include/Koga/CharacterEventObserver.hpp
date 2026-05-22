@@ -51,7 +51,11 @@ namespace Koga {
         /* 0x10 */ virtual bool onCaptureBegin(CharacterEvent* msg);
         /* Called when the actor has been sucked into the Poltergust. */
         /* 0x14 */ virtual bool onCaptureEnd(CharacterEvent* msg);
+
         /* TODO: What does this do? */
+        /* Seems to be related to when an actor (like a ghost) disappears.
+        (in the gold ghost's case its either due to the player  stunning it and not sucking it or running away from it for too long.)
+        */
         /* 0x18 */ virtual bool vt_18(CharacterEvent* msg);
 
         /* Called when the actor collides with the player. */
@@ -83,7 +87,7 @@ namespace Koga {
         /* 0x44 */ virtual bool onPlayerTapped(CharacterEvent* msg);
 
         /* TODO: What does this do?
-            It seems to be related to loading zones/areas, but theres already PlayerLeft and Entered room?
+            Seems to be whenever the player is close enough to the actor so it loads..
         */
         /* 0x48 */ virtual bool vt_48(CharacterEvent* msg);
     };
