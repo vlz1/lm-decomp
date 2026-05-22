@@ -14,42 +14,6 @@ public:
 		HEAPALLOC_Unk1 = 1,
 	};
 
-	struct TState {
-		TState(const JKRHeap* heap, u32 id, bool isCompareOnDestructed)
-		    : mUsedSize(0)
-		    , mCheckCode(0)
-		    , mHeap(heap)
-		    , mId(id)
-		{
-			mHeap->state_register(this, mId);
-		}
-
-		TState(JKRHeap* heap)
-		    : mUsedSize(0)
-		    , mCheckCode(0)
-		    , mHeap(heap)
-		    , mId(0xFFFFFFFF)
-		{
-		}
-
-		~TState();
-		void dump() const { mHeap->state_dump(*this); }
-		bool isVerbose() { return bVerbose_; }
-		u32 getUsedSize() const { return mUsedSize; }
-		u32 getCheckCode() const { return mCheckCode; }
-		const JKRHeap* getHeap() const { return mHeap; }
-		u32 getId() const { return mId; }
-
-		static bool bVerbose_;
-
-		// TODO: this is all wrong
-		u32 mBuf;             // _00
-		u32 mUsedSize;        // _04
-		u32 mCheckCode;       // _08
-		u32 mId;              // _0C
-		const JKRHeap* mHeap; // _10
-	};
-
 public:
 	JKRHeap(void* data, u32 size, JKRHeap* parent, bool errorFlag);
 
@@ -66,14 +30,9 @@ public:
 	virtual s32 getTotalFreeSize()          = 0;
 	virtual u32 getHeapType()               = 0;
 	virtual bool check()                    = 0;
-	virtual bool dump_sort() { return true; }
 	virtual bool dump() = 0;
 	virtual s32 changeGroupID(u8 newGroupId);
 	virtual u8 getCurrentGroupId();
-	virtual void state_register(JKRHeap::TState*, u32) const;
-	virtual bool state_compare(JKRHeap::TState const&,
-	                           JKRHeap::TState const&) const;
-	virtual void state_dump(JKRHeap::TState const&) const;
 
 	JKRHeap* becomeSystemHeap();
 	JKRHeap* becomeCurrentHeap();
@@ -125,20 +84,6 @@ public:
 		}
 	}
 
-	// TState related
-	static u32 getState_buf_(TState* state)
-	{
-		return state->mBuf;
-	} // might instead be a pointer to a next state?
-	static void setState_u32ID_(TState* state, u32 id) { state->mId = id; }
-	static void setState_uUsedSize_(TState* state, u32 usedSize)
-	{
-		state->mUsedSize = usedSize;
-	}
-	static void setState_u32CheckCode_(TState* state, u32 checkCode)
-	{
-		state->mCheckCode = checkCode;
-	}
 
 	void lock() const { OSLockMutex(const_cast<OSMutex*>(&mMutex)); }
 	void unlock() const { OSUnlockMutex(const_cast<OSMutex*>(&mMutex)); }
@@ -154,30 +99,13 @@ public:
 	static void* alloc(u32 byteCount, int padding, JKRHeap* heap);
 	static void copyMemory(void* dst, void* src, u32 size);
 	static void free(void*, JKRHeap*);
-	static void state_dumpDifference(const TState&, const TState&);
 	static JKRHeap* findFromRoot(void*);
-
-	static void* getCodeStart() { return mCodeStart; }
-
-	static void* getCodeEnd() { return mCodeEnd; }
-
-	static void* getUserRamStart() { return mUserRamStart; }
-
-	static void* getUserRamEnd() { return mUserRamEnd; }
-
-	static u32 getMemorySize() { return mMemorySize; }
 
 	static JKRHeap* getCurrentHeap() { return sCurrentHeap; }
 
 	static JKRHeap* getRootHeap() { return sRootHeap; }
 
 	static JKRHeap* getSystemHeap() { return sSystemHeap; }
-
-	static void* mCodeStart;
-	static void* mCodeEnd;
-	static void* mUserRamStart;
-	static void* mUserRamEnd;
-	static u32 mMemorySize;
 
 	static JKRHeap* sSystemHeap;
 	static JKRHeap* sCurrentHeap;

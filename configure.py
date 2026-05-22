@@ -215,6 +215,7 @@ cflags_base = [
     "-i libs/PowerPC_EABI_Support/Runtime.PPCEABI.H/include",
     "-i libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/include",
     "-i libs/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/include",
+    "-i libs/PowerPC_EABI_Support/MSL/MSL_C++/MSL_Common/include",
     "-i libs/dolphin/include",
     "-i libs/hvqm4/include",
     "-i libs/JSystem/include",
@@ -253,6 +254,13 @@ cflags_game = [
     "-RTTI on",
     "-lang c++"
 ]
+
+cflags_jsystem = [
+    *cflags_base,
+    "-RTTI on",
+    "-lang c++"
+]
+
 # REL flags
 cflags_rel = [
     *cflags_base,
@@ -314,6 +322,17 @@ def HVQM4(objects: List[Object]) -> Dict[str, Any]:
     }
 
 
+def JSystem(objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": "JSystem",
+        "mw_version": "GC/1.2.5",
+        "cflags": cflags_jsystem,
+        "progress_category": "jsystem",
+        "src_dir": "libs/jsystem/src/",
+        "objects": objects,
+    }
+
+
 def Game(objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": "Game",
@@ -338,6 +357,11 @@ def MatchingFor(*versions):
 config.warn_missing_config = True
 config.warn_missing_source = False
 config.libs = [
+
+    JSystem([
+        Object(MatchingFor("GLME01"), "JSystem/JKernel/JKRHeap.cpp"),
+    ]),
+
     DolphinLib("base", [
         Object(Matching, "base/PPCArch.c")
     ]),
@@ -518,6 +542,7 @@ config.progress_categories = [
     ProgressCategory("sdk", "SDK Code"),
     ProgressCategory("msl", "Metroworks Library Code"),
     ProgressCategory("hvqm4", "HVQM4 Library Code"),
+    ProgressCategory("jsystem", "JSystem Code"),
 ]
 config.progress_each_module = args.verbose
 # Optional extra arguments to `objdiff-cli report generate`
