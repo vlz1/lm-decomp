@@ -48,13 +48,10 @@ public:
 	virtual u32 getHeapType() { return 'EXPH'; }               // _30 (weak)
 	virtual s32 getTotalFreeSize();                            // _2C
 	virtual bool check();                                      // _34
-	virtual bool dump_sort();                                  // _38
-	virtual bool dump();                                       // _3C
-	virtual s32 changeGroupID(u8 groupId);                     // _40
-	virtual u8 getCurrentGroupId() { return mCurrentGroupID; } // _44 (weak)
-	virtual void state_register(TState*, u32) const;           // _48
-	virtual bool state_compare(const TState& fst,
-	                           const TState& snd) const; // _4C
+	virtual bool dump();                                       // _38
+	/* TODO: Is this name correct? */
+	virtual s32 changeGroupID(u8 groupId) { return 10; };                     // _3C
+	virtual u8 getCurrentGroupId() { return mCurrentGroupID; } // _40 (weak)
 
 	void* allocFromHead(u32 size, int align);
 	void* allocFromHead(u32 size);
@@ -70,6 +67,10 @@ public:
 	void removeFreeBlock(CMemBlock*);
 	void setFreeBlock(CMemBlock*, CMemBlock*, CMemBlock*);
 	void destroy();
+	void reset();
+
+	//Actually changes changeGroupId
+	s32 changeGroupIDActual(u8 newGroupID);
 
 	// unused/inlined:
 	void removeUsedBlock(CMemBlock*);
@@ -84,10 +85,6 @@ public:
 		// s32 totalFreeSize = expHeap->getTotalFreeSize();
 		return expHeap->mSize - expHeap->getTotalFreeSize();
 	}
-	static u32 getState_(TState* state)
-	{
-		return getState_buf_(state);
-	} // might instead be a pointer to a next state?
 
 private:
 	// _00     = VTBL
@@ -99,7 +96,7 @@ private:
 	u32 _74;                  // _70
 	CMemBlock* mHead;         // _74, free list
 	CMemBlock* mTail;         // _78, free list
-	CMemBlock* mHeadUsedList; // _8C
+	CMemBlock* mHeadUsedList; // _7C
 	CMemBlock* mTailUsedList; // _80
 };
 

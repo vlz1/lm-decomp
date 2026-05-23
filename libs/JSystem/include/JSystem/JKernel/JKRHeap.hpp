@@ -31,6 +31,7 @@ public:
 	virtual u32 getHeapType()               = 0;
 	virtual bool check()                    = 0;
 	virtual bool dump() = 0;
+	/* TODO: Is this correct? */
 	virtual s32 changeGroupID(u8 newGroupId);
 	virtual u8 getCurrentGroupId();
 

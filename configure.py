@@ -360,6 +360,7 @@ config.libs = [
 
     JSystem([
         Object(MatchingFor("GLME01"), "JSystem/JKernel/JKRHeap.cpp"),
+        Object(NonMatching, "JSystem/JKernel/JKRExpHeap.cpp"),
     ]),
 
     DolphinLib("base", [

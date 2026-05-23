@@ -24,9 +24,6 @@ public:
 		OSDumpHeap(mHeapId);
 		return OSCheckHeap(mHeapId) != -1;
 	}
-	virtual void state_register(TState*, u32) const; // _48
-	virtual bool state_compare(const TState& fst,
-	                           const TState& snd) const; // _4C
 
 	static JKRStdHeap* create(u32 size, JKRHeap* parent, bool errorFlag);
 
