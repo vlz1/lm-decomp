@@ -490,6 +490,7 @@ TRK_MINNOW_DOLPHIN/src/debugger/embedded/MetroTRK/Portable/mem_TRK.c:
 
 TRK_MINNOW_DOLPHIN/src/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c:
 	.text       start:0x80209094 end:0x8020A670
+	.rodata     start:0x802180A8 end:0x802180F4
 	.data       start:0x80396848 end:0x80396878
 	.bss        start:0x804CF770 end:0x804CFCF0
 
@@ -499,6 +500,7 @@ TRK_MINNOW_DOLPHIN/src/__exception.s: comment:0
 TRK_MINNOW_DOLPHIN/src/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c:
 	.init       start:0x800053EC end:0x8000540C
 	.text       start:0x8020A670 end:0x8020A8B0
+	.data       start:0x80396878 end:0x803968B8
 	.bss        start:0x804CFCF0 end:0x804CFCF8
 
 TRK_MINNOW_DOLPHIN/src/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c:
