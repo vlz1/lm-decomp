@@ -7,4 +7,7 @@
 #define VERSION_JPN 1
 #define VERSION_PAL_0 2
 #define VERSION_PAL_1 3
+
+#define VERSION_PAL (VERSION == VERSION_PAL_0 || VERSION == VERSION_PAL_1)
+
 #endif
