@@ -2,8 +2,8 @@
 #include "Unsorted/staticData.h"
 
 //NOTE: Files are created during setup
-#if VERSION == VERSION_JPN
-#include "staticdata_arc.inc"
-#elif VERSION == VERSION_USA
+#if VERSION == VERSION_USA
 #include "staticdata_usa_arc.inc"
+#else
+#include "staticdata_arc.inc"
 #endif

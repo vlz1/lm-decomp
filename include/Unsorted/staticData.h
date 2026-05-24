@@ -3,10 +3,10 @@
 
 #include <version.h>
 
-#if VERSION == VERSION_JPN
-extern u8 staticdata_arc[];
-#elif VERSION == VERSION_USA
+#if VERSION == VERSION_USA
 extern u8 staticdata_usa_arc[];
+#else
+extern u8 staticdata_arc[];
 #endif
 
 #endif

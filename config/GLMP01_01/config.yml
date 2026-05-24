@@ -6,6 +6,6 @@ splits: config/GLMP01_01/splits.txt
 mw_comment_version: 8
 
 extract:
-    - symbol: staticdata_pal_01_arc
-      binary: staticdata_pal_01.arc
-      header: staticdata_pal_01_arc.inc
+    - symbol: staticdata_arc
+      binary: staticdata.arc
+      header: staticdata_arc.inc
