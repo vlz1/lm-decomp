@@ -158,7 +158,7 @@ void* JKRExpHeap::alloc(u32 size, int alignment)
 
 void* JKRExpHeap::allocFromHead(u32 size, int align)
 {
-	size                    = ALIGN_NEXT(size, 4);
+	size                    = ALIGN_NEXT(size, align);
 	u32 foundSize           = -1;
 	u32 foundOffset         = 0;
 	CMemBlock* foundBlock   = nullptr;
