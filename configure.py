@@ -408,6 +408,7 @@ config.libs = [
         Object(Matching, "JSystem/JKernel/JKRHeap.cpp"),
         Object(NonMatching, "JSystem/JKernel/JKRExpHeap.cpp"),
         Object(Matching, "JSystem/JKernel/JKRSolidHeap.cpp"),
+        Object(Matching, "JSystem/JKernel/JKRDisposer.cpp"),
     ]),
 
     DolphinLib("base", [
