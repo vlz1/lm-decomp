@@ -22,9 +22,11 @@ public:
 	virtual bool dump();
 
 	static JKRSolidHeap* create(u32 size, JKRHeap* parent, bool errorFlag);
+	void destroy();
 
 	void* allocFromHead(u32 size, int align);
 	void* allocFromTail(u32 size, int align);
+	s32 adjustSize();
 
 	// fabricated
 	static s32 getUsedSize_(JKRSolidHeap* solidHeap)

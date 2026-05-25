@@ -37,6 +37,11 @@ JSystem/JKernel/JKRExpHeap.cpp:
 	.sdata      start:0x804D7CA8 end:0x804D7CC8
 	.sbss       start:0x804D9500 end:0x804D9520
 
+JSystem/JKernel/JKRSolidHeap.cpp:
+	.text       start:0x801D01D8 end:0x801D084C
+	.data       start:0x80393950 end:0x803939D0
+	.sdata      start:0x804D7CC8 end:0x804D7CE8
+
 base/PPCArch.c:
 	.text       start:0x801D9F7C end:0x801D9FE0
 

@@ -405,8 +405,9 @@ config.warn_missing_source = False
 config.libs = [
 
     JSystem([
-        Object(MatchingFor("GLME01"), "JSystem/JKernel/JKRHeap.cpp"),
+        Object(Matching, "JSystem/JKernel/JKRHeap.cpp"),
         Object(NonMatching, "JSystem/JKernel/JKRExpHeap.cpp"),
+        Object(Matching, "JSystem/JKernel/JKRSolidHeap.cpp"),
     ]),
 
     DolphinLib("base", [
