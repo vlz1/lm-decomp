@@ -47,6 +47,13 @@ JSystem/JKernel/JKRDisposer.cpp:
 	.data       start:0x803939D0 end:0x803939E8
 	.sdata      start:0x804D7CE8 end:0x804D7CF0
 
+JSystem/JKernel/JKRThread.cpp:
+	.text       start:0x801D0948 end:0x801D0C30
+	.ctors      start:0x8020BDB4 end:0x8020BDB8
+	.data       start:0x803939E8 end:0x80393A20
+	.bss        start:0x804CAF28 end:0x804CAF40
+	.sdata      start:0x804D7CF0 end:0x804D7D00
+
 base/PPCArch.c:
 	.text       start:0x801D9F7C end:0x801D9FE0
 

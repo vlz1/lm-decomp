@@ -16,6 +16,11 @@ struct OSMessageQueue {
     long usedCount;
 };
 
+typedef void* OSMessage;
+
+#define OS_MESSAGE_NOBLOCK 0
+#define OS_MESSAGE_BLOCK   1
+
 void OSInitMessageQueue(struct OSMessageQueue * mq, void * msgArray, long msgCount);
 int OSSendMessage(struct OSMessageQueue * mq, void * msg, long flags);
 int OSReceiveMessage(struct OSMessageQueue * mq, void * msg, long flags);

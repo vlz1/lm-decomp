@@ -3,6 +3,10 @@
 
 #include <dolphin/os/OSContext.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef s32 OSPriority;
 
 struct OSThread;
@@ -70,6 +74,7 @@ enum OS_THREAD_STATE
 
 #define OS_THREAD_STACK_MAGIC 0xDEADBABE
 
+
 void OSInitThreadQueue(OSThreadQueue *queue);
 void OSSleepThread(OSThreadQueue *queue);
 void OSWakeupThread(OSThreadQueue *queue);
@@ -79,7 +84,14 @@ OSThread* OSGetCurrentThread(void);
 s32 OSEnableScheduler(void);
 s32 OSDisableScheduler(void);
 void OSCancelThread(OSThread* thread);
+void OSDetachThread(OSThread* thread);
+BOOL OSIsThreadTerminated(OSThread* thread);
+BOOL OSCreateThread(OSThread* thread, void * (* func)(void *), void * param, void * stack, u32 stackSize, s32 priority, u16 attr);
 
 #define IsSuspended(suspend) (suspend > 0)
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
