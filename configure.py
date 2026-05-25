@@ -352,7 +352,7 @@ def Trk_Minnow_Dolphin(objects: List[Object]) -> Dict[str, Any]:
         "lib": "TRK_MINNOW_DOLPHIN",
         "mw_version": "GC/1.1p1",
         "cflags": cflags_metrowerks_trk,
-        "progress_category": "sdk",
+        "progress_category": "msl",
         "src_dir": "libs/",
         "objects": objects,
     }
