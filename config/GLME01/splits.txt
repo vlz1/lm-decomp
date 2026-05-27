@@ -57,6 +57,10 @@ JSystem/JKernel/JKRThread.cpp:
 JSystem/JSupport/JSUList.cpp:
 	.text       start:0x801D4868 end:0x801D4D9C
 
+JSystem/JUtility/JUTTexture.cpp:
+	.text       start:0x801D5794 end:0x801D5C50
+	.sdata2     start:0x804DD668 end:0x804DD680
+
 JSystem/JUtility/JUTPalette.cpp:
 	.text       start:0x801D5C50 end:0x801D5D80
 	.data       start:0x80394158 end:0x80394188

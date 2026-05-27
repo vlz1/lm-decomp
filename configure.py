@@ -412,6 +412,7 @@ config.libs = [
         Object(NonMatching, "JSystem/JKernel/JKRThread.cpp"),
         Object(NonMatching, "JSystem/JSupport/JSUList.cpp"),
 
+        Object(Matching, "JSystem/JUtility/JUTTexture.cpp"),
         Object(Matching, "JSystem/JUtility/JUTPalette.cpp"),
     ]),
 
