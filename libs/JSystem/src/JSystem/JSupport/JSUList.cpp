@@ -97,6 +97,7 @@ bool JSUPtrList::prepend(JSUPtrLink* node)
 	return result;
 }
 
+//https://decomp.me/scratch/oG8c8
 bool JSUPtrList::insert(JSUPtrLink* before, JSUPtrLink* ptr)
 {
 	bool result;
