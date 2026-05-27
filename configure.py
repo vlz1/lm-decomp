@@ -422,6 +422,7 @@ config.libs = [
         Object(Matching, "JSystem/JUtility/JUTResource.cpp"),
         Object(Matching, "JSystem/JUtility/JUTTexture.cpp"),
         Object(Matching, "JSystem/JUtility/JUTPalette.cpp"),
+        Object(NonMatching, "JSystem/JUtility/JUTDirectPrint.cpp"),
     ]),
 
     DolphinLib("base", [
