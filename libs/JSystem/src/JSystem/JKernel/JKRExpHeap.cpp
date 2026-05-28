@@ -109,7 +109,7 @@ JKRExpHeap::JKRExpHeap(void* data, u32 size, JKRHeap* parent, bool errorFlag)
 
 JKRExpHeap::~JKRExpHeap() { dispose(); }
 
-s32 JKRExpHeap::changeGroupIDActual(u8 newGroupID) {
+s32 JKRExpHeap::changeGroupID(u8 newGroupID) {
     lock();
     s32 ret = mCurrentGroupID;
     mCurrentGroupID = newGroupID;

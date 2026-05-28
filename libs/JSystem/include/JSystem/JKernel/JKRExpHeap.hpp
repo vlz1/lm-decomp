@@ -50,7 +50,7 @@ public:
 	virtual bool check();                                      // _34
 	virtual bool dump();                                       // _38
 	/* TODO: Is this name correct? */
-	virtual s32 changeGroupID(u8 groupId) { return 10; };                     // _3C
+	virtual s32 vt_38() { return 10; };                     // _3C
 	virtual u8 getCurrentGroupId() { return mCurrentGroupID; } // _40 (weak)
 
 	void* allocFromHead(u32 size, int align);
@@ -70,7 +70,7 @@ public:
 	void reset();
 
 	//Actually changes changeGroupId
-	s32 changeGroupIDActual(u8 newGroupID);
+	s32 changeGroupID(u8 newGroupID);
 
 	// unused/inlined:
 	void removeUsedBlock(CMemBlock*);

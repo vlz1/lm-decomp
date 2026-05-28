@@ -32,7 +32,7 @@ public:
 	virtual bool check()                    = 0;
 	virtual bool dump() = 0;
 	/* TODO: Is this correct? */
-	virtual s32 changeGroupID(u8 newGroupId);
+	virtual s32 vt_38();
 	virtual u8 getCurrentGroupId();
 
 	JKRHeap* becomeSystemHeap();

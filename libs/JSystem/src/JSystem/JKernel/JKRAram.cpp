@@ -8,8 +8,10 @@
 #include <dolphin/ar.h>
 #include <dolphin/os.h>
 #include "JSystem/JKernel/JKREnum.hpp"
+#include "JSystem/JKernel/JKRHeap.hpp"
 #include "string.h"
 #include "macros.h"
+#include "types.h"
 
 static int JKRDecompressFromAramToMainRam(u32, void*, u32, u32, u32);
 static int decompSZS_subroutine(u8*, u8*);
@@ -302,6 +304,8 @@ JKRAMCommand* JKRAram::aramToMainRam_Async(u32 p1, u8* buf, u32 p3, JKRExpandSwi
     u32 p6, JKRHeap* heap, JKRAMCommand::AsyncCallback callback, int id)
 {
     u32 expandSize;
+	JKRAMCommand* command;
+
     checkOkAddress(buf, 4, nullptr, 4);
 
     if (expandSwitch == EXPAND_SWITCH_DECOMPRESS) {
@@ -312,6 +316,7 @@ JKRAMCommand* JKRAram::aramToMainRam_Async(u32 p1, u8* buf, u32 p3, JKRExpandSwi
         JKRAramPiece::orderSync(1, p1, (u32)pVar1, 0x20, nullptr);
         expandSwitch = (JKRExpandSwitch)JKRCheckCompressed(buf);
 
+
 		expandSize = JKRCheckCompressed(buf) != JKR_COMPRESSION_NONE
 		                     ? JKRDecompExpandSize(buf)
 		                     : 0;
@@ -319,8 +324,62 @@ JKRAMCommand* JKRAram::aramToMainRam_Async(u32 p1, u8* buf, u32 p3, JKRExpandSwi
     }
 
     if (expandSwitch == EXPAND_SWITCH_DECOMPRESS) {
+		if (p6 == 0 || p6 > expandSize) {
+			p6 = expandSize;
+		}
+		u8* bufTemp = buf;
+		if (buf == nullptr) {
+			bufTemp = (u8*)JKRAllocFromHeap(heap, p6, 0x20);
+		}
 
+		if (bufTemp == nullptr) {
+			return nullptr;
+		}
+		//10 in this case means JKRExpHeap or inheritance of JKRExpHeap
+		if (JKRGetCurrentHeap()->vt_38() == 10 && id >= 0) {
+			bufTemp[-0xD] = id;
+		}
+
+		u8* srcBuffer = (u8*)JKRAllocFromHeap(heap, p3, -0x20);
+		if (srcBuffer == nullptr) {
+			if (buf == nullptr) {
+				JKRFreeToHeap(heap, 0);
+			}
+			return nullptr;
+		}
+		command = JKRAramPiece::prepareCommand(1, p1, (u32)srcBuffer, p3, nullptr, nullptr);
+		JKRDecompCommand* decompCommand = JKRDecomp::prepareCommand(srcBuffer, bufTemp, p6, nullptr);
+		command->field_0x60 = 2;
+		command->mDecompCommand = decompCommand;
+		command->field_0x8C = decompCommand;
+		command->field_0x94 = srcBuffer;
+		decompCommand->mCallback = callback;
+		decompCommand->mThis = (JKRDecompCommand*)command;
+		decompCommand->field_0x1c = &command->mMessageQueue;
+		if (callback == nullptr) {
+			sAramCommandList.append(&command->field_0x30);
+		}
+		JKRAramPiece::sendCommand(command);
+		return command;
     }
+
+	u8* bufTemp = buf;
+	if (buf == nullptr) {
+		bufTemp = (u8*)JKRAllocFromHeap(heap, p6, 0x20);
+	}
+
+	if (bufTemp == nullptr) {
+		return nullptr;
+	}
+	//10 in this case means JKRExpHeap or inheritance of JKRExpHeap
+	if (JKRGetCurrentHeap()->vt_38() == 10 && id >= 0) {
+		bufTemp[-0xD] = id;
+	}
+
+	command = JKRAramPiece::orderAsync(1, p1, (u32)buf, p3, nullptr, callback);
+	if (command != nullptr && callback == nullptr) {
+		sAramCommandList.append(&command->field_0x30);
+	}
 }
 
 bool JKRAram::aramSync(JKRAMCommand *command, int param_2) {

@@ -222,6 +222,6 @@ void* operator new[](u32 byteCount, JKRHeap* heap, int alignment)
 void operator delete(void* memory) { JKRHeap::free(memory, nullptr); }
 void operator delete[](void* memory) { JKRHeap::free(memory, nullptr); }
 
-s32 JKRHeap::changeGroupID(u8 newGroupID) { return 0; }
+s32 JKRHeap::vt_38() { return 0; }
 
 u8 JKRHeap::getCurrentGroupId() { return 0; }
