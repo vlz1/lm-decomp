@@ -93,6 +93,10 @@ JSystem/JKernel/JKRFileLoader.cpp:
 	.sdata      start:0x804D7D58 end:0x804D7D70
 	.sbss       start:0x804D9538 end:0x804D9540
 
+JSystem/JKernel/JKRFileFinder.cpp:
+	.text       start:0x801D2B4C end:0x801D2CA0
+	.data       start:0x80393C80 end:0x80393CF8
+
 JSystem/JKernel/JKRDecomp.cpp:
 	.text       start:0x801D4290 end:0x801D4868
 	.data       start:0x80393E40 end:0x80393EC8

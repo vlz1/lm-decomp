@@ -77,7 +77,7 @@ void* JKRFileLoader::getGlbResource(const char* name, JKRFileLoader* fileLoader)
 	return resource;
 }
 
-long JKRFileLoader::getResSize(void* resourceBuffer, JKRFileLoader* fileLoader)
+s32 JKRFileLoader::getResSize(void* resourceBuffer, JKRFileLoader* fileLoader)
 {
 	long ret = -1; // TODO: this feels wrong, but it matches, so whatever?
 
