@@ -47,12 +47,15 @@ JKRAMCommand* JKRAramPiece::orderAsync(int direction, u32 source,
 
 bool JKRAramPiece::sync(JKRAMCommand* command, int is_non_blocking)
 {
+    // Most likely fabricated but there is quite literally no other to get this stack frame for orderSync so
+    BOOL result2;
+
     BOOL result;
 	OSMessage message;
 
     lock();
 	if (is_non_blocking == 0) {
-		OSReceiveMessage(&command->mMessageQueue, &message, OS_MESSAGE_BLOCK);
+		result2 = OSReceiveMessage(&command->mMessageQueue, &message, OS_MESSAGE_BLOCK);
 		sAramPieceCommandList.remove(&command->mPieceLink);
 		unlock();
 		return TRUE;
