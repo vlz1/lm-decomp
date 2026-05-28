@@ -301,7 +301,26 @@ u8* JKRAram::aramToMainRam(JKRAramBlock* block, u8* buf, u32 p3, u32 p4,
 JKRAMCommand* JKRAram::aramToMainRam_Async(u32 p1, u8* buf, u32 p3, JKRExpandSwitch expandSwitch,
     u32 p6, JKRHeap* heap, JKRAMCommand::AsyncCallback callback, int id)
 {
-    // TODO : Decompile this
+    u32 expandSize;
+    checkOkAddress(buf, 4, nullptr, 4);
+
+    if (expandSwitch == EXPAND_SWITCH_DECOMPRESS) {
+        void* pVar1 = JKRAllocFromHeap(heap, 0x20, -0x20);
+
+        if (pVar1 == nullptr)
+            return nullptr;
+        JKRAramPiece::orderSync(1, p1, (u32)pVar1, 0x20, nullptr);
+        expandSwitch = (JKRExpandSwitch)JKRCheckCompressed(buf);
+
+		expandSize = JKRCheckCompressed(buf) != JKR_COMPRESSION_NONE
+		                     ? JKRDecompExpandSize(buf)
+		                     : 0;
+        JKRFreeToHeap(heap, pVar1);
+    }
+
+    if (expandSwitch == EXPAND_SWITCH_DECOMPRESS) {
+
+    }
 }
 
 bool JKRAram::aramSync(JKRAMCommand *command, int param_2) {
@@ -322,11 +341,6 @@ bool JKRAram::aramSync(JKRAMCommand *command, int param_2) {
     return true;
 }
 
-static void dummy()
-{
-	OSReport(
-	    "---------------- BAD SYNC. you'd set callback, but now call sync.\n");
-}
 JSUList<JKRAMCommand> JKRAram::sAramCommandList;
 u32 JKRAram::szpBufferSize = 0x00000400;
 static u8* szpBuf;

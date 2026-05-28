@@ -185,7 +185,9 @@ void JUTDirectPrint::drawString(u16 position_x, u16 position_y, const char* form
 	int buffer_length = vsnprintf(buffer, ARRAY_COUNT(buffer), format, args);
 	u16 x             = position_x;
 	if (buffer_length > 0) {
+		erase(position_x - 6, position_y - 3,  (buffer_length + 2) * 6, 13);
 		char* ptr = buffer;
+
 		for (; 0 < buffer_length; buffer_length--, ptr++) {
 			int codepoint = sAsciiTable[*ptr & 0x7f];
 			if (codepoint == 0xfe) {
@@ -199,10 +201,6 @@ void JUTDirectPrint::drawString(u16 position_x, u16 position_y, const char* form
 					drawChar(position_x, position_y, codepoint);
 				}
 				position_x += 6;
-			}
-			if (position_x > 310) {
-				position_x = 16;
-				position_y += 8;
 			}
 		}
 	}
