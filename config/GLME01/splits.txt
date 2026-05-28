@@ -79,6 +79,12 @@ JSystem/JKernel/JKRAramPiece.cpp:
 	.ctors      start:0x8020BDC0 end:0x8020BDC4
 	.bss        start:0x804CAF70 end:0x804CAFA0
 
+JSystem/JKernel/JKRAramStream.cpp:
+	.text       start:0x801D2288 end:0x801D2690
+	.data       start:0x80393B78 end:0x80393C18
+	.sdata      start:0x804D7D38 end:0x804D7D58
+	.sbss       start:0x804D9528 end:0x804D9538
+
 JSystem/JKernel/JKRDecomp.cpp:
 	.text       start:0x801D4290 end:0x801D4868
 	.data       start:0x80393E40 end:0x80393EC8
