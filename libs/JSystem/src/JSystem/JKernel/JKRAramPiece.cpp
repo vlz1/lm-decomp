@@ -47,7 +47,7 @@ JKRAMCommand* JKRAramPiece::orderAsync(int direction, u32 source,
 
 bool JKRAramPiece::sync(JKRAMCommand* command, int is_non_blocking)
 {
-    // Most likely fabricated but there is quite literally no other to get this stack frame for orderSync so
+    // Most likely fabricated but there is quite literally no other to get this stack frame for orderSync to my knowledge so
     BOOL result2;
 
     BOOL result;
