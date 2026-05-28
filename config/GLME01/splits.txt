@@ -69,6 +69,11 @@ JSystem/JKernel/JKRAramHeap.cpp:
 	.bss        start:0x804CAF58 end:0x804CAF70
 	.sdata      start:0x804D7D20 end:0x804D7D30
 
+JSystem/JKernel/JKRAramBlock.cpp:
+	.text       start:0x801D1A54 end:0x801D1CBC
+	.data       start:0x80393B58 end:0x80393B78
+	.sdata      start:0x804D7D30 end:0x804D7D38
+
 JSystem/JKernel/JKRAramPiece.cpp:
 	.text       start:0x801D1CBC end:0x801D2288
 	.ctors      start:0x8020BDC0 end:0x8020BDC4
