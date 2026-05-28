@@ -172,7 +172,7 @@ void JUTDirectPrint::changeFrameBuffer(void* frameBuffer, u16 width, u16 height)
 	mFrameBufferSize   = (u32)mStride * (u32)mFrameBufferHeight * 2;
 }
 
-void JUTDirectPrint::drawString(u16 position_x, u16 position_y, const char* format, ...)
+void JUTDirectPrint::print(u16 position_x, u16 position_y, const char* format, ...)
 {
 	if (!mFrameBuffer)
 		return;
