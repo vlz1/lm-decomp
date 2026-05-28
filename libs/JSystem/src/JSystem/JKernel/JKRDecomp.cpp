@@ -112,7 +112,74 @@ bool JKRDecomp::orderSync(u8* srcBuffer, u8* dstBuffer, u32 srcLength)
 
 void JKRDecomp::decode(u8* srcBuffer, u8* dstBuffer, u32 srcLength)
 {
-    // TODO: Decompile this (seems to have some simularity with decodeSZP)
+	int srcChunkOffset;
+	int offset;
+	int count;
+	int dstOffset;
+	u32 length = srcLength;
+	int linkInfo;
+	int i;
+
+	int decodedSize     = READU32_BE(srcBuffer, 4);
+	int linkTableOffset = READU32_BE(srcBuffer, 8);
+	int srcDataOffset   = READU32_BE(srcBuffer, 12);
+
+	dstOffset      = 0;
+	u32 counter    = 0;
+	srcChunkOffset = 16;
+
+	u32 chunkBits;
+	if (srcLength == 0)
+		return;
+
+	do {
+		if (counter == 0) {
+			chunkBits = READU32_BE(srcBuffer, srcChunkOffset);
+			srcChunkOffset += sizeof(u32);
+			counter = sizeof(u32) * 8;
+		}
+
+		if (chunkBits & 0x80000000) {
+
+			dstOffset++;
+			srcDataOffset++;
+		} else {
+			linkInfo = srcBuffer[linkTableOffset] << 8 | srcBuffer[linkTableOffset + 1];
+			linkTableOffset += sizeof(u16);
+
+			offset = dstOffset - (linkInfo & 0xFFF);
+			count  = (linkInfo >> 12);
+			if (count == 0) {
+				count = (u32)srcBuffer[srcDataOffset++] + 0x12;
+			} else
+				count += 2;
+
+			if (count > decodedSize - dstOffset)
+				count = decodedSize - dstOffset;
+
+			u8 *ppVar6 = (u8*)dstBuffer + dstOffset;
+
+			for (i = 0; i < count; i++, dstOffset++, offset++) {
+				if (count >> 3 != 0) {
+					do {
+						dstOffset += 8;
+						ppVar6[0] = dstBuffer[i - 1];
+						ppVar6[1] = dstBuffer[i];
+						ppVar6[2] = dstBuffer[i + 1];
+						ppVar6[3] = dstBuffer[i + 2];
+						ppVar6[4] = dstBuffer[i + 3];
+						ppVar6[5] = dstBuffer[i + 4];
+						ppVar6[6] = dstBuffer[i + 5];
+						ppVar6[7] = dstBuffer[i + 6];
+						ppVar6[0] = ppVar6[8];
+					} while (count != 0);
+				}
+			}
+		}
+
+		chunkBits <<= 1;
+		counter--;
+	} while (dstOffset < decodedSize);
 }
 
 void JKRDecomp::decodeSZP(u8* src, u8* dst, u32 srcLength)
