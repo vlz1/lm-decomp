@@ -122,7 +122,7 @@ void JUTDirectPrint::drawChar(int position_x, int position_y, int ch)
             u32 data = *font_data++ << col_index;
 
             for (int x = 0; x < 6; x++) {
-                *pixel++ = (data & 0x80000000) ? 0xeb80 : 0x80;
+                *pixel++ = (data & 0x80000000) ? 0xeb80 : 0;
 
                 data <<= 1;
             }
