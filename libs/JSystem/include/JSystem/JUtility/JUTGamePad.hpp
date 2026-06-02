@@ -139,10 +139,6 @@ public:
 
 	u32 testTrigger(u32 button) const { return mButton.mTrigger & button; }
 
-	bool isPushing3ButtonReset() const
-	{
-		return mPortNum != EPortInvalid && mButtonReset.mReset != false;
-	}
 
 	void stopMotorWave() { mRumble.stopPatternedRumbleAtThePeriod(); }
 	void stopMotor() { mRumble.stopMotor(mPortNum); }
@@ -273,8 +269,6 @@ public:
 	/* 0x90 */ JUTGamePadRecord* mPadRecord;
 	/* 0x94 */ JUTGamePadRecord* mPadReplay;
 	/* 0x94 */ u8 field_0x9c[4];
-	/* 0x98 */ C3ButtonReset mButtonReset;
-	/* 0xA0 */ OSTime mResetHoldStartTime;
 };
 
 #endif
