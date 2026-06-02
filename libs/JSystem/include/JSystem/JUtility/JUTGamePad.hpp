@@ -7,6 +7,7 @@
 #include <dolphin/pad.h>
 
 typedef void (*callbackFn)(int, void*);
+typedef void (*callbackFn2)(int);
 
 class JUTGamePadRecord {
 public:
@@ -162,15 +163,14 @@ public:
 		/* 0x0D */ u8 mAnalogB;
 		/* 0x0E */ u8 mAnalogL;
 		/* 0x0F */ u8 mAnalogR;
-		/* 0x10 */ f32 mAnalogLf;
-		/* 0x14 */ f32 mAnalogRf;
-		/* 0x18 */ u32 mRepeat;
-		/* 0x1C */ u32 mRepeatCount;
-		/* 0x20 */ u32 mRepeatStart;
-		/* 0x24 */ u32 mRepeatMask;
-		/* 0x28 */ u32 mRepeatDelay;
-		/* 0x2C */ u32 mRepeatRate;
-	}; // Size: 0x30
+		/* 0x10 */ u32 mRepeat;
+		/* 0x14 */ u32 mRepeatCount;
+		/* 0x18 */ u32 mRepeatStart;
+		/* 0x1C */ u32 mRepeatMask;
+		/* 0x20 */ u32 mRepeatDelay;
+		/* 0x24 */ u32 mRepeatRate;
+		/* 0x28 */ s32 _28;
+	}; // Size: 0x2C
 
 	struct C3ButtonReset {
 		C3ButtonReset() { mReset = false; }
@@ -255,13 +255,21 @@ public:
 	static u32 mSuppressPadReset;
 	static s32 sAnalogMode;
 
+	struct unk_7C {
+		u32 _0;
+	};
+
 	/* 0x18 */ CButton mButton;
-	/* 0x48 */ CStick mMainStick;
-	/* 0x58 */ CStick mSubStick;
-	/* 0x68 */ CRumble mRumble;
-	/* 0x7C */ s16 mPortNum;
-	/* 0x7E */ s8 mErrorStatus;
-	/* 0x80 */ JSULink<JUTGamePad> mLink;
+	/* 0x44 */ CStick mMainStick;
+	/* 0x54 */ CStick mSubStick;
+	/* 0x64 */ CRumble mRumble;
+	/* 0x74 */ s16 mPortNum;
+	/* 0x76 */ s8 mErrorStatus;
+	/* 0x78 */ callbackFn2 _78;
+	/* 0x7C */ unk_7C* _7C;
+	/* 0x80 */ s32 _80;
+	/* 0x84 */ s32 _84;
+	/* 0x88 */ JSULink<JUTGamePad> mLink;
 	/* 0x90 */ JUTGamePadRecord* mPadRecord;
 	/* 0x94 */ JUTGamePadRecord* mPadReplay;
 	/* 0x94 */ u8 field_0x9c[4];

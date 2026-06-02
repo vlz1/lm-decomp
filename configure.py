@@ -295,7 +295,8 @@ cflags_game = [
 cflags_jsystem = [
     *cflags_base,
     "-RTTI on",
-    "-lang c++"
+    "-lang c++",
+    "-fp_contract off"
 ]
 
 # REL flags

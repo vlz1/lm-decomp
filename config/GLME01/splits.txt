@@ -126,8 +126,10 @@ JSystem/JUtility/JUTGamePad.cpp:
 	.ctors      start:0x8020BDC8 end:0x8020BDCC
 	.rodata     start:0x80217600 end:0x80217610
 	.data       start:0x803942C8 end:0x80394308
-	.bss        start:0x804CAFB8 end:0x804CB148
-	.sbss       start:0x804D9558 end:0x804D9588
+	.bss        start:0x804CAFB8 end:0x804CB130
+	.sdata      start:0x804D7E58 end:0x804D7E70
+	.sbss       start:0x804D9558 end:0x804D9570
+	.sdata2     start:0x804DD698 end:0x804DD6D8
 
 JSystem/JUtility/JUTDirectPrint.cpp:
 	.text       start:0x801D9604 end:0x801D9F7C
