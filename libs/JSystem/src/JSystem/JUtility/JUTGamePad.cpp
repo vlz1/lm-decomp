@@ -18,8 +18,8 @@ JUTGamePad::JUTGamePad(EPadPort port)
 	mPortNum = port;
 	mPadAssign[port]++;
 
-	_78 = 0;
-	_7C = 0;
+	_78 = nullptr;
+	_7C = nullptr;
 	_80 = 0;
 	_84 = 30;
 
@@ -178,7 +178,7 @@ void JUTGamePad::update()
 		if (val >= _84 && _78 != nullptr) {
 				callbackFn2 old_78 = _78;
 				_78 = nullptr;
-				if (_7C != 0) {
+				if (_7C != nullptr) {
 					*_7C = mPortNum;
 				}
 				old_78(mPortNum);
