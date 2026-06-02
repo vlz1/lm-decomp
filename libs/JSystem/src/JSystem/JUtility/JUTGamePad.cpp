@@ -179,7 +179,7 @@ void JUTGamePad::update()
 				callbackFn2 old_78 = _78;
 				_78 = nullptr;
 				if (_7C != 0) {
-					_7C->_0 = mPortNum;
+					*_7C = mPortNum;
 				}
 				old_78(mPortNum);
 		}

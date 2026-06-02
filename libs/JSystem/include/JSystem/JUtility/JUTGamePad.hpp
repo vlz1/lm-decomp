@@ -251,10 +251,6 @@ public:
 	static u32 mSuppressPadReset;
 	static s32 sAnalogMode;
 
-	struct unk_7C {
-		u32 _0;
-	};
-
 	/* 0x18 */ CButton mButton;
 	/* 0x44 */ CStick mMainStick;
 	/* 0x54 */ CStick mSubStick;
@@ -262,7 +258,7 @@ public:
 	/* 0x74 */ s16 mPortNum;
 	/* 0x76 */ s8 mErrorStatus;
 	/* 0x78 */ callbackFn2 _78;
-	/* 0x7C */ unk_7C* _7C;
+	/* 0x7C */ u32* _7C;
 	/* 0x80 */ s32 _80;
 	/* 0x84 */ s32 _84;
 	/* 0x88 */ JSULink<JUTGamePad> mLink;
