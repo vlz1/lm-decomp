@@ -178,8 +178,7 @@ protected:
 	SDIFileEntry* mFileEntries;      // _4C
 	const char* mStrTable;           // _50
 	int _54;                         // _54
-	JKRCompression mCompression;     // _58
-	EMountDirection mMountDirection; // _5C
+	EMountDirection mMountDirection; // _58
 };
 
 enum JKRMemBreakFlag { MBF_0 = 0, MBF_1 = 1 };
