@@ -50,7 +50,7 @@ public:
 
 		u16 mHash;         // _00
 		u16 mLength;       // _02
-		char mString[256]; // _04
+		char mString[0x20]; // _04
 	};
 
 	struct SDIFileEntry {

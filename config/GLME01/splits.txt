@@ -98,6 +98,15 @@ JSystem/JKernel/JKRFileFinder.cpp:
 	.data       start:0x80393C80 end:0x80393CF8
 	.sdata      start:0x804D7D70 end:0x804D7D88
 
+JSystem/JKernel/JKRArchivePub.cpp:
+	.text       start:0x801D2E24 end:0x801D3628
+
+JSystem/JKernel/JKRArchivePri.cpp:
+	.text       start:0x801D3628 end:0x801D3DD8
+	.data       start:0x80393CF8 end:0x80393D88
+	.sdata      start:0x804D7D88 end:0x804D7DA0
+	.sbss       start:0x804D9540 end:0x804D9548
+
 JSystem/JKernel/JKRDecomp.cpp:
 	.text       start:0x801D4290 end:0x801D4868
 	.data       start:0x80393E40 end:0x80393EC8

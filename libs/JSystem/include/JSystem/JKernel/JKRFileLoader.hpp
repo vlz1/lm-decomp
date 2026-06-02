@@ -14,7 +14,6 @@ public:
 
 	virtual ~JKRFileLoader(); // _08
 	virtual void unmount();   // _0C
-	static JKRFileLoader* getVolume(const char*);
 	virtual bool becomeCurrent(const char*)               = 0; // _10
 	virtual void* getResource(const char* path)           = 0; // _14
 	virtual void* getResource(u32 type, const char* name) = 0; // _18
@@ -34,6 +33,7 @@ public:
 	bool isMounted() const { return mIsMounted; }
 	u32 getVolumeType() const { return mVolumeType; }
 
+	static JKRFileLoader* getVolume(const char*);
 	static void changeDirectory(const char* dir);
 
 	static void* getGlbResource(const char*);
