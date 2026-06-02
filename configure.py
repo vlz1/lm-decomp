@@ -417,7 +417,7 @@ config.libs = [
         Object(Matching, "JSystem/JKernel/JKRAramPiece.cpp"),
         Object(Equivalent, "JSystem/JKernel/JKRAramStream.cpp"),
         Object(Matching, "JSystem/JKernel/JKRFileLoader.cpp"),
-        Object(NonMatching, "JSystem/JKernel/JKRFileFinder.cpp", extra_cflags=["-sym on"]),
+        Object(Matching, "JSystem/JKernel/JKRFileFinder.cpp"),
         Object(NonMatching, "JSystem/JKernel/JKRDecomp.cpp"),
 
         # Support
