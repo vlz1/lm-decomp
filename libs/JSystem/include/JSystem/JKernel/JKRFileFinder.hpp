@@ -53,12 +53,7 @@ class JKRDvdFinder : public JKRFileFinder {
 public:
 	JKRDvdFinder(const char*);
 
-	virtual ~JKRDvdFinder() // _08 (weak)
-	{
-		if (mIsDvdOpen) {
-			DVDCloseDir(&mDir);
-		}
-	}
+	virtual ~JKRDvdFinder(); // _08 (weak)
 	virtual bool findNextFile(); // _0C
 
 	// _00     = VTBL

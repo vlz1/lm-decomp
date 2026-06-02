@@ -32,3 +32,39 @@ bool JKRArcFinder::findNextFile()
 	}
 	return mIsAvailable;
 }
+
+JKRDvdFinder::JKRDvdFinder(const char* directory) {
+    mIsDvdOpen = DVDOpenDir(directory, &mDir);
+    mIsAvailable = mIsDvdOpen;
+    findNextFile();
+}
+
+JKRDvdFinder::~JKRDvdFinder() {
+		if (mIsDvdOpen) {
+			DVDCloseDir(&mDir);
+		}
+}
+
+bool JKRDvdFinder::findNextFile() {
+    if (mIsAvailable) {
+        DVDDirEntry directoryEntry;
+        mIsAvailable = DVDReadDir(&mDir, &directoryEntry);
+
+        if (mIsAvailable) {
+            mIsDir = directoryEntry.isDir != 0;
+            mBase.mFileName = directoryEntry.name;
+            mBase.mFileIndex = directoryEntry.entryNum;
+            mBase.mFileID = 0;
+
+            // only matches with enum
+            // TODO: placeholder
+            enum EntryTypeFlags {
+                EntryTypeFlags1 = 1,
+                EntryTypeFlags2 = 2,
+            };
+            mBase.mFileTypeFlags = mIsDir ? EntryTypeFlags2 : EntryTypeFlags1;
+        }
+    }
+
+    return mIsAvailable;
+}
