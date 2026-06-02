@@ -15,6 +15,9 @@
 #define PAD_MOTOR_STOP_HARD 2
 
 #define PAD_CHAN0_BIT 0x80000000
+#define PAD_CHAN1_BIT 0x40000000
+#define PAD_CHAN2_BIT 0x20000000
+#define PAD_CHAN3_BIT 0x10000000
 
 #define PAD_MAX_CONTROLLERS     4
 
@@ -52,6 +55,10 @@ typedef struct PADStatus {
     /*0x0A*/ s8 err;
 } PADStatus;
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 // PAD.c
 int PADReset(u32 mask);
 BOOL PADRecalibrate(u32 mask);
@@ -69,5 +76,9 @@ void PADSetAnalogMode(u32 mode);
 
 // Padclamp.c
 void PADClamp(PADStatus* status);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
