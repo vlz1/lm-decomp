@@ -147,6 +147,9 @@ JSystem/JUtility/JUTPalette.cpp:
 	.text       start:0x801D5C50 end:0x801D5D80
 	.data       start:0x80394158 end:0x80394188
 
+JSystem/JUtility/JUTNameTab.cpp:
+	.text       start:0x801D5D80 end:0x801D5EA4
+
 JSystem/JUtility/JUTRect.cpp:
 	.text       start:0x801D5EA4 end:0x801D6080
 

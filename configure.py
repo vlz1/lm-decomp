@@ -430,12 +430,13 @@ config.libs = [
         Object(Matching, "JSystem/JSupport/JSUOutputStream.cpp"),
         Object(Matching, "JSystem/JSupport/JSUMemoryStream.cpp"),
         # Utility
-        Object(Matching, "JSystem/JUtility/JUTRect.cpp"),
         Object(Matching, "JSystem/JUtility/JUTResource.cpp"),
         Object(Matching, "JSystem/JUtility/JUTTexture.cpp"),
         Object(Matching, "JSystem/JUtility/JUTPalette.cpp"),
-        Object(NonMatching, "JSystem/JUtility/JUTDirectPrint.cpp"),
+        Object(Matching, "JSystem/JUtility/JUTNameTab.cpp"),
+        Object(Matching, "JSystem/JUtility/JUTRect.cpp"),
         Object(NonMatching, "JSystem/JUtility/JUTGamePad.cpp"),
+        Object(NonMatching, "JSystem/JUtility/JUTDirectPrint.cpp"),
     ]),
 
     DolphinLib("base", [
