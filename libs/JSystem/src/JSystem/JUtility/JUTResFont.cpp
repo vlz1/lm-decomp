@@ -3,8 +3,6 @@
 #include <dolphin/gx.h>
 #include <types.h>
 
-
-
 JUTResFont::JUTResFont() {
     mResFont = nullptr;
 	mpWidthBlocks = nullptr;
