@@ -229,36 +229,3 @@ bool JKRMemArchive::removeResource(void* resource)
 	fileEntry->mData = nullptr;
 	return true;
 }
-
-u32 JKRMemArchive::fetchResource_subroutine(u8* src, u32 srcLength, u8* dst,
-                                            u32 dstLength, int compression)
-{
-	dstLength = ALIGN_PREV(dstLength, 0x20);
-	srcLength = ALIGN_NEXT(srcLength, 0x20);
-
-	switch (compression) {
-	case JKR_COMPRESSION_NONE: {
-		if (srcLength > dstLength) {
-			srcLength = dstLength;
-		}
-
-		JKRHeap::copyMemory(dst, src, srcLength);
-		return srcLength;
-	}
-	case JKR_COMPRESSION_YAY0:
-	case JKR_COMPRESSION_YAZ0: {
-		int expandedSize = JKRDecompExpandSize(src);
-		srcLength        = expandedSize;
-		if (expandedSize > dstLength) {
-			srcLength = dstLength;
-		}
-
-		JKRDecompress(src, dst, srcLength, 0);
-		return srcLength;
-	}
-	default:
-		break;
-	}
-
-	return 0;
-}
