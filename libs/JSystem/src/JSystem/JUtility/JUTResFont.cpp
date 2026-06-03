@@ -161,57 +161,6 @@ void JUTResFont::setGX()
 	GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
 }
 
-/*void JUTResFont::setGX(JUtility::TColor col1, JUtility::TColor col2)
-{
-	if (col1 == 0 && col2 == -1) {
-		setGX();
-	} else {
-		GXSetNumChans(1);
-		GXSetNumTevStages(3);
-		GXSetNumTexGens(1);
-		GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
-		GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_TEXC, GX_CC_ZERO, GX_CC_ZERO,
-		                GX_CC_ZERO);
-		GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_TEXA, GX_CA_ZERO, GX_CA_ZERO,
-		                GX_CA_ZERO);
-		GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-		                GX_TEVPREV);
-		GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-		                GX_TEVPREV);
-		GXSetTevOrder(GX_TEVSTAGE1, GX_TEXCOORD_NULL, GX_TEXMAP_NULL,
-		              GX_COLOR_NULL);
-		GXSetTevColor(GX_TEVREG0, col1);
-		GXSetTevColor(GX_TEVREG1, col2);
-		GXSetTevColorIn(GX_TEVSTAGE1, GX_CC_C0, GX_CC_C1, GX_CC_CPREV,
-		                GX_CC_ZERO);
-		GXSetTevAlphaIn(GX_TEVSTAGE1, GX_CA_A0, GX_CA_A1, GX_CA_APREV,
-		                GX_CA_ZERO);
-		GXSetTevColorOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-		                GX_TEVPREV);
-		GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-		                GX_TEVPREV);
-		GXSetTevOrder(GX_TEVSTAGE2, GX_TEXCOORD_NULL, GX_TEXMAP_NULL,
-		              GX_COLOR0A0);
-		GXSetTevColorIn(GX_TEVSTAGE2, GX_CC_ZERO, GX_CC_CPREV, GX_CC_RASC,
-		                GX_CC_ZERO);
-		GXSetTevAlphaIn(GX_TEVSTAGE2, GX_CA_ZERO, GX_CA_APREV, GX_CA_RASA,
-		                GX_CA_ZERO);
-		GXSetTevColorOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-		                GX_TEVPREV);
-		GXSetTevAlphaOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-		                GX_TEVPREV);
-		GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA,
-		               GX_LO_SET);
-		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
-		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_CLR_RGBA, GX_RGBA8, 0);
-		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBX8, 15);
-		GXClearVtxDesc();
-		GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
-		GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
-		GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
-	}
-}*/
-
 f32 JUTResFont::drawChar_scale(f32 posX, f32 posY, f32 scaleX, f32 scaleY,
                                int chr, bool flag)
 {
