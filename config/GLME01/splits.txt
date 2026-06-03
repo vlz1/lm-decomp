@@ -121,6 +121,11 @@ JSystem/JKernel/JKRDecomp.cpp:
 JSystem/JSupport/JSUList.cpp:
 	.text       start:0x801D4868 end:0x801D4D9C
 
+JSystem/JSupport/JSUInputStream.cpp:
+	.text       start:0x801D4D9C end:0x801D51E4
+	.data       start:0x80393EC8 end:0x80393F68
+	.sdata      start:0x804D7DD8 end:0x804D7DF0
+
 JSystem/JUtility/JUTResource.cpp:
 	.text       start:0x801D5664 end:0x801D5794
 

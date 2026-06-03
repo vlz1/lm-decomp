@@ -426,6 +426,7 @@ config.libs = [
 
         # Support
         Object(NonMatching, "JSystem/JSupport/JSUList.cpp"),
+        Object(NonMatching, "JSystem/JSupport/JSUInputStream.cpp"),
 
         # Utility
         Object(Matching, "JSystem/JUtility/JUTRect.cpp"),
