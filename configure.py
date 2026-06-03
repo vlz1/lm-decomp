@@ -421,6 +421,7 @@ config.libs = [
         Object(Matching, "JSystem/JKernel/JKRFileFinder.cpp"),
         Object(Matching, "JSystem/JKernel/JKRArchivePub.cpp"),
         Object(NonMatching, "JSystem/JKernel/JKRArchivePri.cpp"),
+        Object(Matching, "JSystem/JKernel/JKRMemArchive.cpp"),
         Object(NonMatching, "JSystem/JKernel/JKRDecomp.cpp"),
 
         # Support

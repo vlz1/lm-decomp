@@ -107,6 +107,11 @@ JSystem/JKernel/JKRArchivePri.cpp:
 	.sdata      start:0x804D7D88 end:0x804D7DA0
 	.sbss       start:0x804D9540 end:0x804D9548
 
+JSystem/JKernel/JKRMemArchive.cpp:
+	.text       start:0x801D3DD8 end:0x801D4290
+	.data       start:0x80393D88 end:0x80393E40
+	.sdata      start:0x804D7DA0 end:0x804D7DC0
+
 JSystem/JKernel/JKRDecomp.cpp:
 	.text       start:0x801D4290 end:0x801D4868
 	.data       start:0x80393E40 end:0x80393EC8
