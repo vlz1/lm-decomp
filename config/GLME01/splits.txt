@@ -126,6 +126,16 @@ JSystem/JSupport/JSUInputStream.cpp:
 	.data       start:0x80393EC8 end:0x80393F68
 	.sdata      start:0x804D7DD8 end:0x804D7DF0
 
+JSystem/JSupport/JSUOutputStream.cpp:
+	.text       start:0x801D51E4 end:0x801D53D8
+	.data       start:0x80393F68 end:0x80394008
+	.sdata      start:0x804D7DF0 end:0x804D7E08
+
+JSystem/JSupport/JSUMemoryStream.cpp:
+	.text       start:0x801D53D8 end:0x801D5664
+	.data       start:0x80394008 end:0x80394158
+	.sdata      start:0x804D7E08 end:0x804D7E40
+
 JSystem/JUtility/JUTResource.cpp:
 	.text       start:0x801D5664 end:0x801D5794
 
