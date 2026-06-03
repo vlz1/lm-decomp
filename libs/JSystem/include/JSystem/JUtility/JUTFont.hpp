@@ -69,13 +69,10 @@ public:
 	};
 
 	/* 0x0C */ virtual void setGX() = 0;
-	/* 0x10 */ virtual void setGX(JUtility::TColor col1, JUtility::TColor col2)
-	{
-		setGX();
-	}
-	/* 0x14 */ virtual f32 drawChar_scale(f32 a1, f32 a2, f32 a3, f32 a4,
+	/* 0x10 */ virtual f32 drawChar_scale(f32 a1, f32 a2, f32 a3, f32 a4,
 	                                      int a5, bool a6)
 	    = 0;
+	/* 0x14 */ virtual f32 drawString_size_scale(f32 posX, f32 posY, f32 scaleX, f32 scaleY, const char* string, u32 length, bool unused) = 0;
 	/* 0x18 */ virtual int getLeading() const                            = 0;
 	/* 0x1C */ virtual s32 getAscent() const                             = 0;
 	/* 0x20 */ virtual s32 getDescent() const                            = 0;
@@ -83,7 +80,6 @@ public:
 	/* 0x28 */ virtual s32 getWidth() const                              = 0;
 	/* 0x2C */ virtual void getWidthEntry(int i_no, TWidth* width) const = 0;
 	/* 0x30 */ virtual int getFontType() const                           = 0;
-	/* 0x34 */ virtual bool isLeadByte(int a1) const                     = 0;
 
 	static bool isLeadByte_1Byte(int b) { return false; }
 	static bool isLeadByte_2Byte(int b) { return true; }
@@ -99,8 +95,6 @@ public:
 	void initiate();
 	void setCharColor(JUtility::TColor col1);
 	void setGradColor(JUtility::TColor col1, JUtility::TColor col2);
-	f32 drawString_size_scale(f32 posX, f32 posY, f32 width, f32 height,
-	                          const char* str, u32 usz, bool visible);
 
 	void drawString(int posX, int posY, const char* str, bool visible)
 	{

@@ -15,8 +15,8 @@ public:
 
 	virtual ~JUTResFont();
 	virtual void setGX();
-	virtual void setGX(JUtility::TColor, JUtility::TColor);
 	virtual f32 drawChar_scale(f32, f32, f32, f32, int, bool);
+	virtual f32 drawString_size_scale(f32 posX, f32 posY, f32 scaleX, f32 scaleY, const char* string, u32 length, bool unused);
 	virtual int getLeading() const { return mInfoBlock->leading; }
 	virtual s32 getAscent() const { return mInfoBlock->ascent; }
 	virtual s32 getDescent() const { return mInfoBlock->descent; }
@@ -24,7 +24,6 @@ public:
 	virtual s32 getWidth() const { return mInfoBlock->width; }
 	virtual void getWidthEntry(int, JUTFont::TWidth*) const;
 	virtual int getFontType() const { return mInfoBlock->fontType; }
-	virtual bool isLeadByte(int) const;
 
 	bool initiate(const ResFONT* font, JKRArchive* arch);
 	void protected_initiate(const ResFONT* font);
