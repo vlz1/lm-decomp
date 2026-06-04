@@ -55,7 +55,7 @@ public:
 
 	JUTException(JUTDirectPrint*);
 
-	void showFloatSub(int, f32);
+	void showFloatSub(u16, u16, int, f32);
 	void showFloat(OSContext*);
 	void showStack(OSContext*);
 	void showMainInfo(u16, OSContext*, u32, u32);
@@ -83,19 +83,12 @@ public:
 	static bool queryMapAddress_single(char*, u32, s32, u32*, u32*, char*, u32,
 	                                   bool, bool);
 	static void createConsole(void*, u32);
-	static void waitTime(s32);
+	void waitTime(s32);
 
 	static JUTException* getManager() { return sErrorManager; }
 	static JUTConsole* getConsole() { return sConsole; }
 
-	JUTExternalFB* getFrameMemory() const { return mFrameMemory; }
-
 	void setTraceSuppress(u32 param_0) { mTraceSuppress = param_0; }
-	void setGamePad(JUTGamePad* gamePad)
-	{
-		mGamePad     = gamePad;
-		mGamePadPort = JUTGamePad::EPortInvalid;
-	}
 
 	static void setMapFile(char* map) { appendMapFile(map); }
 
@@ -117,15 +110,12 @@ private:
 	static u32 fpscr;
 
 private:
-	/* 0x60 */ JUTExternalFB* mFrameMemory;
-	/* 0x64 */ JUTDirectPrint* mDirectPrint;
-	/* 0x68 */ JUTGamePad* mGamePad;
-	/* 0x6C */ JUTGamePad::EPadPort mGamePadPort;
-	/* 0x70 */ s32 mPrintWaitTime0;
-	/* 0x74 */ s32 mPrintWaitTime1;
-	/* 0x78 */ u32 mTraceSuppress;
-	/* 0x7C */ u32 field_0x98;
-	/* 0x80 */ u32 mPrintFlags;
+	/* 0x60 */ JUTDirectPrint* mDirectPrint;
+	/* 0x6C */ s32 mPrintWaitTime0;
+	/* 0x70 */ s32 mPrintWaitTime1;
+	/* 0x74 */ u32 mTraceSuppress;
+	/* 0x78 */ u32 field_0x98;
+	/* 0x7C */ u32 mPrintFlags;
 };
 
 struct JUTWarn {

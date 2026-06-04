@@ -438,6 +438,7 @@ config.libs = [
         Object(NonMatching, "JSystem/JUtility/JUTFont.cpp"),
         Object(NonMatching, "JSystem/JUtility/JUTResFont.cpp"),
         Object(NonMatching, "JSystem/JUtility/JUTGamePad.cpp"),
+        Object(NonMatching, "JSystem/JUtility/JUTException.cpp"),
         Object(NonMatching, "JSystem/JUtility/JUTDirectPrint.cpp"),
     ]),
 
