@@ -561,29 +561,6 @@ bool JUTException::queryMapAddress_single(char* mapPath, u32 address,
 	return result ? true : false;
 }
 
-void JUTException::createConsole(void* console_buffer, u32 console_buffer_size)
-{
-	if (!console_buffer || !console_buffer_size) {
-		return;
-	}
-
-	u32 lines = JUTConsole::getLineFromObjectSize(console_buffer_size, 0x32);
-	if (lines != 0) {
-		sConsoleBuffer     = console_buffer;
-		sConsoleBufferSize = console_buffer_size;
-		sConsole = JUTConsole::create(0x32, sConsoleBuffer, sConsoleBufferSize);
-
-		JUTConsoleManager* manager = JUTConsoleManager::sManager;
-		manager->setDirectConsole(sConsole);
-
-		sConsole->setFontSize(10.0, 6.0);
-		sConsole->setPosition(15, 26);
-		sConsole->setHeight(23);
-		sConsole->setVisible(true);
-		sConsole->setOutput(JUTConsole::OUTPUT_OSREPORT
-		                    | JUTConsole::OUTPUT_CONSOLE);
-	}
-}
 
 JUTExternalFB::JUTExternalFB(GXRenderModeObj* renderMode, GXGamma gamma,
                              void* buffer, u32 size)
