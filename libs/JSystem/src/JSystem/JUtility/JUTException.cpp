@@ -109,7 +109,7 @@ void JUTException::errorHandler(OSError error, OSContext* context, u32 param_3,
 {
 	msr   = PPCMfmsr();
     PPCMtmsr(msr | 0x2000);
-	fpscr = getFpscr();
+    setFpscr(fpscr);
 	OSFillFPUContext(context);
 	OSSetErrorHandler(error, nullptr);
 
@@ -377,6 +377,15 @@ asm u32 JUTException::getFpscr() {
   lwz  r3, 0xc(r1)
 
   addi r1, r1, 0x10
+#endif // clang-format on
+}
+
+asm void JUTException::setFpscr(u32 fpscr) {
+#ifdef __MWERKS__ // clang-format off
+    nofralloc
+    mffs f1
+    stfd f1, 0x0(r3)
+    blr
 #endif // clang-format on
 }
 
