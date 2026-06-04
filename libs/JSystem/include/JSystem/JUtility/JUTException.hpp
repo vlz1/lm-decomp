@@ -88,12 +88,9 @@ public:
 	static JUTException* getManager() { return sErrorManager; }
 	static JUTConsole* getConsole() { return sConsole; }
 
-	void setTraceSuppress(u32 param_0) { mTraceSuppress = param_0; }
-
 	static void setMapFile(char* map) { appendMapFile(map); }
 
 	// fabricated
-	void setPrintFlags(u32 flags) { mPrintFlags = flags; }
 
 private:
 	static OSMessageQueue sMessageQueue;
@@ -111,11 +108,6 @@ private:
 
 private:
 	/* 0x60 */ JUTDirectPrint* mDirectPrint;
-	/* 0x6C */ s32 mPrintWaitTime0;
-	/* 0x70 */ s32 mPrintWaitTime1;
-	/* 0x74 */ u32 mTraceSuppress;
-	/* 0x78 */ u32 field_0x98;
-	/* 0x7C */ u32 mPrintFlags;
 };
 
 struct JUTWarn {

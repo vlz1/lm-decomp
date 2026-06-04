@@ -51,7 +51,7 @@ JUTException* JUTException::create(JUTDirectPrint* directPrint)
 {
 	if (!sErrorManager) {
 		JKRHeap* systemHeap = JKRGetSystemHeap();
-		sErrorManager       = new (systemHeap, 0) JUTException(directPrint);
+		sErrorManager       = new (systemHeap, 4) JUTException(directPrint);
 		sErrorManager->resume();
 	}
 
@@ -288,7 +288,7 @@ void JUTException::showGPRMap(OSContext* context)
 
 			//sConsole->print_f("R%02d: %08XH", i, address);
 			JUTConsoleManager::sManager->drawDirect(true);
-			waitTime(mPrintWaitTime1);
+			//waitTime(mPrintWaitTime1);
 		}
 	}
 
