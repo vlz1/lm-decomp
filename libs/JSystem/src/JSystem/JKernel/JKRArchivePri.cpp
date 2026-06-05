@@ -1,5 +1,6 @@
 #include <JSystem/JKernel/JKRArchive.hpp>
 #include <JSystem/JKernel/JKRHeap.hpp>
+#include <ctype.h>
 
 u32 JKRArchive::sCurrentDirID;
 

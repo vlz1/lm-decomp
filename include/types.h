@@ -9,6 +9,4 @@
 
 #include <string.h>
 #include "macros.h"
-#include <ctype.h>
-
 #endif
