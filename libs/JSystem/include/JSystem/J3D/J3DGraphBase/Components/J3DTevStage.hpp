@@ -28,6 +28,7 @@ public:
 		mTevAlphaOp      = other.mTevAlphaOp;
 		mTevAlphaAB      = other.mTevAlphaAB;
 		mTevSwapModeInfo = other.mTevSwapModeInfo;
+		unk7 = other.unk7;
 		return *this;
 	}
 
@@ -155,14 +156,14 @@ public:
 	}
 
 public:
-	///* 0x0 */ u8 mTevColorReg;
-	/* 0x1 */ u8 mTevColorOp;
-	/* 0x2 */ u8 mTevColorAB;
-	/* 0x3 */ u8 mTevColorCD;
-	/* 0x4 */ u8 mTevAlphaReg;
-	/* 0x5 */ u8 mTevAlphaOp;
-	/* 0x6 */ u8 mTevAlphaAB;
-	/* 0x7 */ u8 mTevSwapModeInfo;
+	/* 0x0 */ u8 mTevColorOp;
+	/* 0x1 */ u8 mTevColorAB;
+	/* 0x2 */ u8 mTevColorCD;
+	/* 0x3 */ u8 mTevAlphaReg;
+	/* 0x4 */ u8 mTevAlphaOp;
+	/* 0x5 */ u8 mTevAlphaAB;
+	/* 0x6 */ u8 mTevSwapModeInfo;
+	/* 0x7 */ u8 unk7;
 };
 
 #endif

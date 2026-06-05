@@ -212,7 +212,7 @@ s32 J3DTexGenBlockBasic::countDLSize() { return 0x260; }
 s32 J3DTevBlock1::countDLSize() { return 0x80; }
 s32 J3DTevBlock2::countDLSize() { return 0x180; }
 s32 J3DTevBlock4::countDLSize() { return 0x260; }
-s32 J3DTevBlock16::countDLSize() { return 0x580; }
+s32 J3DTevBlock16::countDLSize() { return 0x780; }
 
 s32 J3DIndBlockFull::countDLSize() { return 0x64; }
 
@@ -628,6 +628,7 @@ void J3DTevBlock1::reset(J3DTevBlock* block)
 {
 	mTexNo[0]       = block->getTexNo(0);
 	mTevOrder[0]    = *block->getTevOrder(0);
+	mTevStageNum = block->getTevStageNum();
 	mTevStage[0]    = *block->getTevStage(0);
 	mIndTevStage[0] = *block->getIndTevStage(0);
 }
