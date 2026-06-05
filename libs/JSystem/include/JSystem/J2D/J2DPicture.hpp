@@ -26,7 +26,8 @@ enum J2DBinding {
 };
 
 enum J2DWrapmode {
-	/* 0 */ J2DWrapmode_NONE
+	/* 0 */ J2DWrapmode_NONE,
+	/* -1 */ J2DWrapmode_FF = -1,
 };
 
 class J2DPicture : public J2DPane {

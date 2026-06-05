@@ -122,6 +122,30 @@ J2DPicture::J2DPicture(JUTTexture* texture)
     initinfo();
 }
 
+void J2DPicture::initinfo()
+{
+    mInfoTag = 18;
+    mKind = 'PIC1';
+    mBinding = BIND15;
+    mMirror = MIRROR0;
+    unk130 = false;
+    mWrapmodeHor = J2DWrapmode_FF;
+    mWrapmodeVer = J2DWrapmode_FF;
+    unk104[0] = 1.0f;
+    unk104[1] = 1.0f;
+    unk104[2] = 1.0f;
+    unk104[3] = 1.0f;
+    setBlendKonstColor();
+    unk114[0] = 1.0f;
+    unk114[1] = 1.0f;
+    unk114[2] = 1.0f;
+    unk114[3] = 1.0f;
+    setBlendKonstAlpha();
+    mBlack = JUtility::TColor(0);
+    mWhite = JUtility::TColor();
+    setCornerColor(JUtility::TColor(), JUtility::TColor(), JUtility::TColor(), JUtility::TColor());
+}
+
 J2DPicture::~J2DPicture()
 {
 	for (int i = 0; i < mTextureNum; ++i)
