@@ -523,26 +523,26 @@ void J3DIndBlockFull::load(J3DTevBlock*)
 
 void J3DPEBlockOpa::load()
 {
-	GDSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_AND, GX_ALWAYS, 0);
-	GDSetBlendMode(GX_BM_NONE, GX_BL_ONE, GX_BL_ZERO, GX_LO_COPY);
-	GDSetZMode(1, GX_LEQUAL, 1);
-	J3DGDSetZCompLoc(1);
+	GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_AND, GX_ALWAYS, 0);
+	GXSetBlendMode(GX_BM_NONE, GX_BL_ONE, GX_BL_ZERO, GX_LO_COPY);
+	GXSetZMode(1, GX_LEQUAL, 1);
+	GXSetZCompLoc(GX_TRUE);
 }
 
 void J3DPEBlockTexEdge::load()
 {
-	GDSetAlphaCompare(GX_GEQUAL, 0x80, GX_AOP_AND, GX_LEQUAL, 0xff);
-	GDSetBlendMode(GX_BM_NONE, GX_BL_ONE, GX_BL_ZERO, GX_LO_COPY);
-	GDSetZMode(1, GX_LEQUAL, 1);
-	J3DGDSetZCompLoc(0);
+	GXSetAlphaCompare(GX_GEQUAL, 0x80, GX_AOP_AND, GX_LEQUAL, 0xff);
+	GXSetBlendMode(GX_BM_NONE, GX_BL_ONE, GX_BL_ZERO, GX_LO_COPY);
+	GXSetZMode(1, GX_LEQUAL, 1);
+	GXSetZCompLoc(GX_FALSE);
 }
 
 void J3DPEBlockXlu::load()
 {
-	GDSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_AND, GX_ALWAYS, 0);
-	GDSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_COPY);
-	GDSetZMode(1, GX_LEQUAL, 0);
-	J3DGDSetZCompLoc(1);
+	GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_AND, GX_ALWAYS, 0);
+	GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_COPY);
+	GXSetZMode(1, GX_LEQUAL, 0);
+	GXSetZCompLoc(GX_TRUE);
 }
 
 inline void loadZCompLoc(u8 compLoc)
