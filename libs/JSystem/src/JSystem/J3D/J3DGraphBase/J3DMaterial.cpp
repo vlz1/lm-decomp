@@ -57,7 +57,7 @@ void J3DPEBlockFull::initialize()
 void J3DTevBlock1::initialize()
 {
 	mTexNo[0]                 = 0xFFFF;
-	mTevStage[0].mTevColorReg = 0;
+//	mTevStage[0].mTevColorReg = 0;
 	//mTevStage[0].mTevAlphaReg = 0xC1;
 }
 
@@ -68,9 +68,9 @@ void J3DTevBlock2::initialize()
 
 	mTevStageNum = 1;
 
-	mTevStage[0].mTevColorReg = 0xC0;
+//	mTevStage[0].mTevColorReg = 0xC0;
 	mTevStage[0].mTevAlphaReg = 0xC1;
-	mTevStage[1].mTevColorReg = 0xC2;
+//	mTevStage[1].mTevColorReg = 0xC2;
 	mTevStage[1].mTevAlphaReg = 0xC3;
 
 	mTevKColorSel[0] = GX_TEV_KCSEL_K0;
@@ -93,13 +93,13 @@ void J3DTevBlock4::initialize()
 
 	mTevStageNum = 1;
 
-	mTevStage[0].mTevColorReg = 0xFFFF;
+	//mTevStage[0].mTevColorReg = 0xFFFF;
 	mTevStage[0].mTevAlphaReg = 0xC1;
-	mTevStage[1].mTevColorReg = 0xC2;
+	//mTevStage[1].mTevColorReg = 0xC2;
 	mTevStage[1].mTevAlphaReg = 0xC3;
-	mTevStage[2].mTevColorReg = 0xC4;
+	//mTevStage[2].mTevColorReg = 0xC4;
 	mTevStage[2].mTevAlphaReg = 0xC5;
-	mTevStage[3].mTevColorReg = 0xC6;
+	//mTevStage[3].mTevColorReg = 0xC6;
 	mTevStage[3].mTevAlphaReg = 0xC7;
 
 

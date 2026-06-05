@@ -371,13 +371,13 @@ public:
 	virtual u32 getType() { return 'TV16'; }
 	virtual s32 countDLSize();
 
-	virtual void setTexNo(u32 i, const u16* no) { mTexNo[i] = *no; }
-	virtual void setTexNo(u32 i, u16 no) { mTexNo[i] = no; }
-	virtual u16 getTexNo(u32 i) const { return mTexNo[i]; }
+	virtual void setTexNo(u32 i, const u16* no) { mTexNo[(u8)i] = *no; }
+	virtual void setTexNo(u32 i, u16 no) { mTexNo[(u8)i] = no; }
+	virtual u16 getTexNo(u32 i) const { return mTexNo[(u8)i]; }
 
 	virtual void setTevOrder(u32 i, const J3DTevOrder* order)
 	{
-		mTevOrder[i] = *order;
+		mTevOrder[(u8)i] = *order;
 	}
 	virtual void setTevOrder(u32 i, J3DTevOrder order) { mTevOrder[i] = order; }
 	virtual J3DTevOrder* getTevOrder(u32 i) { return &mTevOrder[i]; }

@@ -12,22 +12,22 @@ class J3DIndBlock {
 public:
 	virtual void reset(J3DIndBlock*) { }
 	virtual s32 countDLSize() = 0;
-	virtual u32 getType()     = 0;
+	virtual u32 getType()     { return 'IBLK'; }
 
 	virtual void setIndTexStageNum(u8)   = 0;
 	virtual u8 getIndTexStageNum() const = 0;
 
-	virtual void setIndTexOrder(u32, J3DIndTexOrder)        = 0;
-	virtual void setIndTexOrder(u32, const J3DIndTexOrder*) = 0;
-	virtual J3DIndTexOrder* getIndTexOrder(u32)             = 0;
+	virtual void setIndTexOrder(u8, J3DIndTexOrder)        = 0;
+	virtual void setIndTexOrder(u8, const J3DIndTexOrder*) = 0;
+	virtual J3DIndTexOrder* getIndTexOrder(u8)             = 0;
 
-	virtual void setIndTexMtx(u32, const J3DIndTexMtx*) = 0;
-	virtual void setIndTexMtx(u32, J3DIndTexMtx)        = 0;
-	virtual J3DIndTexMtx* getIndTexMtx(u32)             = 0;
+	virtual void setIndTexMtx(u8, const J3DIndTexMtx*) = 0;
+	virtual void setIndTexMtx(u8, J3DIndTexMtx)        = 0;
+	virtual J3DIndTexMtx* getIndTexMtx(u8)             = 0;
 
-	virtual void setIndTexCoordScale(u32, const J3DIndTexCoordScale*) = 0;
-	virtual void setIndTexCoordScale(u32, J3DIndTexCoordScale)        = 0;
-	virtual J3DIndTexCoordScale* getIndTexCoordScale(u32)             = 0;
+	virtual void setIndTexCoordScale(u8, const J3DIndTexCoordScale*) = 0;
+	virtual void setIndTexCoordScale(u8, J3DIndTexCoordScale)        = 0;
+	virtual J3DIndTexCoordScale* getIndTexCoordScale(u8)             = 0;
 
 	virtual ~J3DIndBlock() { }
 	virtual void load(J3DTevBlock*) = 0;
@@ -35,6 +35,7 @@ public:
 
 class J3DIndBlockFull : public J3DIndBlock {
 public:
+	//TODO: Why so many useless u32 to u8 casts
 	J3DIndBlockFull() { mIndTexStageNum = 0; }
 
 	virtual void reset(J3DIndBlock*);
@@ -44,32 +45,39 @@ public:
 	virtual void setIndTexStageNum(u8 num) { mIndTexStageNum = num; }
 	virtual u8 getIndTexStageNum() const { return mIndTexStageNum; }
 
-	virtual void setIndTexOrder(u32 i, const J3DIndTexOrder* order)
+	virtual void setIndTexOrder(u8 i, const J3DIndTexOrder* order)
 	{
+
 		mIndTexOrder[i] = *order;
+		//Not apart of the operator= for some reason....
+		mIndTexOrder[i].field_0x4 = order->field_0x4;
+		mIndTexOrder[i].field_0x5 = order->field_0x5;
 	}
-	virtual void setIndTexOrder(u32 i, J3DIndTexOrder order)
+	virtual void setIndTexOrder(u8 i, J3DIndTexOrder order)
 	{
 		mIndTexOrder[i] = order;
+		//Not apart of the operator= for some reason....
+		mIndTexOrder[i].field_0x4 = order.field_0x4;
+		mIndTexOrder[i].field_0x5 = order.field_0x5;
 	}
-	virtual J3DIndTexOrder* getIndTexOrder(u32 i) { return &mIndTexOrder[i]; }
+	virtual J3DIndTexOrder* getIndTexOrder(u8 i) { return &mIndTexOrder[i]; }
 
-	virtual void setIndTexMtx(u32 i, const J3DIndTexMtx* mtx)
+	virtual void setIndTexMtx(u8 i, const J3DIndTexMtx* mtx)
 	{
 		mIndTexMtx[i] = *mtx;
 	}
-	virtual void setIndTexMtx(u32 i, J3DIndTexMtx mtx) { mIndTexMtx[i] = mtx; }
-	virtual J3DIndTexMtx* getIndTexMtx(u32 i) { return &mIndTexMtx[i]; }
+	virtual void setIndTexMtx(u8 i, J3DIndTexMtx mtx) { mIndTexMtx[i] = mtx; }
+	virtual J3DIndTexMtx* getIndTexMtx(u8 i) { return &mIndTexMtx[i]; }
 
-	virtual void setIndTexCoordScale(u32 i, const J3DIndTexCoordScale* scale)
+	virtual void setIndTexCoordScale(u8 i, const J3DIndTexCoordScale* scale)
 	{
 		mIndTexCoordScale[i] = *scale;
 	}
-	virtual void setIndTexCoordScale(u32 i, J3DIndTexCoordScale scale)
+	virtual void setIndTexCoordScale(u8 i, J3DIndTexCoordScale scale)
 	{
 		mIndTexCoordScale[i] = scale;
 	}
-	virtual J3DIndTexCoordScale* getIndTexCoordScale(u32 i)
+	virtual J3DIndTexCoordScale* getIndTexCoordScale(u8 i)
 	{
 		return &mIndTexCoordScale[i];
 	}
@@ -93,17 +101,17 @@ public:
 	virtual void setIndTexStageNum(u8) { }
 	virtual u8 getIndTexStageNum() const { return 0; }
 
-	virtual void setIndTexOrder(u32, J3DIndTexOrder) { }
-	virtual void setIndTexOrder(u32, const J3DIndTexOrder*) { }
-	virtual J3DIndTexOrder* getIndTexOrder(u32) { return nullptr; }
+	virtual void setIndTexOrder(u8, J3DIndTexOrder) { }
+	virtual void setIndTexOrder(u8, const J3DIndTexOrder*) { }
+	virtual J3DIndTexOrder* getIndTexOrder(u8) { return nullptr; }
 
-	virtual void setIndTexMtx(u32, const J3DIndTexMtx*) { }
-	virtual void setIndTexMtx(u32, J3DIndTexMtx) { }
-	virtual J3DIndTexMtx* getIndTexMtx(u32) { return nullptr; }
+	virtual void setIndTexMtx(u8, const J3DIndTexMtx*) { }
+	virtual void setIndTexMtx(u8, J3DIndTexMtx) { }
+	virtual J3DIndTexMtx* getIndTexMtx(u8) { return nullptr; }
 
-	virtual void setIndTexCoordScale(u32, const J3DIndTexCoordScale*) { }
-	virtual void setIndTexCoordScale(u32, J3DIndTexCoordScale) { }
-	virtual J3DIndTexCoordScale* getIndTexCoordScale(u32) { return nullptr; }
+	virtual void setIndTexCoordScale(u8, const J3DIndTexCoordScale*) { }
+	virtual void setIndTexCoordScale(u8, J3DIndTexCoordScale) { }
+	virtual J3DIndTexCoordScale* getIndTexCoordScale(u8) { return nullptr; }
 
 	virtual ~J3DIndBlockNull() { }
 	virtual void load(J3DTevBlock*) { }

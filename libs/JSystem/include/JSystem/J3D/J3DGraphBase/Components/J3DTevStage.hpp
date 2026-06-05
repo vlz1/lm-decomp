@@ -150,12 +150,12 @@ public:
 	void load(u32) const
 	{
 		GDOverflowCheck(10);
-		J3DGDWriteBPCmd(*(u32*)&mTevColorReg);
+		//J3DGDWriteBPCmd(*(u32*)&mTevColorReg);
 		J3DGDWriteBPCmd(*(u32*)&mTevAlphaReg);
 	}
 
 public:
-	/* 0x0 */ u8 mTevColorReg;
+	///* 0x0 */ u8 mTevColorReg;
 	/* 0x1 */ u8 mTevColorOp;
 	/* 0x2 */ u8 mTevColorAB;
 	/* 0x3 */ u8 mTevColorCD;
