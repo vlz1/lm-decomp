@@ -683,11 +683,11 @@ void J3DTevBlock4::reset(J3DTevBlock* block)
 	mTevKAlphaSel[1] = block->getTevKAlphaSel(1);
 	mTevKAlphaSel[2] = block->getTevKAlphaSel(2);
 	mTevKAlphaSel[3] = block->getTevKAlphaSel(3);
-	for (u32 i = 0; i < 4; ++i)
+	for (u8 i = 0; i < 4; ++i)
 		mTevColor[i] = *block->getTevColor(i);
-	for (u32 i = 0; i < 4; ++i)
+	for (u8 i = 0; i < 4; ++i)
 		mTevKColor[i] = *block->getTevKColor(i);
-	for (u32 i = 0; i < 4; ++i)
+	for (u8 i = 0; i < 4; ++i)
 		mTevSwapModeTable[i] = *block->getTevSwapModeTable(i);
 }
 

@@ -263,7 +263,7 @@ public:
 	void initialize();
 
 	virtual void reset(J3DTevBlock*);
-	virtual u32 getType() { return 'TVB4'; }
+	virtual u32 getType() { return 'TV4'; }
 	virtual s32 countDLSize();
 
 	virtual void setTexNo(u8 i, const u16* no) { mTexNo[i] = *no; }
