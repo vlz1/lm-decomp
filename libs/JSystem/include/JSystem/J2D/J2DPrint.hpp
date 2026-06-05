@@ -72,7 +72,7 @@ public:
 	/* 0x10 */ int unk10;
 	/* 0x14 */ int unk14;
 	/* 0x18 */ u8 unk18;
-	/* 0x19 */ char pad19[3];
+	/* 0x19 */ char unk19;
 	/* 0x1C */ int unk1C;
 	/* 0x20 */ int unk20;
 	/* 0x24 */ float mCursorH;
@@ -83,8 +83,6 @@ public:
 	/* 0x38 */ int unk38;
 	/* 0x3C */ JUtility::TColor unk3C;
 	/* 0x40 */ JUtility::TColor unk40;
-	/* 0x44 */ JUtility::TColor unk44;
-	/* 0x48 */ JUtility::TColor unk48;
 	/* 0x4C */ int unk4C;
 	/* 0x50 */ int unk50;
 	/* 0x54 */ int unk54;

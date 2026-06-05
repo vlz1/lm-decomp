@@ -25,6 +25,52 @@ Koga/Message.cpp:
 	.data       start:0x803640D8 end:0x80364180
 	.sdata      start:0x804D3F78 end:0x804D3F90
 
+JSystem/J2D/J2DGrafContext.cpp:
+	.text       start:0x801ADEE4 end:0x801AE564
+	.data       start:0x80391BD0 end:0x80391C08
+	.sdata      start:0x804D7958 end:0x804D7960
+	.sdata2     start:0x804DD480 end:0x804DD490
+
+JSystem/J2D/J2DOrthoGraph.cpp:
+	.text       start:0x801AE564 end:0x801AEB28
+	.data       start:0x80391C08 end:0x80391C58
+	.sdata      start:0x804D7960 end:0x804D7970
+	.sdata2     start:0x804DD490 end:0x804DD4A8
+
+JSystem/J2D/J2DPrint.cpp:
+	.text       start:0x801AEB28 end:0x801B058C
+	.data       start:0x80391C58 end:0x80391CD0
+	.bss        start:0x804C8880 end:0x804C8898
+	.sdata      start:0x804D7970 end:0x804D7978
+	.sbss       start:0x804D94B8 end:0x804D94C8
+	.sdata2     start:0x804DD4A8 end:0x804DD4D0
+
+JSystem/J2D/J2DPane.cpp:
+	.text       start:0x801B058C end:0x801B13C0
+	.data       start:0x80391CD0 end:0x80391D00
+	.sdata      start:0x804D7978 end:0x804D7988
+	.sdata2     start:0x804DD4D0 end:0x804DD4F0
+
+JSystem/J2D/J2DScreen.cpp:
+	.text       start:0x801B13C0 end:0x801B1EC0
+	.data       start:0x80391D00 end:0x80391E68
+	.sdata      start:0x804D7988 end:0x804D79A8
+
+JSystem/J2D/J2DWindow.cpp:
+	.text       start:0x801B1EC0 end:0x801B37BC
+	.data       start:0x80391E68 end:0x80391EE8
+	.sdata      start:0x804D79A8 end:0x804D79D0
+	.sdata2     start:0x804DD4F0 end:0x804DD508
+
+JSystem/J2D/J2DPicture.cpp:
+	.text       start:0x801B37BC end:0x801B54C4
+	.sdata2     start:0x804DD508 end:0x804DD528
+
+JSystem/J2D/J2DTextBox.cpp:
+	.text       start:0x801B54C4 end:0x801B5D64
+	.data       start:0x80391F30 end:0x80391FA8
+	.sdata      start:0x804D79E8 end:0x804D7A10
+
 JSystem/JKernel/JKRHeap.cpp:
 	.text       start:0x801CDFBC end:0x801CE9DC
 	.data       start:0x80393830 end:0x80393898

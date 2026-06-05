@@ -8,7 +8,7 @@ public:
 	J2DOrthoGraph();
 	J2DOrthoGraph(const JUTRect&);
 	J2DOrthoGraph(int x, int y, int width, int height);
-	void setOrtho(const JUTRect&, float, float);
+	void setOrtho(const JUTRect&, s32, s32);
 	void setOrigin(int, int);
 	void scissorBounds(JUTRect*, JUTRect*);
 
@@ -32,8 +32,8 @@ public:
 
 private:
 	/* 0xD8 */ JUTRect mOrtho;
-	/* 0xE8 */ f32 mNear;
-	/* 0xEC */ f32 mFar;
+	/* 0xE8 */ s32 mNear;
+	/* 0xEC */ s32 mFar;
 };
 
 void J2DDrawLine(int x1, int y1, int x2, int y2, JUtility::TColor color,

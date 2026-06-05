@@ -102,7 +102,7 @@ public:
 	void setBounds(const JUTRect& bounds) { mBounds = bounds; }
 	const JUTRect& getGlobalBounds() const { return mGlobalBounds; }
 
-	void setInfluenceAlpha(bool influence) { mIsInfluencedAlpha = influence; }
+	//void setInfluenceAlpha(bool influence) { mIsInfluencedAlpha = influence; }
 
 public:
 	/* 0x4 */ u16 mInfoTag;
@@ -123,8 +123,7 @@ public:
 	/* 0xC8 */ GXCullMode mCullMode;
 	/* 0xCC */ u8 mAlpha;
 	/* 0xCD */ u8 mColorAlpha;
-	/* 0xCE */ bool mIsInfluencedAlpha;
-	/* 0xCF */ bool mConnected;
+	/* 0xCE */ bool mConnected;
 	/* 0xD0 */ JSUTree<J2DPane> mPaneTree;
 };
 

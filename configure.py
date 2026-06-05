@@ -292,11 +292,12 @@ cflags_game = [
     "-lang c++"
 ]
 
+# TODO: Does JSystem use common bss?
 cflags_jsystem = [
     *cflags_base,
     "-RTTI on",
     "-lang c++",
-    "-fp_contract off"
+    "-fp_contract off",
 ]
 
 # REL flags
@@ -406,6 +407,15 @@ config.warn_missing_source = False
 config.libs = [
 
     JSystem([
+        # 2D
+        Object(Matching, "JSystem/J2D/J2DGrafContext.cpp"),
+        Object(Matching, "JSystem/J2D/J2DOrthoGraph.cpp"),
+        Object(NonMatching, "JSystem/J2D/J2DPrint.cpp"),
+        Object(NonMatching, "JSystem/J2D/J2DPane.cpp"),
+        Object(NonMatching, "JSystem/J2D/J2DScreen.cpp"),
+        Object(NonMatching, "JSystem/J2D/J2DWindow.cpp"),
+        Object(NonMatching, "JSystem/J2D/J2DPicture.cpp"),
+        Object(NonMatching, "JSystem/J2D/J2DTextBox.cpp"),
         # Kernel
         Object(Matching, "JSystem/JKernel/JKRHeap.cpp"),
         Object(NonMatching, "JSystem/JKernel/JKRExpHeap.cpp"),

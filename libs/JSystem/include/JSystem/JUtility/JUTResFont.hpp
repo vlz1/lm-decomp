@@ -54,7 +54,6 @@ public:
 	/* 0x60 */ u16 mMapBlockNum;
 	/* 0x62 */ u16 field_0x62;
 	/* 0x64 */ u16 mMaxCode;
-	/* 0x68 */ const IsLeadByte_func* mIsLeadByte;
 };
 
 #endif
