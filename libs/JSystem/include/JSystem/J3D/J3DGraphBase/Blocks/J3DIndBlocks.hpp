@@ -49,16 +49,10 @@ public:
 	{
 
 		mIndTexOrder[i] = *order;
-		//Not apart of the operator= for some reason....
-		mIndTexOrder[i].field_0x4 = order->field_0x4;
-		mIndTexOrder[i].field_0x5 = order->field_0x5;
 	}
 	virtual void setIndTexOrder(u8 i, J3DIndTexOrder order)
 	{
 		mIndTexOrder[i] = order;
-		//Not apart of the operator= for some reason....
-		mIndTexOrder[i].field_0x4 = order.field_0x4;
-		mIndTexOrder[i].field_0x5 = order.field_0x5;
 	}
 	virtual J3DIndTexOrder* getIndTexOrder(u8 i) { return &mIndTexOrder[i]; }
 

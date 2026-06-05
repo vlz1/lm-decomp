@@ -648,11 +648,11 @@ void J3DTevBlock2::reset(J3DTevBlock* block)
 	mTevKColorSel[1] = block->getTevKColorSel(1);
 	mTevKAlphaSel[0] = block->getTevKAlphaSel(0);
 	mTevKAlphaSel[1] = block->getTevKAlphaSel(1);
-	for (u32 i = 0; i < 4; ++i)
+	for (u8 i = 0; i < 4; ++i)
 		mTevColor[i] = *block->getTevColor(i);
-	for (u32 i = 0; i < 4; ++i)
+	for (u8 i = 0; i < 4; ++i)
 		mTevKColor[i] = *block->getTevKColor(i);
-	for (u32 i = 0; i < 4; ++i)
+	for (u8 i = 0; i < 4; ++i)
 		mTevSwapModeTable[i] = *block->getTevSwapModeTable(i);
 }
 
@@ -694,34 +694,34 @@ void J3DTevBlock4::reset(J3DTevBlock* block)
 void J3DTevBlock16::reset(J3DTevBlock* block)
 {
 	mTevStageNum = block->getTevStageNum();
-	for (u32 i = 0; i < 8; ++i)
+	for (u8 i = 0; i < 8; ++i)
 		mTexNo[i] = block->getTexNo(i);
-	for (u32 i = 0; i < 16; ++i)
+	for (u8 i = 0; i < 16; ++i)
 		mTevOrder[i] = *block->getTevOrder(i);
-	for (u32 i = 0; i < 16; ++i) {
+	for (u8 i = 0; i < 16; ++i) {
 		mTevStage[i]    = *block->getTevStage(i);
 		mIndTevStage[i] = *block->getIndTevStage(i);
 	}
-	for (u32 i = 0; i < 4; ++i)
+	for (u8 i = 0; i < 4; ++i)
 		mTevColor[i] = *block->getTevColor(i);
-	for (u32 i = 0; i < 4; ++i)
+	for (u8 i = 0; i < 4; ++i)
 		mTevKColor[i] = *block->getTevKColor(i);
-	for (u32 i = 0; i < 16; ++i)
+	for (u8 i = 0; i < 16; ++i)
 		mTevKColorSel[i] = block->getTevKColorSel(i);
-	for (u32 i = 0; i < 16; ++i)
+	for (u8 i = 0; i < 16; ++i)
 		mTevKAlphaSel[i] = block->getTevKAlphaSel(i);
-	for (u32 i = 0; i < 4; ++i)
+	for (u8 i = 0; i < 4; ++i)
 		mTevSwapModeTable[i] = *block->getTevSwapModeTable(i);
 }
 
 void J3DIndBlockFull::reset(J3DIndBlock* block)
 {
 	mIndTexStageNum = block->getIndTexStageNum();
-	for (u32 i = 0; i < 4; i++)
+	for (u8 i = 0; i < 4; i++)
 		mIndTexOrder[i] = *block->getIndTexOrder(i);
-	for (u32 i = 0; i < 3; i++)
+	for (u8 i = 0; i < 3; i++)
 		mIndTexMtx[i] = *block->getIndTexMtx(i);
-	for (u32 i = 0; i < 4; i++)
+	for (u8 i = 0; i < 4; i++)
 		mIndTexCoordScale[i] = *block->getIndTexCoordScale(i);
 }
 

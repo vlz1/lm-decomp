@@ -12,8 +12,8 @@
 class J3DTevBlock {
 public:
 	virtual void reset(J3DTevBlock*) { }
-	virtual u32 getType()     = 0;
-	virtual s32 countDLSize() = 0;
+	virtual u32 getType()      { return 'TVP'; }
+	virtual s32 countDLSize() { return 0; }
 
 	virtual void setTexNo(u8, const u16*) = 0;
 	virtual void setTexNo(u8, u16)        = 0;
@@ -63,7 +63,10 @@ public:
 
 class J3DTevBlock1 : public J3DTevBlock {
 public:
-	J3DTevBlock1() { initialize(); }
+	J3DTevBlock1() {
+		initialize();
+		mTevStageNum = 0;
+	 }
 
 	void initialize();
 
@@ -147,7 +150,7 @@ public:
 	void initialize();
 
 	virtual void reset(J3DTevBlock*);
-	virtual u32 getType() { return 'TVB2'; }
+	virtual u32 getType() { return 'TV2'; }
 	virtual s32 countDLSize();
 
 	virtual void setTexNo(u8 i, const u16* no) { mTexNo[i] = *no; }
