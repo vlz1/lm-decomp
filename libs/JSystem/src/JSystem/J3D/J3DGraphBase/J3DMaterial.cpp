@@ -205,7 +205,7 @@ void J3DMaterial::initialize()
 void J3DMaterial::addShape(J3DShape* shape) { mShape = shape; }
 
 s32 J3DColorBlockLightOff::countDLSize() { return 0x60; }
-s32 J3DColorBlockLightOn::countDLSize() { return 0x140; }
+s32 J3DColorBlockLightOn::countDLSize() { return 0x280; }
 
 s32 J3DTexGenBlockBasic::countDLSize() { return 0x260; }
 
@@ -571,10 +571,10 @@ void J3DColorBlockLightOff::reset(J3DColorBlock* block)
 {
 	mColorChanNum = block->getColorChanNum();
 
-	for (u32 i = 0; i < ARRAY_COUNT(mMatColor); i++)
+	for (u8 i = 0; i < ARRAY_COUNT(mMatColor); i++)
 		mMatColor[i] = *block->getMatColor(i);
 
-	for (u32 i = 0; i < ARRAY_COUNT(mColorChan); i++)
+	for (u8 i = 0; i < ARRAY_COUNT(mColorChan); i++)
 		mColorChan[i] = *block->getColorChan(i);
 }
 
@@ -582,18 +582,18 @@ void J3DColorBlockLightOn::reset(J3DColorBlock* block)
 {
 	mColorChanNum = block->getColorChanNum();
 
-	for (u32 i = 0; i < ARRAY_COUNT(mMatColor); i++)
+	for (u8 i = 0; i < ARRAY_COUNT(mMatColor); i++)
 		mMatColor[i] = *block->getMatColor(i);
 
-	for (u32 i = 0; i < ARRAY_COUNT(mColorChan); i++)
+	for (u8 i = 0; i < ARRAY_COUNT(mColorChan); i++)
 		mColorChan[i] = *block->getColorChan(i);
 
-	for (u32 i = 0; i < ARRAY_COUNT(mAmbColor); i++) {
+	for (u8 i = 0; i < ARRAY_COUNT(mAmbColor); i++) {
 		if (block->getAmbColor(i))
 			mAmbColor[i] = *block->getAmbColor(i);
 	}
 
-	for (u32 i = 0; i < ARRAY_COUNT(mLight); i++) {
+	for (u8 i = 0; i < ARRAY_COUNT(mLight); i++) {
 		if (block->getLight(i) != nullptr) {
 			if (!mLight[i])
 				mLight[i] = new J3DLightObj;

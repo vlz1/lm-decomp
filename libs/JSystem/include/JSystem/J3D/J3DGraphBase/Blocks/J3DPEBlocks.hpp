@@ -11,7 +11,7 @@ class J3DPEBlock {
 public:
 	virtual void reset(J3DPEBlock*) { }
 	virtual s32 countDLSize() = 0;
-	virtual u32 getType()     = 0;
+	virtual u32 getType()     { return 'PEBK'; }
 
 	virtual void setFog(J3DFog*) { }
 	virtual J3DFog* replaceFog(J3DFog*) { return nullptr; }

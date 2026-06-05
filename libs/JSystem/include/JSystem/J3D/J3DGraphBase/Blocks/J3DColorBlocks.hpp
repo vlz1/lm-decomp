@@ -10,27 +10,27 @@ class J3DColorBlock {
 public:
 	virtual void reset(J3DColorBlock*) { }
 	virtual s32 countDLSize() = 0;
-	virtual u32 getType()     = 0;
+	virtual u32 getType()     { return 'CBLK'; }
 
-	virtual void setMatColor(u32, const J3DGXColor*) = 0;
-	virtual void setMatColor(u32, J3DGXColor)        = 0;
-	virtual J3DGXColor* getMatColor(u32)             = 0;
+	virtual void setMatColor(u8, const J3DGXColor*) = 0;
+	virtual void setMatColor(u8, J3DGXColor)        = 0;
+	virtual J3DGXColor* getMatColor(u8)             = 0;
 
-	virtual void setAmbColor(u32, const J3DGXColor*) = 0;
-	virtual void setAmbColor(u32, J3DGXColor)        = 0;
-	virtual J3DGXColor* getAmbColor(u32)             = 0;
+	virtual void setAmbColor(u8, const J3DGXColor*) = 0;
+	virtual void setAmbColor(u8, J3DGXColor)        = 0;
+	virtual J3DGXColor* getAmbColor(u8)             = 0;
 
 	virtual void setColorChanNum(u8)        = 0;
 	virtual void setColorChanNum(const u8*) = 0;
 	virtual u8 getColorChanNum() const      = 0;
 
-	virtual void setColorChan(u32, const J3DColorChan&) = 0;
-	virtual void setColorChan(u32, const J3DColorChan*) = 0;
-	virtual J3DColorChan* getColorChan(u32)             = 0;
+	virtual void setColorChan(u8, const J3DColorChan&) = 0;
+	virtual void setColorChan(u8, const J3DColorChan*) = 0;
+	virtual J3DColorChan* getColorChan(u8)             = 0;
 
-	virtual void setLight(u32, J3DLightObj*)             = 0;
-	virtual J3DLightObj* replaceLight(u32, J3DLightObj*) = 0;
-	virtual J3DLightObj* getLight(u32)                   = 0;
+	virtual void setLight(u8, J3DLightObj*)             = 0;
+	virtual J3DLightObj* replaceLight(u8, J3DLightObj*) = 0;
+	virtual J3DLightObj* getLight(u8)                   = 0;
 
 	virtual void setCullMode(const u8*) = 0;
 	virtual void setCullMode(u8)        = 0;
@@ -50,34 +50,34 @@ public:
 	virtual s32 countDLSize();
 	virtual u32 getType() { return 'CLOF'; }
 
-	virtual void setMatColor(u32 i, const J3DGXColor* color)
+	virtual void setMatColor(u8 i, const J3DGXColor* color)
 	{
 		mMatColor[i] = *color;
 	}
-	virtual void setMatColor(u32 i, J3DGXColor color) { mMatColor[i] = color; }
-	virtual J3DGXColor* getMatColor(u32 i) { return &mMatColor[i]; }
+	virtual void setMatColor(u8 i, J3DGXColor color) { mMatColor[i] = color; }
+	virtual J3DGXColor* getMatColor(u8 i) { return &mMatColor[i]; }
 
-	virtual void setAmbColor(u32, const J3DGXColor*) { }
-	virtual void setAmbColor(u32, J3DGXColor) { }
-	virtual J3DGXColor* getAmbColor(u32) { return nullptr; }
+	virtual void setAmbColor(u8, const J3DGXColor*) { }
+	virtual void setAmbColor(u8, J3DGXColor) { }
+	virtual J3DGXColor* getAmbColor(u8) { return nullptr; }
 
 	virtual void setColorChanNum(u8 num) { mColorChanNum = num; }
 	virtual void setColorChanNum(const u8* num) { mColorChanNum = *num; }
 	virtual u8 getColorChanNum() const { return mColorChanNum; }
 
-	virtual void setColorChan(u32 i, const J3DColorChan& chan)
+	virtual void setColorChan(u8 i, const J3DColorChan& chan)
 	{
 		mColorChan[i] = chan;
 	}
-	virtual void setColorChan(u32 i, const J3DColorChan* chan)
+	virtual void setColorChan(u8 i, const J3DColorChan* chan)
 	{
 		mColorChan[i] = *chan;
 	}
-	virtual J3DColorChan* getColorChan(u32 i) { return &mColorChan[i]; }
+	virtual J3DColorChan* getColorChan(u8 i) { return &mColorChan[i]; }
 
-	virtual void setLight(u32, J3DLightObj*) { }
-	virtual J3DLightObj* replaceLight(u32, J3DLightObj*) { return nullptr; }
-	virtual J3DLightObj* getLight(u32) { return nullptr; }
+	virtual void setLight(u8, J3DLightObj*) { }
+	virtual J3DLightObj* replaceLight(u8, J3DLightObj*) { return nullptr; }
+	virtual J3DLightObj* getLight(u8) { return nullptr; }
 
 	virtual void setCullMode(const u8* mode) { mCullMode = *mode; }
 	virtual void setCullMode(u8 mode) { mCullMode = mode; }
@@ -103,42 +103,42 @@ public:
 	virtual s32 countDLSize();
 	virtual u32 getType() { return 'CLON'; }
 
-	virtual void setMatColor(u32 i, const J3DGXColor* color)
+	virtual void setMatColor(u8 i, const J3DGXColor* color)
 	{
 		mMatColor[i] = *color;
 	}
-	virtual void setMatColor(u32 i, J3DGXColor color) { mMatColor[i] = color; }
-	virtual J3DGXColor* getMatColor(u32 i) { return &mMatColor[i]; }
+	virtual void setMatColor(u8 i, J3DGXColor color) { mMatColor[i] = color; }
+	virtual J3DGXColor* getMatColor(u8 i) { return &mMatColor[i]; }
 
-	virtual void setAmbColor(u32 i, const J3DGXColor* color)
+	virtual void setAmbColor(u8 i, const J3DGXColor* color)
 	{
 		mAmbColor[i] = *color;
 	}
-	virtual void setAmbColor(u32 i, J3DGXColor color) { mAmbColor[i] = color; }
-	virtual J3DGXColor* getAmbColor(u32 i) { return &mAmbColor[i]; }
+	virtual void setAmbColor(u8 i, J3DGXColor color) { mAmbColor[i] = color; }
+	virtual J3DGXColor* getAmbColor(u8 i) { return &mAmbColor[i]; }
 
 	virtual void setColorChanNum(u8 num) { mColorChanNum = num; }
 	virtual void setColorChanNum(const u8* num) { mColorChanNum = *num; }
 	virtual u8 getColorChanNum() const { return mColorChanNum; }
 
-	virtual void setColorChan(u32 i, const J3DColorChan& chan)
+	virtual void setColorChan(u8 i, const J3DColorChan& chan)
 	{
 		mColorChan[i] = chan;
 	}
-	virtual void setColorChan(u32 i, const J3DColorChan* chan)
+	virtual void setColorChan(u8 i, const J3DColorChan* chan)
 	{
 		mColorChan[i] = *chan;
 	}
-	virtual J3DColorChan* getColorChan(u32 i) { return &mColorChan[i]; }
+	virtual J3DColorChan* getColorChan(u8 i) { return &mColorChan[i]; }
 
-	virtual void setLight(u32 i, J3DLightObj* light) { mLight[i] = light; }
-	virtual J3DLightObj* replaceLight(u32 i, J3DLightObj* light)
+	virtual void setLight(u8 i, J3DLightObj* light) { mLight[i] = light; }
+	virtual J3DLightObj* replaceLight(u8 i, J3DLightObj* light)
 	{
 		J3DLightObj* ret = mLight[i];
 		mLight[i]        = light;
 		return ret;
 	}
-	virtual J3DLightObj* getLight(u32 i) { return mLight[i]; }
+	virtual J3DLightObj* getLight(u8 i) { return mLight[i]; }
 
 	virtual void setCullMode(const u8* mode) { mCullMode = *mode; }
 	virtual void setCullMode(u8 mode) { mCullMode = mode; }
