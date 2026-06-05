@@ -416,6 +416,11 @@ config.libs = [
         Object(NonMatching, "JSystem/J2D/J2DWindow.cpp"),
         Object(NonMatching, "JSystem/J2D/J2DPicture.cpp"),
         Object(NonMatching, "JSystem/J2D/J2DTextBox.cpp"),
+
+        # 3D
+        Object(NonMatching, "JSystem/J3D/J3DGraphBase/J3DMaterial.cpp", extra_cflags=["-sym on"]),
+        Object(NonMatching, "JSystem/J3D/J3DGraphLoader/J3DModelLoader.cpp"),
+
         # Kernel
         Object(Matching, "JSystem/JKernel/JKRHeap.cpp"),
         Object(NonMatching, "JSystem/JKernel/JKRExpHeap.cpp"),

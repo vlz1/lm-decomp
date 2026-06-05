@@ -7,4 +7,8 @@
 #define nullptr 0
 #endif
 
+#include <string.h>
+#include "macros.h"
+#include <ctype.h>
+
 #endif

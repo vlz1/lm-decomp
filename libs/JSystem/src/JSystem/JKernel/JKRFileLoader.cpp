@@ -1,8 +1,5 @@
 #include "types.h"
 #include <JSystem/JKernel/JKRFileLoader.hpp>
-#include <ctype.h>
-#include <macros.h>
-#include <string.h>
 
 JSUList<JKRFileLoader> JKRFileLoader::sVolumeList;
 JKRFileLoader* JKRFileLoader::sCurrentVolume;

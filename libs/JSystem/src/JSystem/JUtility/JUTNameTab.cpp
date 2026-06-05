@@ -1,6 +1,5 @@
 #include <JSystem/JUtility/JUTNameTab.hpp>
 #include <JSystem/JUtility/JUTAssert.hpp>
-#include <string.h>
 
 void JUTNameTab::setResource(const ResNTAB* pNameTable)
 {

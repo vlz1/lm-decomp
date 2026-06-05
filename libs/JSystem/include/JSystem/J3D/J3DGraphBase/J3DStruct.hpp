@@ -178,6 +178,7 @@ struct J3DIndTexOrderInfo {
 	/* 0x1 */ u8 mMap;
 	/* 0x2 */ u8 field_0x2;
 	/* 0x3 */ u8 field_0x3;
+	/* 0x4 */ u8 pad_4[2];
 };
 
 struct J3DTevSwapModeInfo {

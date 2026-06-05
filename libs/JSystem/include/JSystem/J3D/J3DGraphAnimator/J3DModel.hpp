@@ -48,7 +48,6 @@ class J3DModelData {
 public:
 	void clear();
 	J3DModelData();
-	virtual ~J3DModelData();
 
 	void makeHierarchy(J3DNode*, const J3DModelHierarchy**);
 	void newSharedDisplayList();
@@ -116,7 +115,7 @@ public:
 
 	void* getVtxPosArray() const { return mVertexData.getVtxPosArray(); }
 
-	J3DJoint* getRootNode() { return mRootNode; }
+	//J3DJoint* getRootNode() { return mRootNode; }
 
 	// This is the J3DMtxCalcAnm type this model needs supposedly
 	u32 getUnkC() const { return unkC & 0xf; }
@@ -137,7 +136,6 @@ public:
 	/* 0x04 */ const void* unk4;
 	/* 0x08 */ J3DModelHierarchy* unk8;
 	/* 0x0C */ u32 unkC;
-	/* 0x10 */ J3DJoint* mRootNode;
 	/* 0x14 */ J3DMtxCalc* unk14;
 	/* 0x18 */ u16 unk18;
 	/* 0x1A */ u16 mbHasBillboard;
@@ -156,8 +154,8 @@ public:
 
 	/* 0x38 */ J3DMaterial* unk38;
 	/* 0x3C */ J3DVertexData mVertexData;
-	/* 0x80 */ u32 unk80;
-	/* 0x84 */ u16 mWEvlpMtxNum;
+	/* 0x7C */ u32 unk80;
+	/* 0x80 */ u16 mWEvlpMtxNum;
 
 	/* 0x88 */ u8* unk88;
 	/* 0x8C */ u16* unk8C;
@@ -173,6 +171,8 @@ public:
 	/* 0xB0 */ JUTNameTab* unkB0;
 	/* 0xB4 */ JUTNameTab* mMaterialName;
 	/* 0xB8 */ JUTNameTab* unkB8;
+public:
+	virtual ~J3DModelData();
 };
 
 struct J3DDeformData;

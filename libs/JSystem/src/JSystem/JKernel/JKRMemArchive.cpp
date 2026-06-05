@@ -4,7 +4,6 @@
 #include <JSystem/JKernel/JKRDvdRipper.hpp>
 #include <JSystem/JKernel/JKRHeap.hpp>
 #include <JSystem/JUtility/JUTAssert.hpp>
-#include <string.h>
 
 JKRMemArchive::JKRMemArchive() { }
 

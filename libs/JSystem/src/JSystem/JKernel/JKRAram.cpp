@@ -9,9 +9,6 @@
 #include <dolphin/os.h>
 #include "JSystem/JKernel/JKREnum.hpp"
 #include "JSystem/JKernel/JKRHeap.hpp"
-#include "string.h"
-#include "macros.h"
-#include "types.h"
 
 static int JKRDecompressFromAramToMainRam(u32, void*, u32, u32, u32);
 static int decompSZS_subroutine(u8*, u8*);

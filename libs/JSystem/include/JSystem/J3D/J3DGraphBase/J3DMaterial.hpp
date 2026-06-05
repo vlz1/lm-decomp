@@ -98,6 +98,7 @@ public:
 	/* 0x4 */ J3DShape* mShape;
 	/* 0x8 */ u32 unk8;
 	/* 0xC */ u16 unkC;
+	/* 0xE */ u8 unkE;
 	/* 0x10 */ u32 unk10;
 	/* 0x14 */ char unk14[4];
 	/* 0x18 */ u32 unk18;
