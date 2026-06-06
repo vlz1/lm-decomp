@@ -138,9 +138,12 @@ J3DColorBlock* J3DMaterial::createColorBlock(int param_1)
 		return new J3DColorBlockLightOn;
 }
 
-J3DTexGenBlock* J3DMaterial::createTexGenBlock(int)
+J3DTexGenBlock* J3DMaterial::createTexGenBlock(int param_1)
 {
-	return new J3DTexGenBlockBasic;
+	if (param_1 == 1)
+		return new J3DTexGenBlockBasic;
+	else
+		return new J3DTexGenBlockFull;
 }
 
 J3DTevBlock* J3DMaterial::createTevBlock(int param_1)

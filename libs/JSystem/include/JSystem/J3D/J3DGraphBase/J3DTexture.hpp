@@ -5,14 +5,6 @@
 
 class J3DTexture {
 public:
-	/* 0x0 */ u16 mResourceCount;
-	/* 0x4 */ ResTIMG* mResources;
-
-	J3DTexture(u16 num, ResTIMG* res)
-	    : mResourceCount(num)
-	    , mResources(res)
-	{
-	}
 	virtual ~J3DTexture() { }
 
 	u16 getNum() const { return mResourceCount; }
@@ -26,6 +18,15 @@ public:
 		mResources[entry].paletteOffset
 		    = ((mResources[entry].paletteOffset + (u32)&timg
 		        - (u32)(mResources + entry)));
+	}
+
+	/* 0x0 */ u16 mResourceCount;
+	/* 0x4 */ ResTIMG* mResources;
+
+	J3DTexture(u16 num, ResTIMG* res)
+	    : mResourceCount(num)
+	    , mResources(res)
+	{
 	}
 };
 
