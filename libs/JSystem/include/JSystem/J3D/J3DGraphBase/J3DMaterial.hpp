@@ -78,14 +78,10 @@ public:
 	J3DShape* getShape() { return mShape; }
 	u16 getIndex() { return unkC; }
 
-	/*J3DMaterialAnm* getMaterialAnm()
+	J3DMaterialAnm* getMaterialAnm()
 	{
-		if ((u32)unk38 < 0xC0000000) {
-			return unk38;
-		} else {
-			return nullptr;
-		}
-	}*/
+		return unk30;
+	}
 
 	GXBool isDrawModeOpaTexEdge() { return (unk8 & 3) ? GX_TRUE : GX_FALSE; }
 
@@ -107,7 +103,7 @@ public:
 	/* 0x24 */ J3DIndBlock* mIndBlock;
 	/* 0x28 */ J3DPEBlock* mPEBlock;
 	/* 0x2C */ J3DMaterial* mOriginalMaterial;
-	/* 0x30 */ s32 unk30;
+	/* 0x30 */ J3DMaterialAnm* unk30;
 
 };
 

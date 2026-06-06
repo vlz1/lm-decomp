@@ -132,9 +132,6 @@ class J3DMaterialAnm // size 0x6c
 public:
 	J3DMaterialAnm() { initialize(); }
 
-	virtual ~J3DMaterialAnm() { }
-	virtual void calc(J3DMaterial*) const;
-
 	void initialize();
 
 	void setMatColorAnm(int i, J3DMatColorAnm* pAnm) { mMatColorAnm[i] = pAnm; }
@@ -152,6 +149,10 @@ private:
 	/* 0x2C */ J3DTexNoAnm* mTexNoAnm[8];
 	/* 0x4C */ J3DTevColorAnm* mTevColorAnm[4];
 	/* 0x5C */ J3DTevKColorAnm* mTevKColorAnm[4];
+public:
+	virtual ~J3DMaterialAnm() { }
+	virtual void calc(J3DMaterial*) const;
 };
+
 
 #endif

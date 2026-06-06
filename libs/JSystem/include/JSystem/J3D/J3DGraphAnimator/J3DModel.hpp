@@ -102,7 +102,7 @@ public:
 	u32 getVtxNum() const { return mVertexData.getVtxNum(); }
 	u32 getNrmNum() const { return mVertexData.getNrmNum(); }
 
-	bool checkBBoardFlag() const { return mbHasBillboard == 1; }
+	//bool checkBBoardFlag() const { return mbHasBillboard == 1; }
 
 	u16 getDrawFullWgtMtxNum() const { return mDrawMtxData.mDrawFullWgtMtxNum; }
 
@@ -115,7 +115,7 @@ public:
 
 	void* getVtxPosArray() const { return mVertexData.getVtxPosArray(); }
 
-	//J3DJoint* getRootNode() { return mRootNode; }
+	J3DJoint* getRootNode() { return mRootNode; }
 
 	// This is the J3DMtxCalcAnm type this model needs supposedly
 	u32 getUnkC() const { return unkC & 0xf; }
@@ -136,9 +136,10 @@ public:
 	/* 0x04 */ const void* unk4;
 	/* 0x08 */ J3DModelHierarchy* unk8;
 	/* 0x0C */ u32 unkC;
+	/* 0x10 */ J3DJoint* mRootNode;
 	/* 0x14 */ J3DMtxCalc* unk14;
 	/* 0x18 */ u16 unk18;
-	/* 0x1A */ u16 mbHasBillboard;
+	///* 0x1A */ u16 mbHasBillboard;
 	/* 0x1C */ u16 mJointNum;
 
 	/* 0x20 */ J3DJoint** mJointNodePointer;
@@ -154,8 +155,8 @@ public:
 
 	/* 0x38 */ J3DMaterial* unk38;
 	/* 0x3C */ J3DVertexData mVertexData;
-	/* 0x7C */ u32 unk80;
-	/* 0x80 */ u16 mWEvlpMtxNum;
+	/* 0x80 */ u32 unk80;
+	/* 0x84 */ u16 mWEvlpMtxNum;
 
 	/* 0x88 */ u8* unk88;
 	/* 0x8C */ u16* unk8C;
@@ -213,11 +214,6 @@ public:
 	void setVtxShader(J3DVtxShader*, J3DDeformAttachFlag);
 	void calcWeightEnvelopeMtx();
 	void calcBaseMtx();
-
-	virtual void update();
-	virtual void entry();
-	virtual void calc();
-	virtual void viewCalc();
 
 	void calcNrmMtx();
 	void calcBumpMtx();
@@ -278,7 +274,10 @@ public:
 	void setBaseTRMtx(Mtx m) { MTXCopy(m, unk20); }
 	void setBaseScale(const Vec& scale) { unk14 = scale; }
 
-	virtual ~J3DModel();
+	void update();
+	void entry();
+	void calc();
+	void viewCalc();
 
 public:
 	/* 0x04 */ J3DModelData* mModelData;
@@ -304,6 +303,8 @@ public:
 	/* 0x94 */ J3DUnkCalc1* unk94;
 	/* 0x98 */ J3DVertexBuffer* mVertexBuffer;
 	/* 0x9C */ J3DUnkCalc2* unk9C;
+public:
+	virtual ~J3DModel();
 };
 
 #endif
