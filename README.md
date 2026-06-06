@@ -9,9 +9,9 @@ Luigi's Mansion
 [Data Progress_USA]: https://decomp.dev/theplayerrolo/lm-decomp/GLME01.svg?mode=shield&measure=data&label=USA%20Data
 [Code Progress_JPN]: https://decomp.dev/theplayerrolo/lm-decomp/GLMJ01.svg?mode=shield&measure=code&label=JPN%20Code
 [Data Progress_JPN]: https://decomp.dev/theplayerrolo/lm-decomp/GLMJ01.svg?mode=shield&measure=data&label=JPN%20Data
-[Code Progress_PAL_00]: https://decomp.dev/theplayerrolo/lm-decomp/GLMP01_00.svg?mode=shield&measure=data&label=PAL%20Rev%200%20Code
+[Code Progress_PAL_00]: https://decomp.dev/theplayerrolo/lm-decomp/GLMP01_00.svg?mode=shield&measure=code&label=PAL%20Rev%200%20Code
 [Data Progress_PAL_00]: https://decomp.dev/theplayerrolo/lm-decomp/GLMP01_00.svg?mode=shield&measure=data&label=PAL%20Rev%200%20Data
-[Code Progress_PAL_01]: https://decomp.dev/theplayerrolo/lm-decomp/GLMP01_01.svg?mode=shield&measure=data&label=PAL%20Rev%201%20Code
+[Code Progress_PAL_01]: https://decomp.dev/theplayerrolo/lm-decomp/GLMP01_01.svg?mode=shield&measure=code&label=PAL%20Rev%201%20Code
 [Data Progress_PAL_01]: https://decomp.dev/theplayerrolo/lm-decomp/GLMP01_01.svg?mode=shield&measure=data&label=PAL%20Rev%201%20Data
 [progress]: https://decomp.dev/theplayerrolo/lm-decomp
 
