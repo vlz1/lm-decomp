@@ -16,10 +16,10 @@ public:
 		J3DLightInfo::operator=(j3dDefaultLightInfo);
 	}
 
-	void load(u32) const;
+	void load(u8) const;
 
 public:
-	char unk34[0x40];
+	GXLightObj mLightObj;
 };
 
 #endif

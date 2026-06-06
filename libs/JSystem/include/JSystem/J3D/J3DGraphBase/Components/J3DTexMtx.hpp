@@ -10,8 +10,6 @@ public:
 	J3DTexMtx() { J3DTexMtxInfo::operator=(j3dDefaultTexMtxInfo); }
 	J3DTexMtx(const J3DTexMtxInfo& info) { J3DTexMtxInfo::operator=(info); }
 
-	void calc();
-	void load(u32) const;
 
 	Mtx& getViewMtx() { return mViewMtx; }
 	void setViewMtx(const Mtx viewMtx) { MTXCopy((MtxPtr)viewMtx, mViewMtx); }
@@ -27,6 +25,8 @@ public:
 	/* 0xC8 */ s32 unkC8;
 public:
 	virtual ~J3DTexMtx() {};
+	virtual void calc();
+	virtual void load(u8) const;
 };
 
 #endif

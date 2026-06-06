@@ -1,3 +1,7 @@
+#include "dolphin/gx/GXEnum.h"
+#include "dolphin/gx/GXLighting.h"
+#include "dolphin/gx/GXPixel.h"
+#include "dolphin/gx/GXTransform.h"
 #include <JSystem/J3D/J3DGraphBase/J3DTevs.hpp>
 #include <JSystem/J3D/J3DGraphBase/Components/J3DLightObj.hpp>
 #include <JSystem/J3D/J3DGraphBase/Components/J3DTexMtx.hpp>
@@ -7,6 +11,7 @@
 #include <JSystem/J3D/J3DGraphBase/J3DTexture.hpp>
 #include <JSystem/JRenderer.hpp>
 #include <JSystem/ResTIMG.hpp>
+#include <JSystem/J3D/J3DGraphBase/J3DLoad.hpp>
 #include <dolphin/gd.h>
 #include <types.h>
 #include <macros.h>
@@ -41,6 +46,20 @@ const u8 j3dDefaultTevSwapTableID = 0x1B;
 const u16 j3dDefaultAlphaCmpID    = 0xE7;
 const u16 j3dDefaultZModeID       = 0x17;
 
+void loadCullMode(u8 mode) {
+    GXSetCullMode((GXCullMode)mode);
+ }
+
+void loadChanMatColor(u8 chan, GXColor color) {
+    GXSetChanMatColor((GXChannelID)(GX_COLOR0A0 + chan), color);
+}
+void loadChanAmbColor(u8 chan, GXColor color) {
+    GXSetChanAmbColor((GXChannelID)(GX_COLOR0A0 + chan), color);
+}
+
+void loadColorChanNum(u8 chan) {
+    GXSetNumChans(chan);
+}
 void J3DLoadArrayBasePtr(GXAttr attr, void* ptr)
 {
 	u32 a = attr == GX_VA_NBT ? 1 : attr - 9;
@@ -202,7 +221,7 @@ const J3DTexCoordInfo j3dDefaultTexCoordInfo[8] = {
 };
 
 const J3DTexMtxInfo j3dDefaultTexMtxInfo = {
-	0x01, 0x00, 0xFF, 0xFF, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0,
+	0x01, 0x00,  0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0,
 	0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
 	0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f,
 };
@@ -255,17 +274,19 @@ void J3DGDSetTexLookupMode(GXTexMapID id, GXTexWrapMode wrapS,
 	J3DGDWriteBPCmd(reg2);
 }
 
-void loadCullMode(u8) { }
-
-void J3DLightObj::load(u32 id) const
+void J3DLightObj::load(u8 id) const
 {
-	GXLightID light = (GXLightID)(1 << id);
-	GDSetLightPos(light, mLightPosition.x, mLightPosition.y, mLightPosition.z);
-	GDSetLightAttn(light, mCosAtten.x, mCosAtten.y, mCosAtten.z, mDistAtten.x,
+    GXInitLightPos(&mLightObj, mLightPosition.x, mLightPosition.y, mLightPosition.z);
+    GXInitLightAttn(&mLightObj, mCosAtten.x, mCosAtten.y, mCosAtten.z, mDistAtten.x,
 	               mDistAtten.y, mDistAtten.z);
-	GDSetLightColor(light, mColor);
-	GDSetLightDir(light, mLightDirection.x, mLightDirection.y,
-	              mLightDirection.z);
+    GXInitLightColor(&mLightObj, mColor);
+    GXInitLightDir(&mLightObj, mLightDirection.x, mLightDirection.y,
+	          mLightDirection.z);
+    GXLoadLightObjImm(&mLightObj, (GXLightID)(1 << id));
+}
+
+void loadTexGenNum(u8 id) {
+    GXSetNumTexGens(id);
 }
 
 void J3DTexMtx::calc()
@@ -357,10 +378,9 @@ void J3DTexMtx::calc()
 	}
 }
 
-void J3DTexMtx::load(u32 id) const
+void J3DTexMtx::load(u8 id) const
 {
-	J3DGDLoadTexMtxImm((MtxPtr)&mTotalMtx, id * 3 + 0x1e,
-	                   (GXTexMtxType)mProjection);
+    GXLoadTexMtxImm((MtxPtr)&mTotalMtx,  id * 3 + 0x1e, (GXTexMtxType)mProjection);
 }
 
 void loadTexNo(u32 param_1, const u16& param_2)
@@ -389,7 +409,9 @@ void loadTexNo(u32 param_1, const u16& param_2)
 	}
 }
 
-void loadDither(u8) { }
+void loadDither(u8 dither) {
+    GXSetDither(dither);
+}
 
 void loadNBTScale(J3DNBTScale& param_0)
 {

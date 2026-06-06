@@ -100,7 +100,6 @@ struct J3DTexMtxInfo {
 
 	/* 0x00 */ u8 mProjection;
 	/* 0x01 */ u8 mInfo;
-	/* 0x02 */ u8 padding[2];
 	/* 0x04 */ Vec mCenter;
 	/* 0x10 */ J3DTextureSRTInfo mSRT;
 	/* 0x24 */ Mtx44 mEffectMtx;

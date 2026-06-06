@@ -57,6 +57,7 @@ char* JSUInputStream::readString()
 char* JSUInputStream::readString(char* buf, u16 len)
 {
 	u16 strLen;
+
 	if (readData(&strLen, sizeof(strLen)) != sizeof(strLen)) {
 		buf[0] = '\0';
 		setState(EOF);

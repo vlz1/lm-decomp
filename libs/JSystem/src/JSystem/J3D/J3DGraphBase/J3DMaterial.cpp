@@ -11,6 +11,7 @@
 #include <JSystem/J3D/J3DGraphBase/J3DPacket.hpp>
 #include <JSystem/J3D/J3DGraphBase/J3DShape.hpp>
 #include <JSystem/J3D/J3DGraphBase/J3DTevs.hpp>
+#include <JSystem/J3D/J3DGraphBase/J3DLoad.hpp>
 #include <dolphin/gd.h>
 #include <dolphin/os.h>
 #include <macros.h>
@@ -233,9 +234,6 @@ s32 J3DMaterial::countDLSize()
 	       + mPEBlock->countDLSize();
 }
 
-// TODO: send to some header? Doesn't look like it should be public
-extern void loadTexNo(u32, const u16&);
-
 inline void loadTexCoordScale(GXTexCoordID coord,
                               const J3DTexCoordScaleInfo& info)
 {
@@ -244,7 +242,6 @@ inline void loadTexCoordScale(GXTexCoordID coord,
 }
 
 // TODO: header
-extern void loadCullMode(u8);
 
 void J3DColorBlockLightOff::load()
 {
