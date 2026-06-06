@@ -26,7 +26,7 @@ public:
 	virtual J3DTexMtx* replaceTexMtx(u8, J3DTexMtx*) = 0;
 	virtual J3DTexMtx* getTexMtx(u8)                 = 0;
 
-	virtual void vt_3C() = 0;
+	virtual void setTexMtx2(u8, J3DTexMtx*) = 0;
 	virtual s32 vt_40() = 0;
 	virtual s32 vt_44() = 0;
 
@@ -75,7 +75,7 @@ public:
 	}
 	virtual J3DTexMtx* getTexMtx(u8 i) { return mTexMtx[i]; }
 
-	virtual void vt_3C() {}
+	virtual void setTexMtx2(u8 i, J3DTexMtx* mtx) { mTexMtx2[i] = mtx; }
 	virtual s32 vt_40() { return 0; }
 	virtual s32 vt_44() { return 0; }
 
@@ -89,11 +89,10 @@ public:
 public:
 	/* 0x4 */ u8 mTexGenNum;
 	/* 0x8 */ J3DTexCoord mTexCoord[8];
-	/* 0x28 */ u8 pad[0x30]; //Probably an array of structs
-	/* 0x58 */ J3DTexMtx* mTexMtx[8];
-	/* 0x78 */ u8 pad2[0x58]; //Probably a struct
+	/* 0x28 */ u8 pad[0x30]; //Probably a copy of mTexCoord
+	/* 0x58 */ J3DTexMtx* mTexMtx[10];
+	/* 0x80 */ J3DTexMtx* mTexMtx2[20];
 	/* 0xD0 */ J3DNBTScale mNBTScale;
-	/* 0xE0 */ u32 mTexMtxOffset;
 };
 
 class J3DTexGenBlockBasic : public J3DTexGenBlock {
@@ -133,7 +132,7 @@ public:
 	}
 	virtual J3DTexMtx* getTexMtx(u8 i) { return mTexMtx[i]; }
 
-	virtual void vt_3C() {}
+	virtual void setTexMtx2(u8, J3DTexMtx*) {}
 	virtual s32 vt_40() { return 0; }
 	virtual s32 vt_44() { return 0; }
 

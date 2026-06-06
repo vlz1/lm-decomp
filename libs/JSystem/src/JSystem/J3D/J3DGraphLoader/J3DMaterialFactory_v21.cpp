@@ -154,9 +154,13 @@ J3DMaterial* J3DMaterialFactory_v21::create(J3DMaterial* mat, int idx,
 		J3DTexCoord texCoord = newTexCoord(idx, i);
 		mat->mTexGenBlock->setTexCoord(i, &texCoord);
 	}
-	for (u8 i = 0; i < 8; i++) {
+	for (u8 i = 0; i < 10; i++) {
 		mat->mTexGenBlock->setTexMtx(i, newTexMtx(idx, i));
 	}
+	for (u8 i = 0; i < 20; i++) {
+		mat->mTexGenBlock->setTexMtx2(i, newTexMtx2(idx, i));
+	}
+
 	J3DMaterialInitData_v21* initData = &mpMaterialInitData[mpMaterialID[idx]];
 	for (u8 i = 0; i < tevStageNum; i++) {
 		mat->mTevBlock->setTevKColorSel(i, initData->mTevKColorSel[i]);
@@ -223,6 +227,14 @@ J3DTexMtx* J3DMaterialFactory_v21::newTexMtx(int idx, int stage) const
 	J3DMaterialInitData_v21* initData = &mpMaterialInitData[mpMaterialID[idx]];
 	if (initData->mTexMtxIdx[stage] != 0xFFFF)
 		ret = new J3DTexMtx(mpTexMtxInfo[initData->mTexMtxIdx[stage]]);
+	return ret;
+}
+
+J3DTexMtx* J3DMaterialFactory_v21::newTexMtx2(int idx, int stage) const {
+	J3DTexMtx* ret                    = nullptr;
+	J3DMaterialInitData_v21* initData = &mpMaterialInitData[mpMaterialID[idx]];
+	if (initData->mTexMtxIdx2[stage] != 0xFFFF)
+		ret = new J3DTexMtx(field_0x28[initData->mTexMtxIdx2[stage]]);
 	return ret;
 }
 

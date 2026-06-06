@@ -68,7 +68,9 @@ struct J3DMaterialInitData_v21 {
 	/* 0x014 */ u16 mTexCoordIdx[8];
 	/* 0x024 */ u8 field_0x024[16];
 	/* 0x034 */ u16 mTexMtxIdx[8];
-	/* 0x044 */ u8 field_0x044[44];
+	/* 0x044 */ u8 field_0x044[4];
+	/* 0x048 */ u16 mTexMtxIdx2[8];
+	/* 0x058*/ u8 field_0x058[0x18];
 	/* 0xXXX */ u16 mTexNoIdx[8];
 	/* 0xXXX */ u16 mTevKColorIdx[4];
 	/* 0xXXX */ u8 mTevKColorSel[16];
@@ -97,6 +99,7 @@ public:
 	u32 newTexGenNum(int) const;
 	J3DTexCoord newTexCoord(int, int) const;
 	J3DTexMtx* newTexMtx(int, int) const;
+	J3DTexMtx* newTexMtx2(int, int) const;
 	u8 newCullMode(int) const;
 	u16 newTexNo(int, int) const;
 	J3DTevOrder newTevOrder(int, int) const;
@@ -120,7 +123,6 @@ public:
 	{
 		return mpMaterialInitData[getMaterialID(idx)].mMaterialMode;
 	}
-
 public:
 	/* 0x00 */ u16 mMaterialNum;
 	/* 0x04 */ J3DMaterialInitData_v21* mpMaterialInitData;
