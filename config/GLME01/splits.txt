@@ -95,6 +95,15 @@ JSystem/J3D/J3DGraphLoader/J3DModelLoader.cpp:
 JSystem/J3D/J3DGraphLoader/J3DJointFactory.cpp:
 	.text       start:0x801C4EA8 end:0x801C50D4
 
+JSystem/J3D/J3DGraphLoader/J3DShapeFactory.cpp:
+	.text       start:0x801C50D4 end:0x801C5574
+
+JSystem/J3D/J3DGraphLoader/J3DAnmLoader.cpp:
+	.text       start:0x801C5574 end:0x801C6A6C
+	.data       start:0x80393080 end:0x80393210
+	.sdata      start:0x804D7B70 end:0x804D7BC0
+	.sdata2     start:0x804DD5D0 end:0x804DD5D8
+
 JSystem/JKernel/JKRHeap.cpp:
 	.text       start:0x801CDFBC end:0x801CE9DC
 	.data       start:0x80393830 end:0x80393898

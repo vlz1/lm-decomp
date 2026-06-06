@@ -420,11 +420,13 @@ config.libs = [
         # 3D
         Object(NonMatching, "JSystem/J3D/J3DGraphBase/J3DSys.cpp"),
         Object(NonMatching, "JSystem/J3D/J3DGraphBase/J3DMaterial.cpp"),
-        Object(Matching, "JSystem/J3D/J3DGraphLoader/J3DJointFactory.cpp"),
+
         Object(NonMatching, "JSystem/J3D/J3DGraphLoader/J3DMaterialFactory.cpp"),
         Object(NonMatching, "JSystem/J3D/J3DGraphLoader/J3DMaterialFactory_v21.cpp"),
         Object(NonMatching, "JSystem/J3D/J3DGraphLoader/J3DModelLoader.cpp"),
-
+        Object(Matching, "JSystem/J3D/J3DGraphLoader/J3DJointFactory.cpp"),
+        Object(NonMatching, "JSystem/J3D/J3DGraphLoader/J3DShapeFactory.cpp"),
+        Object(Equivalent, "JSystem/J3D/J3DGraphLoader/J3DAnmLoader.cpp"),
         # Kernel
         Object(Matching, "JSystem/JKernel/JKRHeap.cpp"),
         Object(NonMatching, "JSystem/JKernel/JKRExpHeap.cpp"),

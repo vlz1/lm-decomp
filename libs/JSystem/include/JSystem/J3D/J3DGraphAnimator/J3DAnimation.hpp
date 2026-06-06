@@ -284,7 +284,7 @@ public:
 		unk48           = nullptr;
 		unk4C           = nullptr;
 		unk50           = nullptr;
-		mTexMtxCalcType = 0;
+		//mTexMtxCalcType = 0;
 		mKind           = 4;
 	}
 
@@ -308,7 +308,7 @@ public:
 	u16 getUpdateMaterialID(u16 idx) const { return mUpdateMaterialID[idx]; }
 	JUTNameTab* getUpdateMaterialName() { return mUpdateMaterialName; }
 	u8 getUpdateTexMtxID(u16 idx) const { return mUpdateTexMtxID[idx]; }
-	u32 getTexMtxCalcType() { return mTexMtxCalcType; }
+	//u32 getTexMtxCalcType() { return mTexMtxCalcType; }
 	Vec* getSRTCenter(u16 idx) { return &mSRTCenter[idx]; }
 
 	virtual ~J3DAnmTextureSRTKey() { }
@@ -339,7 +339,7 @@ public:
 	/* 0x60 */ u16* mPostUpdateMaterialID;
 	/* 0x64 */ JUTNameTab* mPostUpdateMaterialName;
 	/* 0x68 */ Vec* mPostSRTCenter;
-	/* 0x6C */ u32 mTexMtxCalcType;
+	///* 0x6C */ u32 mTexMtxCalcType;
 };
 
 class J3DAnmCluster : public J3DAnmBase {

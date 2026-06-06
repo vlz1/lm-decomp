@@ -90,14 +90,6 @@ public:
 
 	J3DShape()
 	{
-		unk3C[0] = 0x3C;
-		unk3C[1] = 0x3C;
-		unk3C[2] = 0x3C;
-		unk3C[3] = 0x3C;
-		unk3C[4] = 0x3C;
-		unk3C[5] = 0x3C;
-		unk3C[6] = 0x3C;
-		unk3C[7] = 0x3C;
 		initialize();
 	}
 	~J3DShape();
