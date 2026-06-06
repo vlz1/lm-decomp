@@ -193,16 +193,17 @@ void J3DMaterial::initialize()
 	unkC              = -1;
 	unkE = 0;
 	unk10             = nullptr;
-	unk18             = 0;
-	unk1C             = 0;
+	unk14             = 0;
 	mColorBlock       = nullptr;
 	mTexGenBlock      = nullptr;
 	mTevBlock         = nullptr;
 	mIndBlock         = nullptr;
 	mPEBlock          = nullptr;
 	mOriginalMaterial = nullptr;
-	unk38             = nullptr;
-	unk3C             = nullptr;
+	unk30 = 0;
+	//unk38             = nullptr;
+	//unk3C             = nullptr;
+	//unk1C             = 0;
 }
 
 void J3DMaterial::addShape(J3DShape* shape) { mShape = shape; }
@@ -785,7 +786,7 @@ void J3DPEBlockFull::reset(J3DPEBlock* block)
 void J3DMaterial::makeDisplayList()
 {
 	if (!j3dSys.getMatPacket()->isLocked()) {
-		j3dSys.getMatPacket()->unk3C = unk18;
+		j3dSys.getMatPacket()->unk3C = unk14;
 		j3dSys.getMatPacket()->beginDL();
 		mTevBlock->load();
 		mIndBlock->load(mTevBlock);
@@ -902,8 +903,8 @@ void J3DMaterial::setCurrentMtx()
 
 void J3DMaterial::copy(J3DMaterial* other)
 {
-	unk18 = other->unk18;
-	unk18 = unk18 & 0x7FFFFFFF;
+	unk14 = other->unk14;
+	unk14 = unk14 & 0x7FFFFFFF;
 	mColorBlock->reset(other->mColorBlock);
 	mTexGenBlock->reset(other->mTexGenBlock);
 	mTevBlock->reset(other->mTevBlock);
@@ -914,20 +915,20 @@ void J3DMaterial::copy(J3DMaterial* other)
 void J3DMaterial::change()
 {
 
-	if (unk18 & 0xc0000000) {
+	if (unk14 & 0xc0000000) {
 		return;
 	}
-	unk18 = unk18 | 0x80000000;
+	unk14 = unk14 | 0x80000000;
 	unk8  = mOriginalMaterial->unk8;
 	unk10 = mOriginalMaterial->unk10;
-	unk38 = nullptr;
+	//unk38 = nullptr;
 }
 
 J3DDisplayListObj* J3DMaterial::newSharedDisplayList(u32 param_1)
 {
-	if (!unk3C) {
-		unk3C = new J3DDisplayListObj;
-		unk3C->newDisplayList(param_1);
-	}
-	return unk3C;
+	//if (!unk3C) {
+	//	unk3C = new J3DDisplayListObj;
+	//	unk3C->newDisplayList(param_1);
+	//}
+	//return unk3C;
 }

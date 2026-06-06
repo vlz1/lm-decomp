@@ -24,6 +24,9 @@ public:
 
 	/* 0x64 */ Mtx mTotalMtx;
 	/* 0x94 */ Mtx mViewMtx;
+	/* 0xC8 */ s32 unkC8;
+public:
+	virtual ~J3DTexMtx() {};
 };
 
 #endif

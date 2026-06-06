@@ -8,14 +8,21 @@ extern const J3DFogInfo j3dDefaultFogInfo;
 
 class J3DFog : public J3DFogInfo {
 public:
-	J3DFog() { J3DFogInfo::operator=(j3dDefaultFogInfo); }
-	J3DFog(const J3DFogInfo& info) { J3DFogInfo::operator=(info); }
+	J3DFog() {
+		J3DFogInfo::operator=(j3dDefaultFogInfo);
+	}
+	J3DFog(const J3DFogInfo& info) {
+		J3DFogInfo::operator=(info);
+	}
 
 	void load() const
 	{
 		J3DGDSetFog(GXFogType(mType), mStartZ, mEndZ, mNearZ, mFarZ, mColor);
 		JRNISetFogRangeAdj(mAdjEnable, mCenter, (GXFogAdjTable*)mFogAdjTable);
 	}
+
+	virtual ~J3DFog() { };
+	virtual void vt_C() { };
 };
 
 #endif

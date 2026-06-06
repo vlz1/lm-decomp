@@ -45,7 +45,7 @@ public:
 	void change();
 	J3DDisplayListObj* newSharedDisplayList(u32);
 
-	void setMaterialAnm(J3DMaterialAnm* v) { unk38 = v; }
+	//void setMaterialAnm(J3DMaterialAnm* v) { unk38 = v; }
 
 	u16 getTexNo(u32 idx) { return mTevBlock->getTexNo(idx); }
 
@@ -78,20 +78,20 @@ public:
 	J3DShape* getShape() { return mShape; }
 	u16 getIndex() { return unkC; }
 
-	J3DMaterialAnm* getMaterialAnm()
+	/*J3DMaterialAnm* getMaterialAnm()
 	{
 		if ((u32)unk38 < 0xC0000000) {
 			return unk38;
 		} else {
 			return nullptr;
 		}
-	}
+	}*/
 
 	GXBool isDrawModeOpaTexEdge() { return (unk8 & 3) ? GX_TRUE : GX_FALSE; }
 
 	// TODO: presumably this is something called diff flag?
-	BOOL getSomeFlag() { return unk1C & 1 ? TRUE : FALSE; }
-	void setSomeFlag() { unk1C |= 1; }
+	//BOOL getSomeFlag() { return unk1C & 1 ? TRUE : FALSE; }
+	//void setSomeFlag() { unk1C |= 1; }
 
 public:
 	/* 0x0 */ J3DMaterial* mNext;
@@ -100,17 +100,15 @@ public:
 	/* 0xC */ u16 unkC;
 	/* 0xE */ u8 unkE;
 	/* 0x10 */ u32 unk10;
-	/* 0x14 */ char unk14[4];
-	/* 0x18 */ u32 unk18;
-	/* 0x1C */ u32 unk1C;
-	/* 0x20 */ J3DColorBlock* mColorBlock;
-	/* 0x24 */ J3DTexGenBlock* mTexGenBlock;
-	/* 0x28 */ J3DTevBlock* mTevBlock;
-	/* 0x2C */ J3DIndBlock* mIndBlock;
-	/* 0x30 */ J3DPEBlock* mPEBlock;
-	/* 0x34 */ J3DMaterial* mOriginalMaterial;
-	/* 0x38 */ J3DMaterialAnm* unk38;
-	/* 0x3C */ J3DDisplayListObj* unk3C;
+	/* 0x14 */ u32 unk14;
+	/* 0x18 */ J3DColorBlock* mColorBlock;
+	/* 0x1C */ J3DTexGenBlock* mTexGenBlock;
+	/* 0x20 */ J3DTevBlock* mTevBlock;
+	/* 0x24 */ J3DIndBlock* mIndBlock;
+	/* 0x28 */ J3DPEBlock* mPEBlock;
+	/* 0x2C */ J3DMaterial* mOriginalMaterial;
+	/* 0x30 */ s32 unk30;
+
 };
 
 #endif

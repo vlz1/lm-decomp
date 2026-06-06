@@ -13,7 +13,7 @@ public:
 	virtual u32 getType()     { return 'TGBK'; }
 
 	virtual void setTexGenNum(const u8*) = 0;
-	virtual void setTexGenNum(u8)        = 0;
+	virtual void setTexGenNum(u32)        = 0;
 	virtual u32 getTexGenNum() const      = 0;
 
 	virtual void setTexCoord(u8, const J3DTexCoord*) = 0;
@@ -54,7 +54,7 @@ public:
 	virtual u32 getType() { return 'TGFL'; }
 
 	virtual void setTexGenNum(const u8* num) { mTexGenNum = *num; }
-	virtual void setTexGenNum(u8 num) { mTexGenNum = num; }
+	virtual void setTexGenNum(u32 num) { mTexGenNum = num; }
 	virtual u32 getTexGenNum() const { return mTexGenNum; }
 
 	virtual void setTexCoord(u8 i, const J3DTexCoord* coord)
@@ -112,7 +112,7 @@ public:
 	virtual u32 getType() { return 'TGBC'; }
 
 	virtual void setTexGenNum(const u8* num) { mTexGenNum = *num; }
-	virtual void setTexGenNum(u8 num) { mTexGenNum = num; }
+	virtual void setTexGenNum(u32 num) { mTexGenNum = num; }
 	virtual u32 getTexGenNum() const { return mTexGenNum; }
 
 	virtual void setTexCoord(u8 i, const J3DTexCoord* coord)
