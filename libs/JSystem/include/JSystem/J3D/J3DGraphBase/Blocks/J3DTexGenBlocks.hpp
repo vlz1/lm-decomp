@@ -27,8 +27,8 @@ public:
 	virtual J3DTexMtx* getTexMtx(u8)                 = 0;
 
 	virtual void setTexMtx2(u8, J3DTexMtx*) = 0;
-	virtual s32 vt_40() = 0;
-	virtual s32 vt_44() = 0;
+	virtual J3DTexMtx* replaceTexMtx2(u8, J3DTexMtx*) = 0;
+	virtual J3DTexMtx* getTexMtx2(u8) = 0;
 
 	virtual void setNBTScale(const J3DNBTScale*) = 0;
 	virtual void setNBTScale(J3DNBTScale)        = 0;
@@ -76,8 +76,14 @@ public:
 	virtual J3DTexMtx* getTexMtx(u8 i) { return mTexMtx[i]; }
 
 	virtual void setTexMtx2(u8 i, J3DTexMtx* mtx) { mTexMtx2[i] = mtx; }
-	virtual s32 vt_40() { return 0; }
-	virtual s32 vt_44() { return 0; }
+	virtual J3DTexMtx* replaceTexMtx2(u8 i, J3DTexMtx* mtx)
+	{
+		J3DTexMtx* ret = mTexMtx2[i];
+		mTexMtx2[i]     = mtx;
+		return ret;
+	}
+
+	virtual J3DTexMtx* getTexMtx2(u8 i) { return mTexMtx2[i]; }
 
 	virtual void setNBTScale(const J3DNBTScale* scale) { mNBTScale = *scale; }
 	virtual void setNBTScale(J3DNBTScale scale) { mNBTScale = scale; }
@@ -133,8 +139,8 @@ public:
 	virtual J3DTexMtx* getTexMtx(u8 i) { return mTexMtx[i]; }
 
 	virtual void setTexMtx2(u8, J3DTexMtx*) {}
-	virtual s32 vt_40() { return 0; }
-	virtual s32 vt_44() { return 0; }
+	virtual J3DTexMtx* replaceTexMtx2(u8, J3DTexMtx*) { return 0; }
+	virtual J3DTexMtx* getTexMtx2(u8) { return 0; }
 
 	virtual void setNBTScale(const J3DNBTScale* scale) { mNBTScale = *scale; }
 	virtual void setNBTScale(J3DNBTScale scale) { mNBTScale = scale; }
