@@ -418,7 +418,9 @@ config.libs = [
         Object(NonMatching, "JSystem/J2D/J2DTextBox.cpp"),
 
         # 3D
+        Object(NonMatching, "JSystem/J3D/J3DGraphBase/J3DSys.cpp"),
         Object(NonMatching, "JSystem/J3D/J3DGraphBase/J3DMaterial.cpp"),
+        Object(Matching, "JSystem/J3D/J3DGraphLoader/J3DJointFactory.cpp"),
         Object(NonMatching, "JSystem/J3D/J3DGraphLoader/J3DMaterialFactory.cpp"),
         Object(NonMatching, "JSystem/J3D/J3DGraphLoader/J3DMaterialFactory_v21.cpp"),
         Object(NonMatching, "JSystem/J3D/J3DGraphLoader/J3DModelLoader.cpp"),

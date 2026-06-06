@@ -95,7 +95,8 @@ public:
 public:
 	/* 0x4 */ u8 mTexGenNum;
 	/* 0x8 */ J3DTexCoord mTexCoord[8];
-	/* 0x28 */ u8 pad[0x30]; //Probably a copy of mTexCoord
+	/* 0x28 */ J3DTexCoord mTexCoord2[8]; //Probably a copy of mTexCoord
+	/* 0x38 */ u8 unk38[0x10];
 	/* 0x58 */ J3DTexMtx* mTexMtx[10];
 	/* 0x80 */ J3DTexMtx* mTexMtx2[20];
 	/* 0xD0 */ J3DNBTScale mNBTScale;
