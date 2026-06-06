@@ -420,6 +420,7 @@ config.libs = [
         # 3D
         Object(NonMatching, "JSystem/J3D/J3DGraphBase/J3DMaterial.cpp"),
         Object(NonMatching, "JSystem/J3D/J3DGraphLoader/J3DMaterialFactory.cpp"),
+        Object(NonMatching, "JSystem/J3D/J3DGraphLoader/J3DMaterialFactory_v21.cpp"),
         Object(NonMatching, "JSystem/J3D/J3DGraphLoader/J3DModelLoader.cpp"),
 
         # Kernel

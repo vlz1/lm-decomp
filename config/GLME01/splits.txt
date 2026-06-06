@@ -80,6 +80,9 @@ JSystem/J3D/J3DGraphLoader/J3DMaterialFactory.cpp:
 	.text       start:0x801C0660 end:0x801C249C
 	.sdata2     start:0x804DD5B0 end:0x804DD5C0
 
+JSystem/J3D/J3DGraphLoader/J3DMaterialFactory_v21.cpp:
+	.text       start:0x801C249C end:0x801C3C90
+
 JSystem/J3D/J3DGraphLoader/J3DModelLoader.cpp:
 	.text       start:0x801C3CC0 end:0x801C4EA8
 	.data       start:0x80392FA0 end:0x80393080
