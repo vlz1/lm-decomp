@@ -207,7 +207,8 @@ void J3DMaterial::addShape(J3DShape* shape) { mShape = shape; }
 s32 J3DColorBlockLightOff::countDLSize() { return 0x60; }
 s32 J3DColorBlockLightOn::countDLSize() { return 0x280; }
 
-s32 J3DTexGenBlockBasic::countDLSize() { return 0x260; }
+s32 J3DTexGenBlockBasic::countDLSize() { return 0x2C0; }
+s32 J3DTexGenBlockFull::countDLSize() { return 0x820; }
 
 s32 J3DTevBlock1::countDLSize() { return 0x80; }
 s32 J3DTevBlock2::countDLSize() { return 0x180; }
@@ -288,16 +289,6 @@ void J3DTexGenBlockBasic::load()
 			mTexMtx[i]->load(i);
 }
 
-void J3DTexGenBlockBasic::patch()
-{
-	GDSetCurrOffset(mTexMtxOffset);
-	u8* start = GDGetCurrPointer();
-	for (u32 i = 0; i < 8; i++)
-		if (mTexMtx[i])
-			mTexMtx[i]->load(i);
-	u8* end = GDGetCurrPointer();
-	DCFlushRange(start, end - start);
-}
 
 void J3DTevBlock1::load()
 {
@@ -608,10 +599,10 @@ void J3DTexGenBlockBasic::reset(J3DTexGenBlock* block)
 {
 	mTexGenNum = block->getTexGenNum();
 
-	for (u32 i = 0; i < 8; i++)
+	for (u8 i = 0; i < 8; i++)
 		mTexCoord[i] = *block->getTexCoord(i);
 
-	for (u32 i = 0; i < 8; i++) {
+	for (u8 i = 0; i < 8; i++) {
 		if (block->getTexMtx(i) != nullptr) {
 			if (mTexMtx[i] == nullptr)
 				mTexMtx[i] = new J3DTexMtx;
@@ -622,6 +613,11 @@ void J3DTexGenBlockBasic::reset(J3DTexGenBlock* block)
 	}
 
 	mNBTScale = *block->getNBTScale();
+}
+
+void J3DTexGenBlockFull::reset(J3DTexGenBlock* block)
+{
+	// TODO
 }
 
 void J3DTevBlock1::reset(J3DTevBlock* block)
@@ -878,6 +874,11 @@ void J3DTexGenBlockBasic::calc(MtxPtr ptr)
 			mTexMtx[i]->calc();
 		}
 	}
+}
+
+void J3DTexGenBlockFull::calc(MtxPtr ptr)
+{
+	// TODO
 }
 
 void J3DMaterial::calc(MtxPtr ptr) { mTexGenBlock->calc(ptr); }
