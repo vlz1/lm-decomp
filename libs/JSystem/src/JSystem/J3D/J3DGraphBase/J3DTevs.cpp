@@ -1,11 +1,15 @@
+#include "JSystem/J3D/J3DGraphBase/Components/J3DIndTexMtx.hpp"
+#include "dolphin/gx/GXBump.h"
 #include "dolphin/gx/GXEnum.h"
-#include "dolphin/gx/GXLighting.h"
-#include "dolphin/gx/GXPixel.h"
-#include "dolphin/gx/GXTransform.h"
 #include <JSystem/J3D/J3DGraphBase/J3DTevs.hpp>
 #include <JSystem/J3D/J3DGraphBase/Components/J3DLightObj.hpp>
 #include <JSystem/J3D/J3DGraphBase/Components/J3DTexMtx.hpp>
 #include <JSystem/J3D/J3DGraphBase/Components/J3DNBTScale.hpp>
+#include <JSystem/J3D/J3DGraphBase/Components/J3DTevOrder.hpp>
+#include <JSystem/J3D/J3DGraphBase/Components/J3DIndTexOrder.hpp>
+#include <JSystem/J3D/J3DGraphBase/Components/J3DIndTexCoordScale.hpp>
+#include <JSystem/J3D/J3DGraphBase/Components/J3DIndTevStage.hpp>
+#include <JSystem/J3D/J3DGraphBase/Components/J3DColorChan.hpp>
 #include <JSystem/J3D/J3DGraphBase/J3DTransform.hpp>
 #include <JSystem/J3D/J3DGraphBase/J3DSys.hpp>
 #include <JSystem/J3D/J3DGraphBase/J3DTexture.hpp>
@@ -50,158 +54,24 @@ void loadCullMode(u8 mode) {
     GXSetCullMode((GXCullMode)mode);
  }
 
-void loadChanMatColor(u8 chan, GXColor color) {
+void loadChanMatColor(u8 chan, const GXColor& color) {
     GXSetChanMatColor((GXChannelID)(GX_COLOR0A0 + chan), color);
 }
-void loadChanAmbColor(u8 chan, GXColor color) {
+void loadChanAmbColor(u8 chan, const GXColor& color) {
     GXSetChanAmbColor((GXChannelID)(GX_COLOR0A0 + chan), color);
 }
 
 void loadColorChanNum(u8 chan) {
     GXSetNumChans(chan);
 }
-void J3DLoadArrayBasePtr(GXAttr attr, void* ptr)
+
+void J3DColorChan::load(u8 id)
 {
-	u32 a = attr == GX_VA_NBT ? 1 : attr - 9;
-	GXCmd1u8(8);
-	GXCmd1u8(a + 0xA0);
-	GXCmd1u32((u32)ptr & 0x7fffffff);
-}
+	const GXChannelID chanTbl[]
+		= { GX_COLOR0, GX_ALPHA0, GX_COLOR1, GX_ALPHA1 };
 
-void J3DSetVtxAttrFmtv(GXVtxFmt vtxfmt, GXVtxAttrFmtList* list, bool param_3)
-{
-	u32 posCnt  = GX_POS_XYZ;
-	u32 posType = GX_F32;
-	u32 posFrac = 0;
-
-	u32 nrmCnt  = GX_NRM_XYZ;
-	u32 nrmType = GX_F32;
-	u32 nrmIdx3 = 0;
-
-	u32 c0Cnt  = GX_CLR_RGBA;
-	u32 c0Type = GX_RGBA8;
-
-	u32 c1Cnt  = GX_CLR_RGBA;
-	u32 c1Type = GX_RGBA8;
-
-	u32 tx0Cnt  = GX_TEX_ST;
-	u32 tx0Type = GX_F32;
-	u32 tx0Frac = 0;
-
-	u32 tx1Cnt  = GX_TEX_ST;
-	u32 tx1Type = GX_F32;
-	u32 tx1Frac = 0;
-
-	u32 tx2Cnt  = GX_TEX_ST;
-	u32 tx2Type = GX_F32;
-	u32 tx2Frac = 0;
-
-	u32 tx3Cnt  = GX_TEX_ST;
-	u32 tx3Type = GX_F32;
-	u32 tx3Frac = 0;
-
-	u32 tx4Cnt  = GX_TEX_ST;
-	u32 tx4Type = GX_F32;
-	u32 tx4Frac = 0;
-
-	u32 tx5Cnt  = GX_TEX_ST;
-	u32 tx5Type = GX_F32;
-	u32 tx5Frac = 0;
-
-	u32 tx6Cnt  = GX_TEX_ST;
-	u32 tx6Type = GX_F32;
-	u32 tx6Frac = 0;
-
-	u32 tx7Cnt  = GX_TEX_ST;
-	u32 tx7Type = GX_F32;
-	u32 tx7Frac = 0;
-
-	for (; list->attr != 0xff; ++list) {
-		switch (list->attr) {
-		case GX_VA_POS:
-			posCnt  = list->cnt;
-			posType = list->type;
-			posFrac = list->frac;
-			break;
-		case GX_VA_NRM:
-		case GX_VA_NBT:
-			nrmType = list->type;
-			if (list->cnt == 2) {
-				nrmCnt  = GX_NRM_NBT;
-				nrmIdx3 = 1;
-			} else {
-				if (param_3)
-					nrmCnt = 1;
-				else
-					nrmCnt = list->cnt;
-				nrmIdx3 = 0;
-			}
-			break;
-		case GX_VA_CLR0:
-			c0Cnt  = list->cnt;
-			c0Type = list->type;
-			break;
-		case GX_VA_CLR1:
-			c1Cnt  = list->cnt;
-			c1Type = list->type;
-			break;
-		case GX_VA_TEX0:
-			tx0Cnt  = list->cnt;
-			tx0Type = list->type;
-			tx0Frac = list->frac;
-			break;
-		case GX_VA_TEX1:
-			tx1Cnt  = list->cnt;
-			tx1Type = list->type;
-			tx1Frac = list->frac;
-			break;
-		case GX_VA_TEX2:
-			tx2Cnt  = list->cnt;
-			tx2Type = list->type;
-			tx2Frac = list->frac;
-			break;
-		case GX_VA_TEX3:
-			tx3Cnt  = list->cnt;
-			tx3Type = list->type;
-			tx3Frac = list->frac;
-			break;
-		case GX_VA_TEX4:
-			tx4Cnt  = list->cnt;
-			tx4Type = list->type;
-			tx4Frac = list->frac;
-			break;
-		case GX_VA_TEX5:
-			tx5Cnt  = list->cnt;
-			tx5Type = list->type;
-			tx5Frac = list->frac;
-			break;
-		case GX_VA_TEX6:
-			tx6Cnt  = list->cnt;
-			tx6Type = list->type;
-			tx6Frac = list->frac;
-			break;
-		case GX_VA_TEX7:
-			tx7Cnt  = list->cnt;
-			tx7Type = list->type;
-			tx7Frac = list->frac;
-		}
-	}
-
-	GDOverflowCheck(6);
-	J3DGDWriteCPCmd(vtxfmt + CP_REG_VAT_GRP0_ID,
-	                CP_REG_VAT_GRP0(posCnt, posType, posFrac, nrmCnt, nrmType,
-	                                c0Cnt, c0Type, c1Cnt, c1Type, tx0Cnt,
-	                                tx0Type, tx0Frac, 1, nrmIdx3));
-	GDOverflowCheck(6);
-	J3DGDWriteCPCmd(vtxfmt + CP_REG_VAT_GRP1_ID,
-	                CP_REG_VAT_GRP1(tx1Cnt, tx1Type, tx1Frac, tx2Cnt, tx2Type,
-	                                tx2Frac, tx3Cnt, tx3Type, tx3Frac, tx4Cnt,
-	                                tx4Type, 1));
-	GDOverflowCheck(6);
-	J3DGDWriteCPCmd(vtxfmt + CP_REG_VAT_GRP2_ID,
-	                CP_REG_VAT_GRP2(tx4Frac, tx5Cnt, tx5Type, tx5Frac, tx6Cnt,
-	                                tx6Type, tx6Frac, tx7Cnt, tx7Type,
-	                                tx7Frac));
+	GXSetChanCtrl(chanTbl[id], getEnable(), getAmbSrc(), getMatSrc(),
+						getLightMask(), getDiffuseFn(), getAttnFn());
 }
 
 const J3DLightInfo j3dDefaultLightInfo = {
@@ -289,9 +159,9 @@ void loadTexGenNum(u8 id) {
     GXSetNumTexGens(id);
 }
 
-void loadTexCoordGen(J3DTexCoord coord, u8 id) {
+void J3DTexCoord::load(u8 id) {
     GXSetTexCoordGen2((GXTexCoordID)id,
-    coord.getTexGenType(), coord.getTexGenSrc(), coord.getTexGenMtx(), GX_FALSE, 125);
+    getTexGenType(), getTexGenSrc(), getTexGenMtx(), GX_FALSE, 125);
 }
 
 void J3DTexMtx::calc()
@@ -374,6 +244,38 @@ void loadTexNo(u8 id, const u16& param_2)
     GXLoadTexObj(&texObj, (GXTexMapID)id);
 }
 
+void J3DTevOrder::load(u8 id) const {
+	GXSetTevOrder((GXTevStageID)id, (GXTexCoordID)mTexCoord, (GXTexMapID)mTexMap, (GXChannelID)mColorChan);
+}
+
+void J3DIndTexOrder::load(u8 id) const {
+	GXSetIndTexOrder((GXIndTexStageID)id, (GXTexCoordID)mCoord,  (GXTexMapID)mMap);
+}
+
+void J3DIndTexCoordScale::load(u8 id) const {
+	GXSetIndTexCoordScale((GXIndTexStageID)id, (GXIndTexScale)mScaleS, (GXIndTexScale)mScaleT);
+}
+
+void J3DIndTexMtx::load(u8 id) {
+	GXSetIndTexMtx((GXIndTexMtxID)(id + 1), mOffsetMtx, mScaleExp);
+}
+
+void J3DIndTevStage::load(u8 id)
+{
+	GXSetTevIndirect((GXTevStageID)id, (GXIndTexStageID)mIndStage,
+						(GXIndTexFormat)mIndFormat, (GXIndTexBiasSel)mBiasSel,
+						(GXIndTexMtxID)mMtxSel, (GXIndTexWrap)mWrapS,
+						(GXIndTexWrap)mWrapT, mPrev, mLod,
+						(GXIndTexAlphaSel)mAlphaSel);
+}
+
+void loadTevColor(u8 id, const J3DGXColorS10& color) {
+	GXSetTevColorS10((GXTevRegID)(id + 1), color.color);
+}
+
+void loadTevKColor(u8 id, const J3DGXColor& color) {
+	GXSetTevKColor((GXTevKColorID)id, color.color);
+}
 void loadDither(u8 dither) {
     GXSetDither(dither);
 }

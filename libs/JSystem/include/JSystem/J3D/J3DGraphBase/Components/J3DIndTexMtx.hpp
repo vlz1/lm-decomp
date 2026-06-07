@@ -16,10 +16,7 @@ public:
 
 	~J3DIndTexMtx() { }
 
-	void load(u32 idx)
-	{
-		JRNSetIndTexMtx((GXIndTexMtxID)idx, mOffsetMtx, mScaleExp);
-	}
+	void load(u8);
 };
 
 #endif

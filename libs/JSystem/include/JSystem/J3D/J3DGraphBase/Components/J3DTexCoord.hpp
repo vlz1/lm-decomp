@@ -25,6 +25,8 @@ public:
 	void setTexGenType(GXTexGenType v) { mTexGenType = v; }
 	void setTexGenSrc(GXTexGenSrc v) { mTexGenSrc = v; }
 	void setTexGenMtx(GXTexMtx v) { mTexGenMtx = v; }
+
+	void load(u8);
 };
 
 #endif

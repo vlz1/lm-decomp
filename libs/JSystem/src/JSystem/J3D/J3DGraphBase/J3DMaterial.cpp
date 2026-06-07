@@ -248,9 +248,8 @@ void J3DColorBlockLightOff::load()
 		loadChanMatColor(i, mMatColor[i].color);
 
 	loadColorChanNum(mColorChanNum);
-	for (u32 i = 0; i < ARRAY_COUNT(mColorChan); ++i)
-		break;
-	//	mColorChan[i].load(i);
+	for (u8 i = 0; i < mColorChanNum * 2; ++i)
+		mColorChan[i].load(i);
 
 	if (mCullMode != 0xFF)
 		loadCullMode(mCullMode);
@@ -258,18 +257,18 @@ void J3DColorBlockLightOff::load()
 
 void J3DColorBlockLightOn::load()
 {
-	for (u32 i = 0; i < ARRAY_COUNT(mMatColor); ++i)
-		J3DGDSetChanMatColor((GXChannelID)(GX_COLOR0A0 + i),
-		                     mMatColor[i].color);
+	for (u8 i = 0; i < ARRAY_COUNT(mMatColor); ++i)
+		loadChanMatColor(i, mMatColor[i].color);
 
-	for (u32 i = 0; i < ARRAY_COUNT(mAmbColor); ++i)
-		J3DGDSetChanAmbColor((GXChannelID)(GX_COLOR0A0 + i),
-		                     mAmbColor[i].color);
+	for (u8 i = 0; i < ARRAY_COUNT(mAmbColor); ++i)
+		loadChanAmbColor(i, mAmbColor[i].color);
 
-	for (u32 i = 0; i < ARRAY_COUNT(mColorChan); ++i)
+	loadColorChanNum(mColorChanNum);
+
+	for (u8 i = 0; i < mColorChanNum * 2; ++i)
 		mColorChan[i].load(i);
 
-	for (u32 i = 0; i < 8; i++) {
+	for (u8 i = 0; i < 8; i++) {
 		if (mLight[i]) {
 			mLight[i]->load(i);
 		}
@@ -297,27 +296,17 @@ void J3DTevBlock1::load()
 	if (mTexNo[0] != 0xffff) {
 		loadTexNo(0, mTexNo[0]);
 	}
-	JRNISetTevOrder(GX_TEVSTAGE0,
-	                (GXTexCoordID)mTevOrder[0].getTevOrderInfo().mTexCoord,
-	                (GXTexMapID)mTevOrder[0].getTevOrderInfo().mTexMap,
-	                (GXChannelID)mTevOrder[0].getTevOrderInfo().mColorChan,
-	                GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+
+	if (mTevStageNum != 0) {
+		mTevOrder[0].load(0);
+	}
+
 	loadTexCoordScale(
 	    GXTexCoordID(mTevOrder[0].getTevOrderInfo().mTexCoord),
 	    J3DSys::sTexCoordScaleTable[mTevOrder[0].getTevOrderInfo().mTexMap
 	                                & 7]);
 	mTevStage[0].load(0);
 	mIndTevStage[0].load(0);
-}
-
-inline void loadTevColor(u32 reg, const J3DGXColorS10& color)
-{
-	JRNISetTevColorS10((GXTevRegID)(reg + 1), color.color);
-}
-
-inline void loadTevKColor(u32 reg, const J3DGXColor& color)
-{
-	J3DGDSetTevKColor((GXTevKColorID)reg, color.color);
 }
 
 void J3DTevBlock2::load()

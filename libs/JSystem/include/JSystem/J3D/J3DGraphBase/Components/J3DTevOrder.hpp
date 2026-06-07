@@ -23,7 +23,7 @@ public:
 
 	J3DTevOrderInfo& getTevOrderInfo() { return *this; }
 
-	void load(u32) const;
+	void load(u8) const;
 };
 
 #endif

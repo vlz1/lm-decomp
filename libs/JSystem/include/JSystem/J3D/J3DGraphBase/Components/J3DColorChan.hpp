@@ -77,14 +77,7 @@ public:
 	}
 
 	// different from TP, but eh, probably correct?
-	void load(u32 idx)
-	{
-		const GXChannelID chanTbl[]
-		    = { GX_COLOR0, GX_ALPHA0, GX_COLOR1, GX_ALPHA1 };
-
-		J3DGDSetChanCtrl(chanTbl[idx], getEnable(), getAmbSrc(), getMatSrc(),
-		                 getLightMask(), getDiffuseFn(), getAttnFn());
-	}
+	void load(u8 idx);
 
 	GXDiffuseFn getDiffuseFn() { return (GXDiffuseFn)(mChanCtrl >> 7 & 3); }
 	u8 getLightMask()

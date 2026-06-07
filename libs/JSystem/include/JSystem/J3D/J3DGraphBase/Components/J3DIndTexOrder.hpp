@@ -25,7 +25,7 @@ public:
 	u8 getCoord() const { return mCoord; }
 	u8 getMap() const { return mMap; }
 
-	void load(u32) const;
+	void load(u8) const;
 public:
 	/* 0x4 */ u8 field_0x4;
 	/* 0x5 */ u8 field_0x5;

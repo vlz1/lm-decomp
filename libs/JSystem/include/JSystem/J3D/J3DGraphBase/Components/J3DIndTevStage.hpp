@@ -32,14 +32,7 @@ public:
 		return *this;
 	}
 
-	void load(u32 param_1)
-	{
-		JRNSetTevIndirect((GXTevStageID)param_1, (GXIndTexStageID)mIndStage,
-		                  (GXIndTexFormat)mIndFormat, (GXIndTexBiasSel)mBiasSel,
-		                  (GXIndTexMtxID)mMtxSel, (GXIndTexWrap)mWrapS,
-		                  (GXIndTexWrap)mWrapT, mPrev, mLod,
-		                  (GXIndTexAlphaSel)mAlphaSel);
-	}
+	void load(u8);
 };
 
 #endif
