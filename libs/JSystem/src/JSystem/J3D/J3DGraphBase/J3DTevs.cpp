@@ -289,6 +289,11 @@ void loadTexGenNum(u8 id) {
     GXSetNumTexGens(id);
 }
 
+void loadTexCoordGen(J3DTexCoord coord, u8 id) {
+    GXSetTexCoordGen2((GXTexCoordID)id,
+    coord.getTexGenType(), coord.getTexGenSrc(), coord.getTexGenMtx(), GX_FALSE, 125);
+}
+
 void J3DTexMtx::calc()
 {
 	Mtx44 mtx2;
@@ -311,70 +316,31 @@ void J3DTexMtx::calc()
 	u32 format        = mInfo & 0x7F;
 	if (format == J3DTexMtxMode_Projmap || format == J3DTexMtxMode_ViewProjmap
 	    || format == J3DTexMtxMode_EnvmapEffectMtx) {
-		if (useMayaFormat == 0) {
-			J3DGetTextureMtx(mSRT, mCenter, mtx1);
-		} else if (useMayaFormat == 1) {
-			J3DGetTextureMtxMaya(mSRT, mtx1);
-		}
+		J3DGetTextureMtx(mSRT, mCenter, mtx1);
 		MTXConcat(mtx1, fixupMtx1, mtx1);
-		J3DMtxProjConcat(mtx1, mEffectMtx, mtx2);
-		MTXConcat(mtx2, mViewMtx, mTotalMtx);
 	} else if (format == J3DTexMtxMode_Envmap) {
-		if (useMayaFormat == 0) {
-			J3DGetTextureMtx(mSRT, mCenter, mtx2);
-		} else if (useMayaFormat == 1) {
-			J3DGetTextureMtxMaya(mSRT, mtx2);
-		}
+		J3DGetTextureMtx(mSRT, mCenter, mtx2);
 
 		MTXConcat(mtx2, fixupMtx1, mtx2);
 		MTXConcat(mtx2, mViewMtx, mTotalMtx);
 	} else if (format == J3DTexMtxMode_EnvmapOldEffectMtx) {
-		if (useMayaFormat == 0) {
 			J3DGetTextureMtxOld(mSRT, mCenter, mtx1);
-		} else if (useMayaFormat == 1) {
-			J3DGetTextureMtxMayaOld(mSRT, mtx1);
-		}
-		MTXConcat(mtx1, fixupMtx2, mtx1);
-		J3DMtxProjConcat(mtx1, mEffectMtx, mtx2);
-		MTXConcat(mtx2, mViewMtx, mTotalMtx);
 	} else if (format == J3DTexMtxMode_EnvmapOld) {
-		if (useMayaFormat == 0) {
 			J3DGetTextureMtxOld(mSRT, mCenter, mtx2);
-		} else if (useMayaFormat == 1) {
-			J3DGetTextureMtxMayaOld(mSRT, mtx2);
-		}
-		MTXConcat(mtx2, fixupMtx2, mtx2);
-		MTXConcat(mtx2, mViewMtx, mTotalMtx);
 	} else if (format == J3DTexMtxMode_EnvmapBasic) {
-		if (useMayaFormat == 0) {
-			J3DGetTextureMtxOld(mSRT, mCenter, mtx2);
-		} else if (useMayaFormat == 1) {
-			J3DGetTextureMtxMayaOld(mSRT, mtx2);
-		}
+		J3DGetTextureMtxOld(mSRT, mCenter, mtx2);
 		MTXConcat(mtx2, mViewMtx, mTotalMtx);
 	} else if (format == J3DTexMtxMode_ProjmapBasic
 	           || format == J3DTexMtxMode_ViewProjmapBasic
 	           || format == J3DTexMtxMode_Unknown5) {
-		if (useMayaFormat == 0) {
-			J3DGetTextureMtxOld(mSRT, mCenter, mtx1);
-		} else if (useMayaFormat == 1) {
-			J3DGetTextureMtxMayaOld(mSRT, mtx1);
-		}
+		J3DGetTextureMtxOld(mSRT, mCenter, mtx1);
 		J3DMtxProjConcat(mtx1, mEffectMtx, mtx2);
 		MTXConcat(mtx2, mViewMtx, mTotalMtx);
 	} else if (format == J3DTexMtxMode_Unknown4) {
-		if (useMayaFormat == 0) {
-			J3DGetTextureMtxOld(mSRT, mCenter, mtx1);
-		} else if (useMayaFormat == 1) {
-			J3DGetTextureMtxMayaOld(mSRT, mtx1);
-		}
+		J3DGetTextureMtxOld(mSRT, mCenter, mtx1);
 		J3DMtxProjConcat(mtx1, mEffectMtx, mTotalMtx);
 	} else {
-		if (useMayaFormat == 0) {
-			J3DGetTextureMtxOld(mSRT, mCenter, mTotalMtx);
-		} else if (useMayaFormat == 1) {
-			J3DGetTextureMtxMayaOld(mSRT, mTotalMtx);
-		}
+		J3DGetTextureMtxOld(mSRT, mCenter, mTotalMtx);
 	}
 }
 
@@ -383,30 +349,29 @@ void J3DTexMtx::load(u8 id) const
     GXLoadTexMtxImm((MtxPtr)&mTotalMtx,  id * 3 + 0x1e, (GXTexMtxType)mProjection);
 }
 
-void loadTexNo(u32 param_1, const u16& param_2)
+void loadTexNo(u8 id, const u16& param_2)
 {
 	ResTIMG* img = &j3dSys.getTexture()->mResources[param_2];
-	J3DSys::sTexCoordScaleTable[param_1].field_0x00 = img->width;
-	J3DSys::sTexCoordScaleTable[param_1].field_0x02 = img->height;
-	J3DGDSetTexImgAttr((GXTexMapID)param_1, img->width, img->height,
-	                   (GXTexFmt)(img->format & 0xf));
-	J3DGDSetTexImgPtr((GXTexMapID)param_1, (u8*)img + img->imageDataOffset);
+    GXTexObj texObj;
+    GXTlutObj tlutObj;
 
-	J3DGDSetTexLookupMode(
-	    (GXTexMapID)param_1, (GXTexWrapMode)img->wrapS,
-	    (GXTexWrapMode)img->wrapT, (GXTexFilter)img->minFilter,
-	    (GXTexFilter)img->magFilter, img->minLod * 0.125f, img->maxLod * 0.125f,
-	    img->lodBias * 0.01f, img->biasClamp, img->doEdgeLod,
-	    (GXAnisotropy)img->maxAnisotropy);
+    if (img->isIndexTexture == 0) {
+        GXInitTexObj(&texObj, (void*)((u8*)img + img->imageDataOffset), img->width, img->height,
+        (GXTexFmt)img->format, (GXTexWrapMode)img->wrapS, (GXTexWrapMode)img->wrapT, img->mipmapEnabled);
+    } else {
+        GXInitTexObjCI(&texObj, (void*)((u8*)img + img->imageDataOffset), img->width, img->height,
+        (GXCITexFmt )img->format, (GXTexWrapMode)img->wrapS, (GXTexWrapMode)img->wrapT, img->mipmapEnabled, id);
+    }
 
-	if (img->isIndexTexture == true) {
-		GXTlutSize tlutSize = img->numColors > 16 ? GX_TLUT_256 : GX_TLUT_16;
+    GXInitTexObjLOD(&texObj, (GXTexFilter)img->minFilter, (GXTexFilter)img->magFilter, img->minLod * 0.125f, img->maxLod * 0.125f, img->lodBias * 0.01f,
+        img->biasClamp, img->doEdgeLod, (GXAnisotropy)img->maxAnisotropy);
 
-		J3DGDLoadTlut((u8*)img + img->paletteOffset, (param_1 << 15) + 0xC0000,
-		              tlutSize);
-		J3DGDSetTexTlut((GXTexMapID)param_1, (param_1 << 15) + 0xC0000,
-		                (GXTlutFmt)img->colorFormat);
-	}
+    if (img->isIndexTexture == 1) {
+        GXInitTlutObj(&tlutObj, (void*)((u8*)img + img->paletteOffset), (GXTlutFmt)img->colorFormat, img->numColors);
+        GXLoadTlut(&tlutObj, id);
+    }
+
+    GXLoadTexObj(&texObj, (GXTexMapID)id);
 }
 
 void loadDither(u8 dither) {

@@ -241,16 +241,16 @@ inline void loadTexCoordScale(GXTexCoordID coord,
 	                       info.field_0x02, info.field_0x06 == 1, 0);
 }
 
-// TODO: header
-
 void J3DColorBlockLightOff::load()
 {
-	for (u32 i = 0; i < ARRAY_COUNT(mMatColor); ++i)
-		J3DGDSetChanMatColor((GXChannelID)(GX_COLOR0A0 + i),
-		                     mMatColor[i].color);
 
+	for (u8 i = 0; i < ARRAY_COUNT(mMatColor); ++i)
+		loadChanMatColor(i, mMatColor[i].color);
+
+	loadColorChanNum(mColorChanNum);
 	for (u32 i = 0; i < ARRAY_COUNT(mColorChan); ++i)
-		mColorChan[i].load(i);
+		break;
+	//	mColorChan[i].load(i);
 
 	if (mCullMode != 0xFF)
 		loadCullMode(mCullMode);
@@ -281,11 +281,12 @@ void J3DColorBlockLightOn::load()
 
 void J3DTexGenBlockBasic::load()
 {
-	for (int i = 0; i < mTexGenNum; ++i)
-		J3DGDSetTexCoordGen((GXTexCoordID)i, mTexCoord[i].getTexGenType(),
-		                    mTexCoord[i].getTexGenSrc(), 0, 125);
-	mTexMtxOffset = GDGetCurrOffset();
-	for (u32 i = 0; i < ARRAY_COUNT(mTexMtx); ++i)
+	loadTexGenNum(mTexGenNum);
+	for (u8 i = 0; i < mTexGenNum; ++i)
+		loadTexCoordGen(mTexCoord[i], i);
+
+	//ARRAY_COUNT(mTexMtx)
+	for (u8 i = 0; i < 10; ++i)
 		if (mTexMtx[i])
 			mTexMtx[i]->load(i);
 }
