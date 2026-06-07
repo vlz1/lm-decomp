@@ -136,6 +136,9 @@ public:
 		setRasSel(info.mRasSel);
 	}
 
+	u8 getTevSwapMode1() const { return mTevSwapModeInfo & 0x03; }
+	u8 getTevSwapMode2() const { return mTevSwapModeInfo >> 2 & 0x03; }
+
 	void setTevStageInfo(const J3DTevStageInfo& info)
 	{
 		setTevColorOp(info.field_0x5, info.field_0x6, info.field_0x7,
@@ -148,12 +151,7 @@ public:
 		              info.field_0x11, info.field_0x12);
 	}
 
-	void load(u32) const
-	{
-		GDOverflowCheck(10);
-		//J3DGDWriteBPCmd(*(u32*)&mTevColorReg);
-		J3DGDWriteBPCmd(*(u32*)&mTevAlphaReg);
-	}
+	void load(u8) const;
 
 public:
 	/* 0x0 */ u8 mTevColorOp;

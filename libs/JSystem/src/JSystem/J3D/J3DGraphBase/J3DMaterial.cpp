@@ -293,20 +293,21 @@ void J3DTexGenBlockBasic::load()
 
 void J3DTevBlock1::load()
 {
+	loadTevStageNum(mTevStageNum);
 	if (mTexNo[0] != 0xffff) {
 		loadTexNo(0, mTexNo[0]);
 	}
 
-	if (mTevStageNum != 0) {
+	s32 tevStageNum = mTevStageNum;
+
+	if (tevStageNum != 0) {
 		mTevOrder[0].load(0);
 	}
 
-	loadTexCoordScale(
-	    GXTexCoordID(mTevOrder[0].getTevOrderInfo().mTexCoord),
-	    J3DSys::sTexCoordScaleTable[mTevOrder[0].getTevOrderInfo().mTexMap
-	                                & 7]);
-	mTevStage[0].load(0);
-	mIndTevStage[0].load(0);
+	if (tevStageNum != 0) {
+		mTevStage[0].load(0);
+		mIndTevStage[0].load(0);
+	}
 }
 
 void J3DTevBlock2::load()
@@ -527,24 +528,22 @@ void J3DPEBlockXlu::load()
 	GXSetZCompLoc(GX_TRUE);
 }
 
-inline void loadZCompLoc(u8 compLoc)
-{
-	if (compLoc != 0xff)
-		J3DGDSetZCompLoc(compLoc);
-}
-
-// TODO: header
-extern void loadDither(u8);
-
 void J3DPEBlockFull::load()
 {
 	if (mFog) {
 		mFog->load();
 	}
-	mAlphaComp.load();
+	if (mAlphaComp.mAlphaCmpID != 0xFFFF)
+		mAlphaComp.load();
+
 	mBlend.load();
-	mZMode.load();
-	loadZCompLoc(mZCompLoc);
+
+	if (mZMode.mZModeID != 0xFFFF)
+		mZMode.load();
+
+	if (mZCompLoc != 0xFF)
+		loadZCompLoc(mZCompLoc);
+
 	if (mDither != 0xFF)
 		loadDither(mDither);
 }

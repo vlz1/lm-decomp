@@ -34,12 +34,7 @@ public:
 		    = calcZModeID(info.mCompareEnable, info.mFunc, info.mUpdateEnable);
 	}
 
-	void load() const
-	{
-		if (mZModeID != 0xFFFF)
-			GDSetZMode(getCompareEnable(), (GXCompare)getFunc(),
-			           getUpdateEnable());
-	}
+	void load() const;
 
 	void setCompareEnable(u8 enable)
 	{

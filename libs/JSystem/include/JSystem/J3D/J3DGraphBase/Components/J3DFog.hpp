@@ -15,11 +15,7 @@ public:
 		J3DFogInfo::operator=(info);
 	}
 
-	void load() const
-	{
-		J3DGDSetFog(GXFogType(mType), mStartZ, mEndZ, mNearZ, mFarZ, mColor);
-		JRNISetFogRangeAdj(mAdjEnable, mCenter, (GXFogAdjTable*)mFogAdjTable);
-	}
+	void load() const;
 
 	virtual ~J3DFog() { };
 	virtual void vt_C() { };

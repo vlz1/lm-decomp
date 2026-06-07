@@ -15,9 +15,14 @@ void loadChanMatColor(u8, const GXColor&);
 void loadChanAmbColor(u8, const GXColor&);
 void loadColorChanNum(u8);
 void loadTexGenNum(u8);
-void loadDither(u8);
 void loadTexCoordGen(J3DTexCoord, u8);
 void loadTevColor(u8, const J3DGXColorS10& color);
 void loadTevKColor(u8, const J3DGXColor& color);
-//void loadTevKColor
+void loadTevKColorSel(u8, u8);
+void loadTevKAlphaSel(u8, u8);
+void loadTevStageNum(u8);
+void loadIndTevStageNum(u8);
+void loadZCompLoc(u8 compLoc);
+void loadDither(u8);
+
 #endif

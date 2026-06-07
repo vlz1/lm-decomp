@@ -65,12 +65,7 @@ public:
 	u8 getRef0() const { return mRef0; }
 	u8 getRef1() const { return mRef1; }
 
-	void load()
-	{
-		if (mAlphaCmpID != 0xFFFF)
-			GDSetAlphaCompare(getComp0(), getRef0(), getOp(), getComp1(),
-			                  getRef1());
-	}
+	void load();
 
 public:
 	/* 0x00 */ u16 mAlphaCmpID;

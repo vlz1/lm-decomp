@@ -1,6 +1,12 @@
+#include "JSystem/J3D/J3DGraphBase/Components/J3DAlphaComp.hpp"
+#include "JSystem/J3D/J3DGraphBase/Components/J3DBlend.hpp"
+#include "JSystem/J3D/J3DGraphBase/Components/J3DFog.hpp"
 #include "JSystem/J3D/J3DGraphBase/Components/J3DIndTexMtx.hpp"
+#include "JSystem/J3D/J3DGraphBase/Components/J3DTevStage.hpp"
+#include "JSystem/J3D/J3DGraphBase/Components/J3DZMode.hpp"
 #include "dolphin/gx/GXBump.h"
 #include "dolphin/gx/GXEnum.h"
+#include "dolphin/gx/GXTev.h"
 #include <JSystem/J3D/J3DGraphBase/J3DTevs.hpp>
 #include <JSystem/J3D/J3DGraphBase/Components/J3DLightObj.hpp>
 #include <JSystem/J3D/J3DGraphBase/Components/J3DTexMtx.hpp>
@@ -276,6 +282,66 @@ void loadTevColor(u8 id, const J3DGXColorS10& color) {
 void loadTevKColor(u8 id, const J3DGXColor& color) {
 	GXSetTevKColor((GXTevKColorID)id, color.color);
 }
+
+void loadTevKColorSel(u8 id, u8 sel) {
+	GXSetTevKColorSel((GXTevStageID)id, (GXTevKColorSel)sel);
+}
+
+void loadTevKAlphaSel(u8 id, u8 sel) {
+	GXSetTevKAlphaSel((GXTevStageID)id, (GXTevKAlphaSel)sel);
+}
+
+void loadTevStageNum(u8 num) {
+	GXSetNumTevStages(num);
+}
+
+void loadIndTexStageNum(u8 num) {
+	GXSetNumIndStages(num);
+}
+
+void J3DTevStage::load(u8 stage) const {
+	GXSetTevColorIn((GXTevStageID)stage, (GXTevColorArg)getTevColorA(),
+		(GXTevColorArg)getTevColorB(), (GXTevColorArg)getTevColorC(), (GXTevColorArg)getTevColorD());
+
+	GXSetTevColorOp((GXTevStageID)stage, (GXTevOp)getColorOpSomething1(),
+		(GXTevBias)getColorOpSomething2(), (GXTevScale)getColorOpSomething3(),
+		(GXTevRegID)getColorOpSomething4(), (GXTevRegID)getColorOpSomething5());
+
+	GXSetTevAlphaIn((GXTevStageID)stage, (GXTevAlphaArg)getAlphaA(),
+	(GXTevAlphaArg)getAlphaB(), (GXTevAlphaArg)getAlphaC(),
+	(GXTevAlphaArg)getAlphaD());
+
+	GXSetTevAlphaOp((GXTevStageID)stage, (GXTevOp)getAlphaOpSomething1(),
+		(GXTevBias)getAlphaOpSomething2(), (GXTevScale)getAlphaOpSomething3(),
+		(GXTevRegID)getAlphaOpSomething4(), (GXTevRegID)getAlphaOpSomething5());
+
+	GXSetTevSwapMode((GXTevStageID)stage, (GXTevSwapSel)getTevSwapMode1(), (GXTevSwapSel)getTevSwapMode2());
+}
+
+void J3DFog::load() const {
+	GXSetFog(GXFogType(mType), mStartZ, mEndZ, mNearZ, mFarZ, mColor);
+	GXSetFogRangeAdj(mAdjEnable, mCenter, (GXFogAdjTable*)mFogAdjTable);
+}
+
+void J3DAlphaComp::load() {
+	GXSetAlphaCompare(getComp0(), getRef0(), getOp(), getComp1(),
+						getRef1());
+}
+
+void J3DBlend::load() {
+	GXSetBlendMode((GXBlendMode)mBlendMode, (GXBlendFactor)mSrcFactor,
+					(GXBlendFactor)mDstFactor, (GXLogicOp)mLogicOp);
+}
+
+void J3DZMode::load() const {
+	GXSetZMode(getCompareEnable(), (GXCompare)getFunc(),
+				getUpdateEnable());
+}
+
+void loadZCompLoc(u8 compLoc) {
+	GXSetZCompLoc(compLoc);
+}
+
 void loadDither(u8 dither) {
     GXSetDither(dither);
 }

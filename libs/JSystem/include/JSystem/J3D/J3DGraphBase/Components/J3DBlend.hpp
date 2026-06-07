@@ -25,11 +25,7 @@ public:
 		return *this;
 	}
 
-	void load()
-	{
-		GDSetBlendMode((GXBlendMode)mBlendMode, (GXBlendFactor)mSrcFactor,
-		               (GXBlendFactor)mDstFactor, (GXLogicOp)mLogicOp);
-	}
+	void load();
 };
 
 #endif
