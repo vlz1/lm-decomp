@@ -57,9 +57,13 @@ J3DShapeMtx* J3DShapeFactory::newShapeMtx(int shapeNo, int mtxGroupNo) const
 
 	switch (shapeInitData.mShapeMtxType) {
 	case J3DShapeMtxType_Mtx:
-	case J3DShapeMtxType_BBoard:
-	case J3DShapeMtxType_YBBoard:
 		ret = new J3DShapeMtx(mtxInitData.mUseMtxIndex);
+		break;
+	case J3DShapeMtxType_BBoard:
+		ret = new J3DShapeMtxBBoard(mtxInitData.mUseMtxIndex);
+		break;
+	case J3DShapeMtxType_YBBoard:
+		ret = new J3DShapeMtxYBBoard(mtxInitData.mUseMtxIndex);
 		break;
 	case J3DShapeMtxType_Multi:
 		ret = new J3DShapeMtxMulti(mtxInitData.mUseMtxIndex,

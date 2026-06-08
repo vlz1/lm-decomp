@@ -358,6 +358,33 @@ void J3DMtxProjConcat(register Mtx param_1, register Mtx param_2,
 #endif // clang-format on
 }
 
+void J3DPSMtx34Copy(register MtxPtr src, register MtxPtr dst)
+{
+	register f32 x1_y1;
+	register f32 z1_x2;
+	register f32 y2_z2;
+	register f32 x3_y3;
+	register f32 val_20;
+    register f32 val_28;
+#ifdef __MWERKS__ // clang-format off
+	asm {
+		psq_l x1_y1, 0(src),  0, qr0
+		psq_l z1_x2, 8(src),  0, qr0
+		psq_l y2_z2, 16(src), 0, qr0
+		psq_l x3_y3, 24(src), 0, qr0
+		psq_l val_20, 32(src), 0, qr0
+        psq_l val_28, 40(src), 0, qr0
+
+		psq_st x1_y1, 0(dst),  0, qr0
+		psq_st z1_x2, 8(dst),  0, qr0
+		psq_st y2_z2, 16(dst), 0, qr0
+		psq_st x3_y3, 24(dst), 0, qr0
+		psq_st val_20, 32(dst), 0, qr0
+        psq_st val_28, 40(dst), 0, qr0
+	}
+#endif // clang-format on
+}
+
 void J3DPSMtx33Copy(register ROMtxPtr src, register ROMtxPtr dst)
 {
 	register f32 x1_y1;
@@ -386,21 +413,17 @@ asm void J3DPSMtx33CopyFrom34(register MtxPtr src, register ROMtxPtr dst)
 {
 #ifdef __MWERKS__ // clang-format off
 	psq_l  f0, 0(src), 0, qr0
-	psq_st f0, 0(dst), 0, qr0
-
 	lfs    f1, 8(src)
-	stfs   f1, 8(dst)
-
 	psq_l  f2, 16(src), 0, qr0
-	psq_st f2, 12(dst), 0, qr0
-
 	lfs    f3, 24(src)
-	stfs   f3, 20(dst)
-
 	psq_l  f4, 32(src), 0, qr0
-	psq_st f4, 24(dst), 0, qr0
-
 	lfs    f5, 40(src)
+
+    psq_st f0, 0(dst), 0, qr0
+    stfs   f1, 8(dst)
+    psq_st f2, 12(dst), 0, qr0
+    stfs   f3, 20(dst)
+    psq_st f4, 24(dst), 0, qr0
 	stfs   f5, 32(dst)
 #endif // clang-format on
 }

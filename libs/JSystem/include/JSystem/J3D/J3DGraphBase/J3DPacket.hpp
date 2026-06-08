@@ -96,24 +96,25 @@ public:
 	u32 endDL();
 	void beginPatch();
 	void endPatch();
+	void newDisplayList(u32);
+	void swapBuffer();
+	void callDL();
 
-	J3DDisplayListObj* getDisplayListObj() const { return unk30; }
-	void setDisplayListObj(J3DDisplayListObj* pObj) { unk30 = pObj; }
-
-	bool checkFlag(u32 flag) const { return (unk10 & flag) != 0; }
-	void onFlag(u32 flag) { unk10 |= flag; }
-	void offFlag(u32 flag) { unk10 &= ~flag; }
-	bool isLocked() const { return checkFlag(1) ? TRUE : FALSE; }
-	void lock() { onFlag(0x01); }
-	void unlock() { offFlag(0x01); }
+	//bool checkFlag(u32 flag) const { return (unk10 & flag) != 0; }
+	//void onFlag(u32 flag) { unk10 |= flag; }
+	//void offFlag(u32 flag) { unk10 &= ~flag; }
+	//bool isLocked() const { return checkFlag(1) ? TRUE : FALSE; }
+	//void lock() { onFlag(0x01); }
+	//void unlock() { offFlag(0x01); }
 
 	static int sInterruptFlag;
 
 public:
-	u32 unk10;
-	char padding0[0xc];
-	GDLObj unk20;
-	J3DDisplayListObj* unk30;
+//	u32 unk10;
+	void* unk10;
+	void* unk14;
+	u32 unk18;
+	u32 unk1C;
 };
 
 class J3DMatPacket : public J3DDrawPacket {

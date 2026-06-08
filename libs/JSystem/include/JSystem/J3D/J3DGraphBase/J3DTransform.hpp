@@ -40,6 +40,8 @@ void J3DGetTextureMtxMaya(const J3DTextureSRTInfo&, MtxPtr);
 void J3DGetTextureMtxMayaOld(const J3DTextureSRTInfo&, MtxPtr);
 void J3DScaleNrmMtx33(ROMtxPtr, const Vec&);
 void J3DMtxProjConcat(MtxPtr, MtxPtr, MtxPtr);
+void J3DPSMtx43Copy(ROMtxPtr src, ROMtxPtr dst);
+void J3DPSMtx34Copy(MtxPtr src, MtxPtr dst);
 void J3DPSMtx33Copy(ROMtxPtr src, ROMtxPtr dst);
 void J3DPSMtx33CopyFrom34(MtxPtr src, ROMtxPtr dst);
 void J3DPSMtxArrayCopy(MtxPtr, MtxPtr, u32);

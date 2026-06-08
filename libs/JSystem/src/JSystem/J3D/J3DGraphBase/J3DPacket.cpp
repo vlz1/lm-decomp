@@ -10,19 +10,11 @@
 
 int J3DDrawPacket::sInterruptFlag;
 
-void J3DDisplayListObj::newDisplayList(u32 param_1)
+void J3DDrawPacket::swapBuffer()
 {
-	unkC = param_1 + 0x1f & 0xffffffe0;
-	unk0 = new (0x20) char[unkC];
-	unk4 = new (0x20) char[unkC];
-	unk8 = 0;
-}
-
-void J3DDisplayListObj::swapBuffer()
-{
-	void* tmp = unk0;
-	unk0      = unk4;
-	unk4      = tmp;
+	void* tmp = unk10;
+	unk10      = unk14;
+	unk14      = tmp;
 }
 
 
@@ -55,29 +47,38 @@ void J3DCallBackPacket::draw()
 
 J3DDrawPacket::J3DDrawPacket()
 {
-	unk10 = 0;
-	unk30 = nullptr;
+	//unk10 = 0;
+	//unk30 = nullptr;
 }
 
 J3DDrawPacket::~J3DDrawPacket() { }
 
-void J3DDrawPacket::draw() { unk30->callDL(); }
+void J3DDrawPacket::draw() { callDL(); }
 
-void J3DDisplayListObj::callDL() { GXCallDisplayList(unk0, unk8); }
+void J3DDrawPacket::callDL() { GXCallDisplayList(unk10, unk18); }
+
+void J3DDrawPacket::newDisplayList(u32 param_1)
+{
+	unk1C = param_1 + 0x1f & 0xffffffe0;
+	unk10 = new (0x20) char[unk1C];
+	unk14 = new (0x20) char[unk1C];
+	unk18 = 0;
+}
+
 
 void J3DDrawPacket::beginDL()
 {
-	unk30->swapBuffer();
+	swapBuffer();
 	sInterruptFlag = OSDisableInterrupts();
-    GXBeginDisplayList(unk30->unk0, unk30->unk8);
+    GXBeginDisplayList(unk10, unk1C);
 }
 
 u32 J3DDrawPacket::endDL()
 {
-    GXEndDisplayList();
+    unk18 = GXEndDisplayList();
 	OSRestoreInterrupts(sInterruptFlag);
-	DCFlushRange(unk30->unk0, unk30->unk8);
-	return unk30->unk8;
+	DCFlushRange(unk10, unk18);
+	return unk18;
 }
 
 J3DMatPacket::J3DMatPacket()
@@ -143,21 +144,12 @@ J3DShapePacket::~J3DShapePacket() { }
 
 void J3DShapePacket::draw()
 {
-	char
-	    trash[0x20]; // TODO: probably shares inlines w/ J3DCallBackPacket::draw
-	if ((unk14 != 0) && (unk30 != 0)) {
-		if (unk10 != nullptr) {
-			unk10(this, 0);
-		}
+
+	if (unk14 != 0) {
 		j3dSys.unk10C         = unk24;
 		j3dSys.unk110         = unk28;
-		j3dSys.unk114         = unk2C;
 		unk14->mDrawMatrices  = unk18;
 		unk14->mNormMatrices  = unk1C;
-		unk14->mCurrentViewNo = unk20;
 		unk14->draw();
-		if (unk10 != nullptr) {
-			unk10(this, 1);
-		}
 	}
 }

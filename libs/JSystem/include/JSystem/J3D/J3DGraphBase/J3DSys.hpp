@@ -16,6 +16,7 @@ class J3DMatPacket;
 class J3DMtxCalc;
 class J3DModel;
 class J3DDrawBuffer;
+class J3DShape;
 
 class J3DSys {
 public:
@@ -37,18 +38,17 @@ public:
 	void reinitIndStages();
 	void reinitPixelProc();
 	void ErrorReport(J3DErrType) const;
+	int genMtxId();
 
 	// From TP debug
 	void setModelDrawMtx(Mtx* mtx)
 	{
 		mCurrentDrawMtx = mtx;
-		GXSetArray(GX_POS_MTX_ARRAY, mCurrentDrawMtx, sizeof(Mtx));
 	}
 
 	void setModelNrmMtx(Mtx33* mtx)
 	{
 		mCurrentNormMtx = mtx;
-		GXSetArray(GX_NRM_MTX_ARRAY, mCurrentNormMtx, sizeof(Mtx33));
 	}
 
 	J3DTexture* getTexture() { return mTexture; }
@@ -101,7 +101,7 @@ public:
 	/* 0x34 */ s32 mFlags;
 	/* 0x038 */ J3DModel* mModel;
 	/* 0x3C */ J3DMatPacket* mMatPacket;
-	/* 0x40 */ u32 unk40;
+	/* 0x40 */ J3DShape* unk40;
 	/* 0x44 */ J3DDrawBuffer* mDrawBuffer[2];
 	/* 0x4C */ u32 unk4C;
 	/* 0x50 */ u32 unk50;
@@ -116,7 +116,7 @@ public:
 	/* 0x10C */ void* unk10C;
 	/* 0x110 */ void* unk110;
 	/* 0x114 */ void* unk114;
-	/* 0x118 */ u32 unk118;
+	/* 0x118 */ GXVtxDescList* unk118;
 	///* 0x11C */ u32 unk11C;
 	/* 0x120 */ Vec* mNBTScale;
 

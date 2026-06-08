@@ -755,20 +755,17 @@ void J3DPEBlockFull::reset(J3DPEBlock* block)
 
 void J3DMaterial::makeDisplayList()
 {
-	if (!j3dSys.getMatPacket()->isLocked()) {
-		j3dSys.getMatPacket()->unk3C = unk14;
-		j3dSys.getMatPacket()->beginDL();
-		mTevBlock->load();
-		mIndBlock->load(mTevBlock);
-		mPEBlock->load();
-		GDSetGenMode2(
-		    mTexGenBlock->getTexGenNum(), mColorBlock->getColorChanNum(),
-		    mTevBlock->getTevStageNum(), mIndBlock->getIndTexStageNum(),
-		    (GXCullMode)mColorBlock->getCullMode());
-		mColorBlock->load();
-		mTexGenBlock->load();
-		j3dSys.getMatPacket()->endDL();
-	}
+
+	//if (!j3dSys.getMatPacket()->isLocked()) {
+	j3dSys.getMatPacket()->unk3C = unk14;
+	j3dSys.getMatPacket()->beginDL();
+	mTevBlock->load();
+	mIndBlock->load(mTevBlock);
+	mPEBlock->load();
+	mColorBlock->load();
+	mTexGenBlock->load();
+	j3dSys.getMatPacket()->endDL();
+	//}
 }
 
 // TODO: header
@@ -778,7 +775,7 @@ void J3DMaterial::load()
 {
 	j3dSys.unk50 = unk8;
 	if (!j3dSys.checkFlag2()) {
-		j3dSys.getMatPacket()->getDisplayListObj()->callDL();
+		j3dSys.getMatPacket()->callDL();
 		loadNBTScale(*mTexGenBlock->getNBTScale());
 	}
 }
@@ -818,7 +815,7 @@ void J3DTexGenBlockBasic::calc(MtxPtr ptr)
 			u32 mode = mTexMtx[i]->getInfo();
 			if (mode == J3DTexMtxMode_EnvmapBasic) {
 				Mtx viewMat;
-				MTXCopy(j3dSys.getViewMtx(), viewMat);
+				J3DPSMtx34Copy(j3dSys.getViewMtx(), viewMat);
 				viewMat[0][3] = 0.0f;
 				viewMat[1][3] = 0.0f;
 				viewMat[2][3] = 0.0f;
@@ -889,6 +886,7 @@ void J3DTexGenBlockFull::calc(MtxPtr ptr)
 
 void J3DMaterial::calc(MtxPtr ptr) { mTexGenBlock->calc(ptr); }
 
+/*
 // TODO: stack size mismatches...
 void J3DMaterial::setCurrentMtx()
 {
@@ -901,7 +899,7 @@ void J3DMaterial::setCurrentMtx()
 	                 mTexGenBlock->getTexCoord(5)->getTexGenMtx(),
 	                 mTexGenBlock->getTexCoord(6)->getTexGenMtx(),
 	                 mTexGenBlock->getTexCoord(7)->getTexGenMtx());
-}
+}*/
 
 void J3DMaterial::copy(J3DMaterial* other)
 {

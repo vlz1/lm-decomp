@@ -54,7 +54,7 @@ public:
 
 class J3DShapeMtxYBBoard : public J3DShapeMtx {
 public:
-	J3DShapeMtxYBBoard(u16 useMtxIndex, u16 useMtxNum, u16* useMtxIndexTable)
+	J3DShapeMtxYBBoard(u16 useMtxIndex)
 	    : J3DShapeMtx(useMtxIndex)
 	{
 	}
@@ -67,7 +67,7 @@ public:
 
 class J3DShapeMtxBBoard : public J3DShapeMtx {
 public:
-	J3DShapeMtxBBoard(u16 useMtxIndex, u16 useMtxNum, u16* useMtxIndexTable)
+	J3DShapeMtxBBoard(u16 useMtxIndex)
 	    : J3DShapeMtx(useMtxIndex)
 	{
 	}
@@ -114,6 +114,7 @@ public:
 	void loadVtxArray() const;
 	void draw() const;
 
+	/*
 	void setUnk3C(u8 a, u8 b, u8 c, u8 d, u8 e, u8 f, u8 g, u8 h)
 	{
 		unk3C[0] = a;
@@ -124,7 +125,7 @@ public:
 		unk3C[5] = f;
 		unk3C[6] = g;
 		unk3C[7] = h;
-	}
+	}*/
 
 	bool checkFlag(u32 flag) const { return (unk8 & flag) ? TRUE : FALSE; }
 	void onFlag(u32 flag) { unk8 |= flag; }
@@ -143,9 +144,6 @@ public:
 
 	void setVertexDataPointer(J3DVertexData* pVtxData) { unk44 = pVtxData; }
 
-	// fabricated
-	void* getDrawList() { return mGDCommands; }
-
 public:
 	/* 0x0 */ u32 unk0;
 	/* 0x4 */ u16 unk4;
@@ -154,13 +152,10 @@ public:
 	/* 0xC */ float unkC;
 	/* 0x10 */ Vec unk10;
 	/* 0x1C */ Vec unk1C;
-	/* 0x28 */ void* mGDCommands;
 	/* 0x2C */ GXVtxDescList* unk2C;
-	/* 0x30 */ bool unk30;
-	/* 0x31 */ char unk31[3];
 	/* 0x34 */ J3DShapeMtx** mMatrices; // mElementCount entries
 	/* 0x38 */ J3DShapeDraw** mDraws;   // mElementCount entries
-	/* 0x3C */ u8 unk3C[8];
+	///* 0x3C */ u8 unk3C[8];
 	/* 0x44 */ J3DVertexData* unk44;
 	/* 0x48 */ J3DDrawMtxData* unk48;
 	/* 0x4C */ u8* unk4C;

@@ -46,7 +46,60 @@ void J3DShapeMtx::load() const
 
 void J3DShapeMtxBBoard::load() const
 {
+    Mtx local_54;
 
+    J3DPSMtx34Copy(j3dSys.mCurrentDrawMtx[unk4], local_54);
+
+    f32 fVar1 = sqrtf(local_54[2][0] * local_54[2][0] +
+          local_54[0][0] * local_54[0][0] + local_54[1][0] * local_54[1][0]);
+
+    f32 fVar2 = sqrtf(local_54[2][1] * local_54[2][1] +
+          local_54[0][1] * local_54[0][1] + local_54[1][1] * local_54[1][1]);
+
+    f32 fVar3 = sqrtf(local_54[2][2] * local_54[2][2] +
+          local_54[0][2] * local_54[0][2] + local_54[1][2] * local_54[1][2]);
+
+    local_54[0][0] = fVar1;
+    local_54[0][1] = 0.0f;
+    local_54[0][2] = 0.0f;
+    local_54[1][0] = 0.0f;
+    local_54[1][1] = fVar2;
+    local_54[1][2] = 0.0f;
+    local_54[2][0] = 0.0f;
+    local_54[2][1] = 0.0f;
+    local_54[2][2] = fVar3;
+
+    int iVar2 = j3dSys.genMtxId();
+    j3dSys.loadPosMtxImm(iVar2, local_54);
+    GXAttrType local_64;
+
+    GXGetVtxDesc(GX_VA_NRM, &local_64);
+    if (local_64 != GX_NONE) {
+        local_54[0][0] = 1.0f / fVar1;
+        local_54[1][1] = 1.0f / fVar2;
+        local_54[2][2] = 1.0f / fVar3;
+        local_54[0][3] = 0.0f;
+        local_54[1][3] = 0.0f;
+        local_54[2][3] = 0.0f;
+        j3dSys.loadNrmMtxImm(iVar2, local_54);
+    } else {
+        GXGetVtxDesc(GX_VA_NBT, &local_64);
+        if (local_64 != GX_NONE) {
+            local_54[0][0] = 1.0f / fVar1;
+            local_54[1][1] = 1.0f / fVar2;
+            local_54[2][2] = 1.0f / fVar3;
+            local_54[0][3] = 0.0f;
+            local_54[1][3] = 0.0f;
+            local_54[2][3] = 0.0f;
+            if (j3dSys.mNBTScale != nullptr) {
+                local_54[0][0] *= j3dSys.mNBTScale->x;
+                local_54[1][1] *= j3dSys.mNBTScale->y;
+                local_54[2][2] *= j3dSys.mNBTScale->z;
+            }
+            j3dSys.loadNrmMtxImm(iVar2, local_54);
+        }
+    }
+    GXSetCurrentMtx(iVar2 * 3);
 }
 
 void J3DShapeMtxYBBoard::load() const
@@ -96,8 +149,6 @@ void J3DShape::initialize()
 	unk4C          = 0;
 	mDrawMatrices  = nullptr;
 	mNormMatrices  = nullptr;
-	mCurrentViewNo = &j3dDefaultViewNo;
-	unk30          = 0;
 }
 
 
@@ -163,7 +214,7 @@ void J3DShape::makeVtxArrayCmd()
 	}
 	for (GXVtxDescList* piVar5 = unk2C; piVar5->attr != GX_VA_NULL; ++piVar5) {
 		if ((piVar5->attr == GX_VA_NBT) && (piVar5->type != GX_NONE)) {
-			unk30 = 1;
+			//unk30 = 1;
 			stride[1] *= 3;
 			array[1] = unk44->getVtxNBTArray();
 		}
@@ -179,18 +230,9 @@ void J3DShape::makeVtxArrayCmd()
 
 void J3DShape::makeVcdVatCmd()
 {
-	GDLObj list;
-
-	GDInitGDLObj(&list, mGDCommands, 0xC0);
-	__GDCurrentDL = &list;
-	GDSetVtxDescv(unk2C);
-	makeVtxArrayCmd();
-	J3DSetVtxAttrFmtv(GX_VTXFMT0, unk44->getVtxAttrFmtList(), unk30);
-	GDPadCurr32();
-	GDFlushCurrToMem();
-	__GDCurrentDL = nullptr;
 }
 
+/*
 void J3DShape::loadVtxArray() const
 {
 	J3DLoadArrayBasePtr(GX_VA_POS, j3dSys.unk10C);
@@ -199,25 +241,28 @@ void J3DShape::loadVtxArray() const
 		J3DLoadArrayBasePtr(GX_VA_NRM, l);
 	}
 	J3DLoadArrayBasePtr(GX_VA_CLR0, j3dSys.unk114);
-}
+}*/
 
 void J3DShape::draw() const
 {
-	GXCallDisplayList(mGDCommands, 0xC0);
 
+    j3dSys.unk40 = this;
+    GXVtxDescList* list = unk2C;
+    j3dSys.unk118 = list;
+    GXClearVtxDesc();
+    GXSetVtxDescv(list);
 	J3DShapeMtx::currentPipeline = unk8 >> 2 & 3;
-	loadVtxArray();
+    loadVtxArray();
 
-	j3dSys.setModelDrawMtx(mDrawMatrices[*mCurrentViewNo]);
-	j3dSys.setModelNrmMtx(mNormMatrices[*mCurrentViewNo]);
-
-	JRNLoadCurrentMtx(0, unk3C[0], unk3C[1], unk3C[2], unk3C[3], unk3C[4],
-	                  unk3C[5], unk3C[6], unk3C[7]);
+	j3dSys.setModelDrawMtx(*mDrawMatrices);
+	j3dSys.setModelNrmMtx(*mNormMatrices);
 
 	for (u16 i = 0; i < mElementCount; ++i) {
 		if (mMatrices[i])
 			mMatrices[i]->load();
-		if (mDraws[i])
-			mDraws[i]->draw();
+		if (mDraws[i]) {
+            mDraws[i]->draw();
+            GXFlush();
+        }
 	}
 }
