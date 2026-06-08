@@ -31,6 +31,10 @@ namespace Koga {
         };
 
         struct JMapData {
+            const JMapItem *getItem(u32 i) const {
+                return &mItems[i];
+            }
+
             s32 mNumEntries;         // 0x0
             s32 mNumFields;          // 0x4
             s32 mDataOffset;         // 0x8
@@ -46,6 +50,19 @@ namespace Koga {
         BOOL getValue(int entryIndex, const char* key, s32* valueOut) const;
         BOOL getValue(int entryIndex, const char* key, float* valueOut) const;
         BOOL getValue(int entryIndex, const char* key, const char** valueOut) const;
+        s32 searchItemInfo2(const char* key) const {
+            s32 nFields = mData->mNumFields;
+            u32 hash = hashString(key);
+
+            for (int i = 0; i < nFields; ++i) {
+                if (hash == mData->mItems[i].mHash) {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
     private:
         inline u32 hashString(const char* key) const
         {
