@@ -44,14 +44,19 @@ J3DSys::J3DSys()
 	unk118          = 0;
 }
 
+void J3DSys::loadPosMtxImm(int id, MtxPtr mtx) const
+{
+	GXLoadPosMtxImm(mtx, id * 3);
+}
+
 void J3DSys::loadPosMtxIndx(int id, u16 mtx_indx) const
 {
-	GXLoadPosMtxIndx(mtx_indx, id * 3);
+	GXLoadPosMtxImm(*(mCurrentDrawMtx + mtx_indx), id * 3);
 }
 
 void J3DSys::loadNrmMtxIndx(int id, u16 mtx_indx) const
 {
-	GXLoadNrmMtxIndx3x3(mtx_indx, id * 3);
+	GXLoadNrmMtxImm3x3(*(mCurrentNormMtx + mtx_indx), id * 3);
 }
 
 void J3DSys::setTexCacheRegion(GXTexCacheSize size)

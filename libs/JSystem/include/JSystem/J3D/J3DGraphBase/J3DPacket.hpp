@@ -48,7 +48,7 @@ public:
 	virtual bool entry(J3DDrawBuffer*);
 	void addChildPacket(J3DPacket* packet);
 	virtual void draw() { }
-
+	virtual void vt_18();
 	virtual ~J3DPacket() { }
 
 	void drawClear()

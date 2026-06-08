@@ -12,9 +12,7 @@
 #include <JSystem/J3D/J3DGraphBase/J3DShape.hpp>
 #include <JSystem/J3D/J3DGraphBase/J3DTevs.hpp>
 #include <JSystem/J3D/J3DGraphBase/J3DLoad.hpp>
-#include <dolphin/gd.h>
 #include <dolphin/os.h>
-#include <macros.h>
 
 void J3DColorBlockLightOff::initialize()
 {
@@ -837,7 +835,56 @@ void J3DTexGenBlockBasic::calc(MtxPtr ptr)
 
 void J3DTexGenBlockFull::calc(MtxPtr ptr)
 {
-	// TODO
+	if (!j3dSys.checkFlag4() || !j3dSys.checkFlag8()) {
+		for (int i = 0; i < ARRAY_COUNT(mTexMtx); ++i) {
+			if (!mTexMtx[i])
+				continue;
+
+			u32 mode = mTexMtx[i]->getInfo();
+			if (mode == J3DTexMtxMode_EnvmapBasic) {
+				Mtx viewMat;
+				MTXConcat(j3dSys.getViewMtx(), ptr, viewMat);
+				viewMat[0][3] = 0.0f;
+				viewMat[1][3] = 0.0f;
+				viewMat[2][3] = 0.0f;
+				mTexMtx[i]->setViewMtx(viewMat);
+			} else if ( mode == J3DTexMtxMode_ProjmapBasic) {
+				MTXCopy(ptr, mTexMtx[i]->mViewMtx);
+			} else if (mode == J3DTexMtxMode_ViewProjmapBasic) {
+				Mtx viewMat;
+				MTXConcat(j3dSys.getViewMtx(), ptr, viewMat);
+				mTexMtx[i]->setViewMtx(viewMat);
+			} else if (mode == J3DTexMtxMode_Unknown5) {
+				Mtx viewMat;
+				mTexMtx[i]->setViewMtx(ptr);
+				mTexMtx[i]->mViewMtx[0][3] = 0.0f;
+				mTexMtx[i]->mViewMtx[1][3] = 0;
+				mTexMtx[i]->mViewMtx[2][3] = 0;
+			}
+
+			mTexMtx[i]->calc();
+		}
+	} else {
+		for (int i = 0; i < 10; ++i) {
+			if (!mTexMtx[i])
+				continue;
+
+			u32 mode = mTexMtx[i]->getInfo();
+			if (mode == J3DTexMtxMode_EnvmapBasic) {
+				Mtx viewMat;
+				MTXCopy(j3dSys.getViewMtx(), viewMat);
+				viewMat[0][3] = 0.0f;
+				viewMat[1][3] = 0.0f;
+				viewMat[2][3] = 0.0f;
+				mTexMtx[i]->setViewMtx(viewMat);
+			} else if (mode == J3DTexMtxMode_ProjmapBasic) {
+				mTexMtx[i]->setViewMtx(j3dDefaultMtx);
+			} else if (mode == J3DTexMtxMode_ViewProjmapBasic) {
+				mTexMtx[i]->setViewMtx(j3dSys.getViewMtx());
+			}
+			mTexMtx[i]->calc();
+		}
+	}
 }
 
 void J3DMaterial::calc(MtxPtr ptr) { mTexGenBlock->calc(ptr); }

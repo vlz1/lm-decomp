@@ -76,7 +76,6 @@ public:
 		return (GXAttnFn)attnFnTbl[mChanCtrl >> 9 & 0x03];
 	}
 
-	// different from TP, but eh, probably correct?
 	void load(u8 idx);
 
 	GXDiffuseFn getDiffuseFn() { return (GXDiffuseFn)(mChanCtrl >> 7 & 3); }

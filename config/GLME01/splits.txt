@@ -81,6 +81,22 @@ JSystem/J3D/J3DGraphBase/J3DSys.cpp:
 	.ctors      start:0x8020BDA8 end:0x8020BDAC
 	.bss        start:0x804C8898 end:0x804C8A00
 
+JSystem/J3D/J3DGraphBase/J3DVertex.cpp:
+	.text       start:0x801B66C8 end:0x801B679C
+
+JSystem/J3D/J3DGraphBase/J3DTransform.cpp:
+	.text       start:0x801B679C end:0x801B73CC
+
+JSystem/J3D/J3DGraphBase/J3DPacket.cpp:
+	.text       start:0x801B73CC end:0x801B79FC
+
+JSystem/J3D/J3DGraphBase/J3DShape.cpp:
+	.text       start:0x801B79FC end:0x801B8B0C
+	.ctors      start:0x8020BDAC end:0x8020BDB0
+	.data       start:0x80392168 end:0x803922C0
+	.sdata      start:0x804D7A38 end:0x804D7A60
+	.sbss       start:0x804D94D8 end:0x804D94E0
+
 JSystem/J3D/J3DGraphBase/J3DMaterial.cpp:
 	.text       start:0x801B8B0C end:0x801BED54
 	.data       start:0x803922D0 end:0x80392CE0

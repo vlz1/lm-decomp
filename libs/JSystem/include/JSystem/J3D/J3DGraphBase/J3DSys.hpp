@@ -21,6 +21,9 @@ class J3DSys {
 public:
 	J3DSys();
 	void loadPosMtxIndx(int, u16) const;
+	void loadPosMtxImm(int, MtxPtr) const;
+
+	void loadNrmMtxImm(int, MtxPtr) const;
 	void loadNrmMtxIndx(int, u16) const;
 	void loadTexMtx(u32, MtxPtr) const;
 	void setTexCacheRegion(GXTexCacheSize);

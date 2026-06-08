@@ -1,7 +1,7 @@
 #ifndef MESSAGE_H_
 #define MESSAGE_H_
 
-#include "dolphin/types.h"
+#include "types.h"
 
 class MessageSender {
 public:

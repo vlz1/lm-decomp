@@ -19,7 +19,6 @@ public:
 	virtual u32 getUseMtxNum() const { return 1; }
 	virtual u16 getUseMtxIndex(u16) const { return unk4; }
 	virtual void load() const;
-	virtual void calcNBTScale(const Vec&, float (*)[3][3], float (*)[3][3]);
 
 	void loadMtxIndx_PNGP(int, u16) const;
 	void loadMtxIndx_PCPU(int, u16) const;
@@ -31,18 +30,6 @@ public:
 
 public:
 	u16 unk4;
-};
-
-class J3DShapeMtxDL : public J3DShapeMtx {
-public:
-	J3DShapeMtxDL(u16);
-
-	virtual ~J3DShapeMtxDL() { }
-	virtual void load() const;
-	virtual void calcNBTScale(const Vec&, float (*)[3][3], float (*)[3][3]) { }
-
-public:
-	void* mDisplayList;
 };
 
 class J3DShapeMtxMulti : public J3DShapeMtx {
@@ -59,12 +46,38 @@ public:
 	virtual u32 getUseMtxNum() const { return unk8; }
 	virtual u16 getUseMtxIndex(u16 i) const { return unkC[i]; }
 	virtual void load() const;
-	virtual void calcNBTScale(const Vec&, float (*)[3][3], float (*)[3][3]);
 
 public:
 	u16 unk8;
 	u16* unkC;
 };
+
+class J3DShapeMtxYBBoard : public J3DShapeMtx {
+public:
+	J3DShapeMtxYBBoard(u16 useMtxIndex, u16 useMtxNum, u16* useMtxIndexTable)
+	    : J3DShapeMtx(useMtxIndex)
+	{
+	}
+
+	virtual ~J3DShapeMtxYBBoard() { }
+	virtual int getType() const { return 'SMYB'; }
+	virtual void load() const;
+
+};
+
+class J3DShapeMtxBBoard : public J3DShapeMtx {
+public:
+	J3DShapeMtxBBoard(u16 useMtxIndex, u16 useMtxNum, u16* useMtxIndexTable)
+	    : J3DShapeMtx(useMtxIndex)
+	{
+	}
+
+	virtual ~J3DShapeMtxBBoard() { }
+	virtual int getType() const { return 'SMBB'; }
+	virtual void load() const;
+
+};
+
 
 class J3DShapeDraw {
 public:

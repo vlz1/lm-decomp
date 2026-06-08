@@ -98,6 +98,7 @@ public:
 	J3DColorChan newColorChan(int, int) const;
 	u32 newTexGenNum(int) const;
 	J3DTexCoord newTexCoord(int, int) const;
+	J3DTexCoord2 newTexCoord2(int, int) const;
 	J3DTexMtx* newTexMtx(int, int) const;
 	J3DTexMtx* newTexMtx2(int, int) const;
 	u8 newCullMode(int) const;

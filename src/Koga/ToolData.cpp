@@ -1,5 +1,4 @@
 #include "Koga/ToolData.hpp"
-#include "macros.h"
 
 Koga::ToolData::ToolData() {
     mData = nullptr;

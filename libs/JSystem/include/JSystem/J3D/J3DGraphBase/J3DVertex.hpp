@@ -34,7 +34,7 @@ public:
 	/* 0x14 */ void* mVtxNormArray;
 	/* 0x18 */ void* mVtxNBTArray;
 	/* 0x1C */ GXColor* mVtxColorArray[2];
-	/* 0x24 */ void* mVtxTexCoordArray[8];
+	/* 0x24 */ void* mVtxTexCoordArray[5];
 };
 
 enum J3DDeformAttachFlag {

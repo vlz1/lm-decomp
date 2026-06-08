@@ -3,7 +3,6 @@
 
 #include <JSystem/JKernel/JKRFileLoader.hpp>
 #include <JSystem/JKernel/JKRHeap.hpp>
-#include <macros.h>
 
 // NOTE: Vtable offsets are off
 
