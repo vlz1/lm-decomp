@@ -1,3 +1,5 @@
+#include "dolphin/gx/GXBump.h"
+#include "dolphin/gx/GXEnum.h"
 #include <JSystem/J3D/J3DGraphBase/J3DSys.hpp>
 #include <JSystem/JRenderer.hpp>
 #include <dolphin/os.h>
@@ -109,15 +111,16 @@ void J3DSys::drawInit()
 {
 	GXSetMisc(GX_MT_DL_SAVE_CONTEXT, 0);
 	GXInvalidateVtxCache();
-	GXSetCurrentMtx(GX_PNMTX0);
 	GXSetCullMode(GX_CULL_BACK);
 	GXSetCoPlanar(GX_FALSE);
 	GXSetClipMode(GX_CLIP_ENABLE);
 	GXSetColorUpdate(GX_TRUE);
 	GXSetDither(GX_FALSE);
 	GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_NOOP);
-	GXSetAlphaCompare(GX_ALWAYS, GX_FALSE, GX_AOP_AND, GX_ALWAYS, GX_FALSE);
-	GXSetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
+	/*GXSetAlphaCompare(GX_ALWAYS, GX_FALSE, GX_AOP_AND, GX_ALWAYS, GX_FALSE);
+
+	GXSetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);*/
+
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, GX_FALSE);
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_CLR_RGB, GX_F32, GX_FALSE);
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_CLR_RGBA, GX_RGBA8, GX_FALSE);
@@ -131,7 +134,6 @@ void J3DSys::drawInit()
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX6, GX_CLR_RGBA, GX_RGBA4, '\a');
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX7, GX_CLR_RGBA, GX_RGBA4, '\a');
 	GXSetNumIndStages(0);
-	reinitTexture();
 	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL,
 	              GX_COLOR_NULL);
 	GXSetTevOrder(GX_TEVSTAGE1, GX_TEXCOORD_NULL, GX_TEXMAP_NULL,
@@ -165,10 +167,24 @@ void J3DSys::drawInit()
 	GXSetTevOrder(GX_TEVSTAGE15, GX_TEXCOORD_NULL, GX_TEXMAP_NULL,
 	              GX_COLOR_NULL);
 
+	GXSetIndTexOrder(GX_INDTEXSTAGE0, GX_TEXCOORD0, GX_TEXMAP0);
+	GXSetIndTexOrder(GX_INDTEXSTAGE1, GX_TEXCOORD0, GX_TEXMAP0);
+	GXSetIndTexOrder(GX_INDTEXSTAGE2, GX_TEXCOORD0, GX_TEXMAP0);
+	GXSetIndTexOrder(GX_INDTEXSTAGE3, GX_TEXCOORD0, GX_TEXMAP0);
 	u8 i;
 
 	Mtx mtx;
 	PSMTXIdentity(mtx);
+
+	for (i = 0; i < 10; i++) {
+		u32 id = i * 3;
+		GXLoadPosMtxImm(mtx,  id);
+	}
+
+	for (i = 0; i < 10; ++i) {
+		GXLoadNrmMtxImm(mtx,  i * 3);
+	}
+
 	for (i = 0; i < 10; ++i) {
 		GXLoadTexMtxImm(mtx, GX_TEXMTX0 + i * 3, GX_MTX3x4);
 	}

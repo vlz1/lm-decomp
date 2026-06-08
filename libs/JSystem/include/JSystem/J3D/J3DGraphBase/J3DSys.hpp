@@ -114,7 +114,7 @@ public:
 	/* 0x110 */ void* unk110;
 	/* 0x114 */ void* unk114;
 	/* 0x118 */ u32 unk118;
-	/* 0x11C */ u32 unk11C;
+	///* 0x11C */ u32 unk11C;
 	/* 0x120 */ Vec* mNBTScale;
 
 	static Mtx mCurrentMtx;

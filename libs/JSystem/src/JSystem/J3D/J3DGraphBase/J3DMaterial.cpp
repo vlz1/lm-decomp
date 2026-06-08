@@ -38,12 +38,24 @@ void J3DColorBlockLightOn::initialize()
 		mLight[i] = nullptr;
 }
 
+void J3DTexGenBlockFull::initialize()
+{
+	mTexGenNum = 0;
+
+	for (int i = 0; i < ARRAY_COUNT(mTexMtx); i++) {
+		mTexMtx[i] = nullptr;
+	}
+
+	for (int i = 0; i < ARRAY_COUNT(mTexMtx2); i++) {
+		mTexMtx2[i] = nullptr;
+	}
+}
+
 void J3DTexGenBlockBasic::initialize()
 {
 	mTexGenNum = 0;
-	for (u32 i = 0; i < 8; i++)
+	for (int i = 0; i < 10; i++)
 		mTexMtx[i] = nullptr;
-	mTexMtxOffset = 0;
 }
 
 void J3DPEBlockFull::initialize()
@@ -272,10 +284,25 @@ void J3DTexGenBlockBasic::load()
 	for (u8 i = 0; i < mTexGenNum; ++i)
 		mTexCoord[i].load(i);
 
-	//ARRAY_COUNT(mTexMtx)
-	for (u8 i = 0; i < 10; ++i)
+	for (u8 i = 0; i < ARRAY_COUNT(mTexMtx); ++i)
 		if (mTexMtx[i])
 			mTexMtx[i]->load(i);
+}
+
+void J3DTexGenBlockFull::load()
+{
+	loadTexGenNum(mTexGenNum);
+	for (u8 i = 0; i < mTexGenNum; ++i)
+		mTexCoord[i].load(i);
+	for (u8 i = 0; i < mTexGenNum; ++i)
+		mTexCoord2[i].load(i);
+
+	for (u8 i = 0; i < ARRAY_COUNT(mTexMtx); ++i)
+		if (mTexMtx[i])
+			mTexMtx[i]->load(i);
+	for (u8 i = 0; i < ARRAY_COUNT(mTexMtx2); ++i)
+		if (mTexMtx2[i])
+			mTexMtx2[i]->load2(i);
 }
 
 
@@ -524,7 +551,7 @@ void J3DTexGenBlockBasic::reset(J3DTexGenBlock* block)
 	for (u8 i = 0; i < 8; i++)
 		mTexCoord[i] = *block->getTexCoord(i);
 
-	for (u8 i = 0; i < 8; i++) {
+	for (u8 i = 0; i < 10; i++) {
 		if (block->getTexMtx(i) != nullptr) {
 			if (mTexMtx[i] == nullptr)
 				mTexMtx[i] = new J3DTexMtx;
@@ -741,57 +768,40 @@ void J3DTexGenBlockBasic::calc(MtxPtr ptr)
 			if (!mTexMtx[i])
 				continue;
 
-			u32 mode = mTexMtx[i]->getInfo() & 0x7F;
-			if (mode == J3DTexMtxMode_Envmap || mode == J3DTexMtxMode_EnvmapOld
-			    || mode == J3DTexMtxMode_EnvmapBasic) {
+			u32 mode = mTexMtx[i]->getInfo();
+			if (mode == J3DTexMtxMode_EnvmapBasic) {
 				Mtx viewMat;
 				MTXConcat(j3dSys.getViewMtx(), ptr, viewMat);
 				viewMat[0][3] = 0.0f;
 				viewMat[1][3] = 0.0f;
 				viewMat[2][3] = 0.0f;
 				mTexMtx[i]->setViewMtx(viewMat);
-			} else if (mode == J3DTexMtxMode_Projmap
-			           || mode == J3DTexMtxMode_ProjmapBasic) {
+			} else if ( mode == J3DTexMtxMode_ProjmapBasic) {
 				MTXCopy(ptr, mTexMtx[i]->mViewMtx);
-			} else if (mode == J3DTexMtxMode_ViewProjmap
-			           || mode == J3DTexMtxMode_ViewProjmapBasic) {
+			} else if (mode == J3DTexMtxMode_ViewProjmapBasic) {
 				Mtx viewMat;
 				MTXConcat(j3dSys.getViewMtx(), ptr, viewMat);
 				mTexMtx[i]->setViewMtx(viewMat);
-			} else if (mode == J3DTexMtxMode_EnvmapOldEffectMtx
-			           || mode == J3DTexMtxMode_EnvmapEffectMtx
-			           || mode == J3DTexMtxMode_Unknown5) {
-				MTXCopy(ptr, mTexMtx[i]->mViewMtx);
-				mTexMtx[i]->getViewMtx()[0][3] = 0.0f;
-				mTexMtx[i]->getViewMtx()[1][3] = 0.0f;
-				mTexMtx[i]->getViewMtx()[2][3] = 0.0f;
 			}
 			mTexMtx[i]->calc();
 		}
 	} else {
-		for (int i = 0; i < 8; ++i) {
+		for (int i = 0; i < 10; ++i) {
 			if (!mTexMtx[i])
 				continue;
 
-			u32 mode = mTexMtx[i]->getInfo() & 0x7F;
-			if (mode == J3DTexMtxMode_Envmap || mode == J3DTexMtxMode_EnvmapOld
-			    || mode == J3DTexMtxMode_EnvmapBasic) {
+			u32 mode = mTexMtx[i]->getInfo();
+			if (mode == J3DTexMtxMode_EnvmapBasic) {
 				Mtx viewMat;
 				MTXCopy(j3dSys.getViewMtx(), viewMat);
 				viewMat[0][3] = 0.0f;
 				viewMat[1][3] = 0.0f;
 				viewMat[2][3] = 0.0f;
 				mTexMtx[i]->setViewMtx(viewMat);
-			} else if (mode == J3DTexMtxMode_Projmap
-			           || mode == J3DTexMtxMode_ProjmapBasic) {
+			} else if (mode == J3DTexMtxMode_ProjmapBasic) {
 				mTexMtx[i]->setViewMtx(j3dDefaultMtx);
-			} else if (mode == J3DTexMtxMode_ViewProjmap
-			           || mode == J3DTexMtxMode_ViewProjmapBasic) {
+			} else if (mode == J3DTexMtxMode_ViewProjmapBasic) {
 				mTexMtx[i]->setViewMtx(j3dSys.getViewMtx());
-			} else if (mode == J3DTexMtxMode_EnvmapOldEffectMtx
-			           || mode == J3DTexMtxMode_EnvmapEffectMtx
-			           || mode == J3DTexMtxMode_Unknown5) {
-				mTexMtx[i]->setViewMtx(j3dDefaultMtx);
 			}
 			mTexMtx[i]->calc();
 		}

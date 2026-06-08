@@ -119,37 +119,6 @@ const J3DFogInfo j3dDefaultFogInfo = {
 
 const J3DNBTScaleInfo j3dDefaultNBTScaleInfo = { 0, 1.0f, 1.0f, 1.0f };
 
-void J3DGDSetTexLookupMode(GXTexMapID id, GXTexWrapMode wrapS,
-                           GXTexWrapMode wrapT, GXTexFilter minFilter,
-                           GXTexFilter magFilter, f32 minLOD, f32 maxLOD,
-                           f32 lodBias, u8 biasClamp, u8 edgeLOD,
-                           GXAnisotropy maxAniso)
-{
-	// clang-format off
-	u32 reg1 =
-		(wrapS) << 0 |
-		(wrapT) << 2 |
-		(magFilter == GX_LINEAR) << 4 |
-		(GX2HWFiltConv[minFilter]) << 5 |
-		(!edgeLOD) << 8 |
-		((u8)(lodBias * 32.0f)) << 9 |
-		(maxAniso) << 19 |
-		(biasClamp) << 21 |
-		(GXTexMode0Ids[id] << 24);
-	// clang-format on
-	GDOverflowCheck(5);
-	J3DGDWriteBPCmd(reg1);
-
-	// clang-format off
-	u32 reg2 =
-		((u8)(minLOD * 16.0f)) << 0 |
-		((u8)(maxLOD * 16.0f)) << 8 |
-		(GXTexMode1Ids[id] << 24);
-	// clang-format on
-	GDOverflowCheck(5);
-	J3DGDWriteBPCmd(reg2);
-}
-
 void J3DLightObj::load(u8 id) const
 {
     GXInitLightPos(&mLightObj, mLightPosition.x, mLightPosition.y, mLightPosition.z);
@@ -168,6 +137,13 @@ void loadTexGenNum(u8 id) {
 void J3DTexCoord::load(u8 id) {
     GXSetTexCoordGen2((GXTexCoordID)id,
     getTexGenType(), getTexGenSrc(), getTexGenMtx(), GX_FALSE, 125);
+}
+
+void J3DTexCoord2::load(u8 id) {
+	if (unk4 != 0xFFFF) {
+		GXSetTexCoordGen2((GXTexCoordID)id,
+		getTexGenType(), getTexGenSrc(), getTexGenMtx(), getUnk4Something(), getUnk4Something2());
+	}
 }
 
 void J3DTexMtx::calc()

@@ -252,9 +252,23 @@ struct J3DTexCoordInfo {
 		return *this;
 	}
 
-	/* 0x0 */ u8 mTexGenType __attribute__((aligned(4)));
+	/* 0x0 */ u8 mTexGenType;
 	/* 0x1 */ u8 mTexGenSrc;
 	/* 0x2 */ u8 mTexGenMtx;
+	u8 pad;
+};
+
+struct J3DTexCoordInfo2 {
+	J3DTexCoordInfo2& operator=(const J3DTexCoordInfo2& other)
+	{
+		info = other.info;
+		unk4 = other.unk4;
+
+		return *this;
+	}
+
+	J3DTexCoordInfo info;
+	/* 0x4 */ u16 unk4;
 };
 
 struct J3DIndTexCoordScaleInfo {
