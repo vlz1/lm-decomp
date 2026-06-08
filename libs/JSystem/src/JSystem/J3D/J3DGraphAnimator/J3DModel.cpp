@@ -551,13 +551,13 @@ void J3DModel::entryModelData(J3DModelData* param_1, u32 param_2, u32 param_3)
 			if (param_2 & 0x20000) {
 				J3DMaterial* mat     = param_1->getMaterialNodePointer(i);
 				u32 dlSize           = mat->countDLSize();
-				mMatPackets[i].unk30 = mat->newSharedDisplayList(dlSize);
+				//mMatPackets[i].unk30 = mat->newSharedDisplayList(dlSize);
 			} else {
 				J3DMaterial* mat     = param_1->getMaterialNodePointer(i);
 				u32 dlSize           = mat->countDLSize();
 				J3DMatPacket* packet = &mMatPackets[i];
-				packet->unk30        = new J3DDisplayListObj;
-				packet->unk30->newDisplayList(dlSize);
+				//packet->unk30        = new J3DDisplayListObj;
+				packet->newDisplayList(dlSize);
 			}
 		}
 	}
@@ -621,7 +621,8 @@ void J3DModel::lock()
 	int matNum = mModelData->getMaterialNum();
 
 	for (int i = 0; i < matNum; ++i)
-		mMatPackets[i].lock();
+		break;
+		//mMatPackets[i].lock();
 }
 
 void J3DModel::unlock()
@@ -629,7 +630,8 @@ void J3DModel::unlock()
 	int matNum = mModelData->getMaterialNum();
 
 	for (int i = 0; i < matNum; ++i)
-		mMatPackets[i].unlock();
+		break;
+		//mMatPackets[i].unlock();
 }
 
 void J3DModel::makeDL()
