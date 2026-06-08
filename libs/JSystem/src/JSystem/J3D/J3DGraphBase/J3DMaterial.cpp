@@ -566,7 +566,34 @@ void J3DTexGenBlockBasic::reset(J3DTexGenBlock* block)
 
 void J3DTexGenBlockFull::reset(J3DTexGenBlock* block)
 {
-	// TODO
+	mTexGenNum = block->getTexGenNum();
+
+	for (u8 i = 0; i < 8; i++)
+		mTexCoord[i] = *block->getTexCoord(i);
+
+	for (u8 i = 0; i < 10; i++) {
+		if (block->getTexMtx(i) != nullptr) {
+			if (mTexMtx[i] == nullptr)
+				mTexMtx[i] = new J3DTexMtx;
+
+			memcpy(mTexMtx[i], block->getTexMtx(i), sizeof(*mTexMtx[i]));
+			DCStoreRange(mTexMtx[i], sizeof(*mTexMtx[i]));
+		}
+	}
+	for (u8 i = 0; i < 8; i++)
+		mTexCoord2[i] = *block->getTexCoord2(i);
+
+	for (u8 i = 0; i < 20; i++) {
+		if (block->getTexMtx2(i) != nullptr) {
+			if (mTexMtx2[i] == nullptr)
+				mTexMtx2[i] = new J3DTexMtx;
+
+			memcpy(mTexMtx2[i], block->getTexMtx2(i), sizeof(*mTexMtx2[i]));
+			DCStoreRange(mTexMtx2[i], sizeof(*mTexMtx2[i]));
+		}
+	}
+
+	mNBTScale = *block->getNBTScale();
 }
 
 void J3DTevBlock1::reset(J3DTevBlock* block)

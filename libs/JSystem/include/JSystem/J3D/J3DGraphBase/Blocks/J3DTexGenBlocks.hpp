@@ -19,8 +19,8 @@ public:
 	virtual void setTexCoord(u8, const J3DTexCoord*) = 0;
 	virtual J3DTexCoord* getTexCoord(u8)             = 0;
 
-	virtual void vt_28() = 0;
-	virtual s32 vt_2C() = 0;
+	virtual void setTexCoord2(u8, const J3DTexCoord2*) = 0;
+	virtual J3DTexCoord2* getTexCoord2(u8) = 0;
 
 	virtual void setTexMtx(u8, J3DTexMtx*)           = 0;
 	virtual J3DTexMtx* replaceTexMtx(u8, J3DTexMtx*) = 0;
@@ -63,8 +63,11 @@ public:
 	}
 	virtual J3DTexCoord* getTexCoord(u8 i) { return &mTexCoord[i]; }
 
-	virtual void vt_28() {}
-	virtual s32 vt_2C() { return 0; }
+	virtual void setTexCoord2(u8 i, const J3DTexCoord2* coord) {
+		mTexCoord2[i] = *coord;
+	}
+
+	virtual J3DTexCoord2* getTexCoord2(u8 i) { return &mTexCoord2[i]; }
 
 	virtual void setTexMtx(u8 i, J3DTexMtx* mtx) { mTexMtx[i] = mtx; }
 	virtual J3DTexMtx* replaceTexMtx(u8 i, J3DTexMtx* mtx)
@@ -126,8 +129,8 @@ public:
 	}
 	virtual J3DTexCoord* getTexCoord(u8 i) { return &mTexCoord[i]; }
 
-	virtual void vt_28() {}
-	virtual s32 vt_2C() { return 0; }
+	virtual void setTexCoord2(u8, const J3DTexCoord2*) {}
+	virtual J3DTexCoord2* getTexCoord2(u8) { return 0; }
 
 	virtual void setTexMtx(u8 i, J3DTexMtx* mtx) { mTexMtx[i] = mtx; }
 	virtual J3DTexMtx* replaceTexMtx(u8 i, J3DTexMtx* mtx)
