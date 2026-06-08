@@ -923,12 +923,3 @@ void J3DMaterial::change()
 	unk10 = mOriginalMaterial->unk10;
 	//unk38 = nullptr;
 }
-
-J3DDisplayListObj* J3DMaterial::newSharedDisplayList(u32 param_1)
-{
-	//if (!unk3C) {
-	//	unk3C = new J3DDisplayListObj;
-	//	unk3C->newDisplayList(param_1);
-	//}
-	//return unk3C;
-}

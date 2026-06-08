@@ -133,11 +133,7 @@ J3DShapePacket::J3DShapePacket()
 	unk14 = 0;
 	unk18 = 0;
 	unk1C = 0;
-	unk20 = &j3dDefaultViewNo;
-	unk24 = 0;
-	unk28 = 0;
-	unk2C = 0;
-	unk30 = 1;
+	unk20 = 0;
 }
 
 J3DShapePacket::~J3DShapePacket() { }

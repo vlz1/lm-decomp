@@ -13,7 +13,6 @@ class J3DTexGenBlock;
 class J3DTevBlock;
 class J3DIndBlock;
 class J3DPEBlock;
-class J3DDisplayListObj;
 
 class J3DMaterial {
 public:
@@ -43,7 +42,6 @@ public:
 
 	void reset(); // Unused
 	void change();
-	J3DDisplayListObj* newSharedDisplayList(u32);
 
 	//void setMaterialAnm(J3DMaterialAnm* v) { unk38 = v; }
 

@@ -556,7 +556,6 @@ void J3DModel::entryModelData(J3DModelData* param_1, u32 param_2, u32 param_3)
 				J3DMaterial* mat     = param_1->getMaterialNodePointer(i);
 				u32 dlSize           = mat->countDLSize();
 				J3DMatPacket* packet = &mMatPackets[i];
-				//packet->unk30        = new J3DDisplayListObj;
 				packet->newDisplayList(dlSize);
 			}
 		}

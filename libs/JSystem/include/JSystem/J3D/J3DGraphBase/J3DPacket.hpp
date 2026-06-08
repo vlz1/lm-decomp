@@ -14,29 +14,10 @@ class J3DMaterialAnm;
 class J3DShapePacket;
 class J3DTexture;
 
-class J3DDisplayListObj {
-public:
-	J3DDisplayListObj()
-	{
-		unk0 = nullptr;
-		unk4 = nullptr;
-		unk8 = 0;
-		unkC = 0;
-	}
-
-	void newDisplayList(u32);
-	void swapBuffer();
-	void callDL();
-
-public:
-	void* unk0;
-	void* unk4;
-	u32 unk8;
-	u32 unkC;
-};
-
 class J3DPacket {
 public:
+	typedef void (*CallbackT)(J3DCallBackPacket*, int);
+
 	J3DPacket()
 	{
 		unk4 = nullptr;
@@ -72,8 +53,6 @@ public:
 
 class J3DCallBackPacket : public J3DPacket {
 public:
-	typedef void (*CallbackT)(J3DCallBackPacket*, int);
-
 	J3DCallBackPacket() { unk10 = nullptr; }
 
 	virtual void draw();
@@ -152,7 +131,7 @@ public:
 	J3DMaterialAnm* unk44;
 };
 
-class J3DShapePacket : public J3DCallBackPacket {
+class J3DShapePacket : public J3DPacket {
 public:
 	J3DShapePacket();
 

@@ -89,6 +89,7 @@ JSystem/J3D/J3DGraphBase/J3DTransform.cpp:
 
 JSystem/J3D/J3DGraphBase/J3DPacket.cpp:
 	.text       start:0x801B73CC end:0x801B79FC
+	.data       start:0x80392050 end:0x80392168
 	.sbss       start:0x804D94D0 end:0x804D94D8
 
 JSystem/J3D/J3DGraphBase/J3DShape.cpp:
