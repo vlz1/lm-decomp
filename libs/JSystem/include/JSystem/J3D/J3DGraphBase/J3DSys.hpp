@@ -3,6 +3,7 @@
 
 #include <dolphin/gx.h>
 #include <dolphin/mtx.h>
+#include <JSystem/J3D/J3DGraphBase/J3DStruct.hpp>
 
 enum J3DErrType {
 	J3DErrType_Success     = 0,
@@ -15,7 +16,6 @@ class J3DMatPacket;
 class J3DMtxCalc;
 class J3DModel;
 class J3DDrawBuffer;
-struct J3DTexCoordScaleInfo;
 
 class J3DSys {
 public:
