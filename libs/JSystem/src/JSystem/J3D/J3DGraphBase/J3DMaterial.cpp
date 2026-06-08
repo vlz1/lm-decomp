@@ -343,110 +343,77 @@ void J3DTevBlock2::load()
 
 void J3DTevBlock4::load()
 {
-	u8 tevStageNum = mTevStageNum;
-	for (u32 i = 0; i < 4; i++) {
+	loadTevStageNum(mTevStageNum);
+	s32 tevStageNum = mTevStageNum;
+
+	for (u8 i = 0; i < 4; i++) {
 		if (mTexNo[i] != 0xffff) {
 			loadTexNo(i, mTexNo[i]);
 		}
 	}
-	for (u32 i = 0; i < tevStageNum; i += 2) {
-		JRNISetTevOrder(
-		    (GXTevStageID)i,
-		    (GXTexCoordID)mTevOrder[i].getTevOrderInfo().mTexCoord,
-		    (GXTexMapID)mTevOrder[i].getTevOrderInfo().mTexMap,
-		    (GXChannelID)mTevOrder[i].getTevOrderInfo().mColorChan,
-		    (GXTexCoordID)mTevOrder[i + 1].getTevOrderInfo().mTexCoord,
-		    (GXTexMapID)mTevOrder[i + 1].getTevOrderInfo().mTexMap,
-		    (GXChannelID)mTevOrder[i + 1].getTevOrderInfo().mColorChan);
-		loadTexCoordScale(
-		    (GXTexCoordID)(mTevOrder[i].getTevOrderInfo().mTexCoord & 7),
-		    J3DSys::sTexCoordScaleTable[mTevOrder[i].getTevOrderInfo().mTexMap
-		                                & 7]);
-		loadTexCoordScale(
-		    (GXTexCoordID)(mTevOrder[i + 1].getTevOrderInfo().mTexCoord & 7),
-		    J3DSys::sTexCoordScaleTable
-		        [mTevOrder[i + 1].getTevOrderInfo().mTexMap & 7]);
+
+	for (u8 i = 0; i < tevStageNum; i++) {
+		mTevOrder[i].load(i);
 	}
-	for (u32 i = 0; i < 3; i++) {
+
+	for (u8 i = 0; i < 4; i++) {
 		loadTevColor(i, mTevColor[i]);
 	}
-	for (u32 i = 0; i < 4; i++) {
+	for (u8 i = 0; i < 4; i++) {
 		loadTevKColor(i, mTevKColor[i]);
 	}
-	for (u32 i = 0; i < tevStageNum; i++) {
+	for (u8 i = 0; i < tevStageNum; i++) {
 		mTevStage[i].load(i);
 		mIndTevStage[i].load(i);
 	}
-	for (u32 i = 0; i < 16; i += 4) {
-		J3DGDSetTevKonstantSel_SwapModeTable(
-		    (GXTevStageID)i, (GXTevKColorSel)mTevKColorSel[i],
-		    (GXTevKAlphaSel)mTevKAlphaSel[i],
-		    (GXTevKColorSel)mTevKColorSel[i + 1],
-		    (GXTevKAlphaSel)mTevKAlphaSel[i + 1],
-		    (GXTevColorChan)mTevSwapModeTable[i / 4].getR(),
-		    (GXTevColorChan)mTevSwapModeTable[i / 4].getG());
-		J3DGDSetTevKonstantSel_SwapModeTable(
-		    (GXTevStageID)(i + 2), (GXTevKColorSel)mTevKColorSel[i + 2],
-		    (GXTevKAlphaSel)mTevKAlphaSel[i + 2],
-		    (GXTevKColorSel)mTevKColorSel[i + 3],
-		    (GXTevKAlphaSel)mTevKAlphaSel[i + 3],
-		    (GXTevColorChan)mTevSwapModeTable[i / 4].getB(),
-		    (GXTevColorChan)mTevSwapModeTable[i / 4].getA());
+	for (u8 i = 0; i < tevStageNum; i++) {
+		if (mTevKColorSel[i] != 0xFF)
+			loadTevKColorSel(i, mTevKColorSel[i]);
+	}
+	for (u8 i = 0; i < tevStageNum; i++) {
+		if (mTevKAlphaSel[i] != 0xFF)
+			loadTevKAlphaSel(i, mTevKAlphaSel[i]);
+	}
+	for (u8 i = 0; i < 4; i++) {
+		mTevSwapModeTable[i].load(i);
 	}
 }
 
 void J3DTevBlock16::load()
 {
-
-	u8 tevStageNum = mTevStageNum;
-	for (u32 i = 0; i < 8; i++) {
+	for (u8 i = 0; i < 8; i++) {
 		if (mTexNo[i] != 0xffff) {
 			loadTexNo(i, mTexNo[i]);
 		}
 	}
-	for (u32 i = 0; i < tevStageNum; i += 2) {
-		JRNISetTevOrder(
-		    (GXTevStageID)i,
-		    (GXTexCoordID)mTevOrder[i].getTevOrderInfo().mTexCoord,
-		    (GXTexMapID)mTevOrder[i].getTevOrderInfo().mTexMap,
-		    (GXChannelID)mTevOrder[i].getTevOrderInfo().mColorChan,
-		    (GXTexCoordID)mTevOrder[i + 1].getTevOrderInfo().mTexCoord,
-		    (GXTexMapID)mTevOrder[i + 1].getTevOrderInfo().mTexMap,
-		    (GXChannelID)mTevOrder[i + 1].getTevOrderInfo().mColorChan);
-		loadTexCoordScale(
-		    (GXTexCoordID)(mTevOrder[i].getTevOrderInfo().mTexCoord & 7),
-		    J3DSys::sTexCoordScaleTable[mTevOrder[i].getTevOrderInfo().mTexMap
-		                                & 7]);
-		loadTexCoordScale(
-		    (GXTexCoordID)(mTevOrder[i + 1].getTevOrderInfo().mTexCoord & 7),
-		    J3DSys::sTexCoordScaleTable
-		        [mTevOrder[i + 1].getTevOrderInfo().mTexMap & 7]);
+
+	loadTevStageNum(mTevStageNum);
+	s32 tevStageNum = mTevStageNum;
+
+	for (u8 i = 0; i < tevStageNum; i++) {
+		mTevOrder[i].load(i);
 	}
-	for (u32 i = 0; i < 3; i++) {
+
+	for (u8 i = 0; i < 4; i++) {
 		loadTevColor(i, mTevColor[i]);
 	}
-	for (u32 i = 0; i < 4; i++) {
+	for (u8 i = 0; i < 4; i++) {
 		loadTevKColor(i, mTevKColor[i]);
 	}
-	for (u32 i = 0; i < tevStageNum; i++) {
+	for (u8 i = 0; i < tevStageNum; i++) {
 		mTevStage[i].load(i);
 		mIndTevStage[i].load(i);
 	}
-	for (u32 i = 0; i < 16; i += 4) {
-		J3DGDSetTevKonstantSel_SwapModeTable(
-		    (GXTevStageID)i, (GXTevKColorSel)mTevKColorSel[i],
-		    (GXTevKAlphaSel)mTevKAlphaSel[i],
-		    (GXTevKColorSel)mTevKColorSel[i + 1],
-		    (GXTevKAlphaSel)mTevKAlphaSel[i + 1],
-		    (GXTevColorChan)mTevSwapModeTable[i / 4].getR(),
-		    (GXTevColorChan)mTevSwapModeTable[i / 4].getG());
-		J3DGDSetTevKonstantSel_SwapModeTable(
-		    (GXTevStageID)(i + 2), (GXTevKColorSel)mTevKColorSel[i + 2],
-		    (GXTevKAlphaSel)mTevKAlphaSel[i + 2],
-		    (GXTevKColorSel)mTevKColorSel[i + 3],
-		    (GXTevKAlphaSel)mTevKAlphaSel[i + 3],
-		    (GXTevColorChan)mTevSwapModeTable[i / 4].getB(),
-		    (GXTevColorChan)mTevSwapModeTable[i / 4].getA());
+	for (u8 i = 0; i < tevStageNum; i++) {
+		if (mTevKColorSel[i] != 0xFF)
+			loadTevKColorSel(i, mTevKColorSel[i]);
+	}
+	for (u8 i = 0; i < tevStageNum; i++) {
+		if (mTevKAlphaSel[i] != 0xFF)
+			loadTevKAlphaSel(i, mTevKAlphaSel[i]);
+	}
+	for (u8 i = 0; i < 4; i++) {
+		mTevSwapModeTable[i].load(i);
 	}
 }
 
