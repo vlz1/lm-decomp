@@ -282,7 +282,7 @@ void J3DTexGenBlockBasic::load()
 {
 	loadTexGenNum(mTexGenNum);
 	for (u8 i = 0; i < mTexGenNum; ++i)
-		loadTexCoordGen(mTexCoord[i], i);
+		mTexCoord[i].load(i);
 
 	//ARRAY_COUNT(mTexMtx)
 	for (u8 i = 0; i < 10; ++i)
@@ -313,7 +313,9 @@ void J3DTevBlock1::load()
 void J3DTevBlock2::load()
 {
 	u8 tevStageNum = mTevStageNum;
-	for (u32 i = 0; i < 2; i++) {
+
+	loadTevStageNum(tevStageNum);
+	for (u8 i = 0; i < 2; i++) {
 		if (mTexNo[i] != 0xffff) {
 			loadTexNo(i, mTexNo[i]);
 		}
@@ -325,39 +327,19 @@ void J3DTevBlock2::load()
 	                (GXTexCoordID)mTevOrder[1].getTevOrderInfo().mTexCoord,
 	                (GXTexMapID)mTevOrder[1].getTevOrderInfo().mTexMap,
 	                (GXChannelID)mTevOrder[1].getTevOrderInfo().mColorChan);
-	loadTexCoordScale(
-	    (GXTexCoordID)mTevOrder[0].getTevOrderInfo().mTexCoord,
-	    J3DSys::sTexCoordScaleTable[mTevOrder[0].getTevOrderInfo().mTexMap
-	                                & 7]);
-	loadTexCoordScale(
-	    (GXTexCoordID)(mTevOrder[1].getTevOrderInfo().mTexCoord & 7),
-	    J3DSys::sTexCoordScaleTable[mTevOrder[1].getTevOrderInfo().mTexMap
-	                                & 7]);
 
-	for (u32 i = 0; i < 3; i++) {
+
+	for (u8 i = 0; i < 4; i++) {
 		loadTevColor(i, mTevColor[i]);
 	}
-	for (u32 i = 0; i < 4; i++) {
+	for (u8 i = 0; i < 4; i++) {
 		loadTevKColor(i, mTevKColor[i]);
 	}
-	for (u32 i = 0; i < tevStageNum; i++) {
+	for (u8 i = 0; i < tevStageNum; i++) {
 		mTevStage[i].load(i);
 		mIndTevStage[i].load(i);
 	}
-	for (u32 i = 0; i < 16; i += 4) {
-		J3DGDSetTevKonstantSel_SwapModeTable(
-		    (GXTevStageID)i, (GXTevKColorSel)mTevKColorSel[0],
-		    (GXTevKAlphaSel)mTevKAlphaSel[0], (GXTevKColorSel)mTevKColorSel[1],
-		    (GXTevKAlphaSel)mTevKAlphaSel[1],
-		    (GXTevColorChan)mTevSwapModeTable[i / 4].getR(),
-		    (GXTevColorChan)mTevSwapModeTable[i / 4].getG());
-		J3DGDSetTevKonstantSel_SwapModeTable(
-		    (GXTevStageID)(i + 2), (GXTevKColorSel)mTevKColorSel[0],
-		    (GXTevKAlphaSel)mTevKAlphaSel[0], (GXTevKColorSel)mTevKColorSel[1],
-		    (GXTevKAlphaSel)mTevKAlphaSel[1],
-		    (GXTevColorChan)mTevSwapModeTable[i / 4].getB(),
-		    (GXTevColorChan)mTevSwapModeTable[i / 4].getA());
-	}
+
 }
 
 void J3DTevBlock4::load()
@@ -471,37 +453,21 @@ void J3DTevBlock16::load()
 
 void J3DIndBlockFull::load(J3DTevBlock*)
 {
-	u8 indTexStageNum = mIndTexStageNum;
-	for (u32 i = 0; i < indTexStageNum; i++) {
-		mIndTexMtx[i].load(i + 1);
+	loadIndTexStageNum(mIndTexStageNum);
+	s32 indTexStageNum = mIndTexStageNum;
+
+	for (u8 i = 0; i < indTexStageNum; i++) {
+		mIndTexMtx[i].load(i);
 	}
-	for (u32 i = 0; i < indTexStageNum; i += 2) {
-		JRNSetIndTexCoordScale(
-		    (GXIndTexStageID)i, (GXIndTexScale)mIndTexCoordScale[i].getScaleS(),
-		    (GXIndTexScale)mIndTexCoordScale[i].getScaleT(),
-		    (GXIndTexScale)mIndTexCoordScale[i + 1].getScaleS(),
-		    (GXIndTexScale)mIndTexCoordScale[i + 1].getScaleT());
+
+	for (u8 i = 0; i < indTexStageNum; i += 1) {
+		mIndTexCoordScale[i].load(i);
 	}
-	loadTexCoordScale(
-	    (GXTexCoordID)mIndTexOrder[0].getCoord(),
-	    J3DSys::sTexCoordScaleTable[mIndTexOrder[0].getMap() & 7]);
-	loadTexCoordScale(
-	    (GXTexCoordID)mIndTexOrder[1].getCoord(),
-	    J3DSys::sTexCoordScaleTable[mIndTexOrder[1].getMap() & 7]);
-	loadTexCoordScale(
-	    (GXTexCoordID)mIndTexOrder[2].getCoord(),
-	    J3DSys::sTexCoordScaleTable[mIndTexOrder[2].getMap() & 7]);
-	loadTexCoordScale(
-	    (GXTexCoordID)mIndTexOrder[3].getCoord(),
-	    J3DSys::sTexCoordScaleTable[mIndTexOrder[3].getMap() & 7]);
-	JRNSetIndTexOrder(indTexStageNum, (GXTexCoordID)mIndTexOrder[0].getCoord(),
-	                  (GXTexMapID)mIndTexOrder[0].getMap(),
-	                  (GXTexCoordID)mIndTexOrder[1].getCoord(),
-	                  (GXTexMapID)mIndTexOrder[1].getMap(),
-	                  (GXTexCoordID)mIndTexOrder[2].getCoord(),
-	                  (GXTexMapID)mIndTexOrder[2].getMap(),
-	                  (GXTexCoordID)mIndTexOrder[3].getCoord(),
-	                  (GXTexMapID)mIndTexOrder[3].getMap());
+
+	for (u8 i = 0; i < indTexStageNum; i += 1) {
+		mIndTexOrder[i].load(i);
+	}
+
 }
 
 void J3DPEBlockOpa::load()

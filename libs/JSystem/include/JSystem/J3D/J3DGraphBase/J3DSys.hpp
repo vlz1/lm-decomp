@@ -10,18 +10,12 @@ enum J3DErrType {
 	J3DErrType_OutOfMemory = 4,
 };
 
-struct J3DTexCoordScaleInfo {
-	/* 0x0 */ u16 field_0x00;
-	/* 0x2 */ u16 field_0x02;
-	/* 0x4 */ u16 field_0x04;
-	/* 0x6 */ u16 field_0x06;
-};
-
 class J3DTexture;
 class J3DMatPacket;
 class J3DMtxCalc;
 class J3DModel;
 class J3DDrawBuffer;
+struct J3DTexCoordScaleInfo;
 
 class J3DSys {
 public:

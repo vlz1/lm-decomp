@@ -331,4 +331,11 @@ struct J3DAlphaCompInfo {
 	/* 0x7 */ u8 field_0x7;
 };
 
+struct J3DTexCoordScaleInfo {
+	/* 0x0 */ u16 field_0x00;
+	/* 0x2 */ u16 field_0x02;
+	/* 0x4 */ u16 field_0x04;
+	/* 0x6 */ u16 field_0x06;
+};
+
 #endif /* J3DSTRUCT_H */

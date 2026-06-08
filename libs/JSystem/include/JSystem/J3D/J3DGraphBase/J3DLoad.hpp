@@ -21,7 +21,7 @@ void loadTevKColor(u8, const J3DGXColor& color);
 void loadTevKColorSel(u8, u8);
 void loadTevKAlphaSel(u8, u8);
 void loadTevStageNum(u8);
-void loadIndTevStageNum(u8);
+void loadIndTexStageNum(u8);
 void loadZCompLoc(u8 compLoc);
 void loadDither(u8);
 
