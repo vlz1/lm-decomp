@@ -73,7 +73,7 @@ BOOL Koga::ToolData::getValue(int entryIndex, const char* key, const char** valu
 	return TRUE;
 }
 
-BOOL Koga::ToolData::getValue(int entryIndex, const char* key, float* valueOut) const {
+BOOL Koga::ToolData::getValue(int entryIndex, const char* key, f32* valueOut) const {
     s32 itemIndex = searchItemInfo(key);
 	if (itemIndex < 0) {
 		return FALSE;
@@ -83,7 +83,7 @@ BOOL Koga::ToolData::getValue(int entryIndex, const char* key, float* valueOut) 
 	s32 dataOffset = mData->mDataOffset;
     const JMapItem* item = &mData->mItems[itemIndex];
 	const u8* valuePtr = reinterpret_cast<const u8*>(mData) + dataOffset + entryOffset + item->mOffsData;
-	*valueOut = *reinterpret_cast<const float*>(valuePtr);
+	*valueOut = *reinterpret_cast<const f32*>(valuePtr);
 	return TRUE;
 }
 
