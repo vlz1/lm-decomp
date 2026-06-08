@@ -33,6 +33,8 @@ public:
 	u8 getB() { return j3dTevSwapTableTable[mIdx * 4 + 2]; }
 	u8 getA() { return j3dTevSwapTableTable[mIdx * 4 + 3]; }
 
+	void load(u8);
+
 	u8 mIdx;
 };
 

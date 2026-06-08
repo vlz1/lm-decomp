@@ -6,6 +6,7 @@
 #include "JSystem/J3D/J3DGraphBase/Components/J3DGXColorS10.hpp"
 #include <JSystem/J3D/J3DGraphBase/Components/J3DIndTexMtx.hpp>
 #include <JSystem/J3D/J3DGraphBase/Components/J3DTexCoord.hpp>
+#include <JSystem/J3D/J3DGraphBase/Components/J3DTevSwapModeTable.hpp>
 #include <dolphin/gx.h>
 #include <types.h>
 
@@ -20,6 +21,7 @@ void loadTevColor(u8, const J3DGXColorS10& color);
 void loadTevKColor(u8, const J3DGXColor& color);
 void loadTevKColorSel(u8, u8);
 void loadTevKAlphaSel(u8, u8);
+void loadTevSwapModeTable(J3DTevSwapModeTable*, u8);
 void loadTevStageNum(u8);
 void loadIndTexStageNum(u8);
 void loadZCompLoc(u8 compLoc);

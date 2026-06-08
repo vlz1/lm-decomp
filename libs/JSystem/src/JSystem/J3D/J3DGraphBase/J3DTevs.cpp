@@ -222,7 +222,12 @@ void J3DTexMtx::calc()
 
 void J3DTexMtx::load(u8 id) const
 {
-    GXLoadTexMtxImm((MtxPtr)&mTotalMtx,  id * 3 + 0x1e, (GXTexMtxType)mProjection);
+    GXLoadTexMtxImm((MtxPtr)&mTotalMtx,  id * 3 + 30, (GXTexMtxType)mProjection);
+}
+
+void J3DTexMtx::load2(u8 id) const
+{
+	GXLoadTexMtxImm((MtxPtr)&mTotalMtx,  id * 3 + 64, (GXTexMtxType)mProjection);
 }
 
 void loadTexNo(u8 id, const u16& param_2)
@@ -289,6 +294,12 @@ void loadTevKColorSel(u8 id, u8 sel) {
 
 void loadTevKAlphaSel(u8 id, u8 sel) {
 	GXSetTevKAlphaSel((GXTevStageID)id, (GXTevKAlphaSel)sel);
+}
+
+void J3DTevSwapModeTable::load(u8 id) {
+
+	GXSetTevSwapModeTable((GXTevSwapSel)id, (GXTevColorChan)getR(),
+	(GXTevColorChan)getG(), (GXTevColorChan)getB(), (GXTevColorChan)getA());
 }
 
 void loadTevStageNum(u8 num) {

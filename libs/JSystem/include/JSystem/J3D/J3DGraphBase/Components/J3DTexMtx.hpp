@@ -27,6 +27,7 @@ public:
 	virtual ~J3DTexMtx() {};
 	virtual void calc();
 	virtual void load(u8) const;
+	virtual void load2(u8) const;
 };
 
 #endif

@@ -58,8 +58,6 @@ void J3DPEBlockFull::initialize()
 void J3DTevBlock1::initialize()
 {
 	mTexNo[0]                 = 0xFFFF;
-//	mTevStage[0].mTevColorReg = 0;
-	//mTevStage[0].mTevAlphaReg = 0xC1;
 }
 
 void J3DTevBlock2::initialize()
@@ -67,19 +65,14 @@ void J3DTevBlock2::initialize()
 	mTexNo[0] = 0xFFFF;
 	mTexNo[1] = 0xFFFF;
 
-	mTevStageNum = 1;
+	mTevStageNum = 0;
 
-//	mTevStage[0].mTevColorReg = 0xC0;
-	mTevStage[0].mTevAlphaReg = 0xC1;
-//	mTevStage[1].mTevColorReg = 0xC2;
-	mTevStage[1].mTevAlphaReg = 0xC3;
+	for (int i = 0; i < ARRAY_COUNT(mTevKColorSel); ++i)
+		mTevKColorSel[i] = 0xFF;
+	for (int i = 0; i < ARRAY_COUNT(mTevKAlphaSel); ++i)
+		mTevKAlphaSel[i] = 0xFF;
 
-	mTevKColorSel[0] = GX_TEV_KCSEL_K0;
-	mTevKColorSel[1] = GX_TEV_KCSEL_K0;
-	mTevKAlphaSel[0] = GX_TEV_KASEL_K0_A;
-	mTevKAlphaSel[1] = GX_TEV_KASEL_K0_A;
-
-	for (int i = 0; i < 3; ++i)
+	for (int i = 0; i < 4; ++i)
 		mTevColor[i] = j3dDefaultTevColor;
 
 	for (int i = 0; i < ARRAY_COUNT(mTevKColor); ++i)
@@ -92,19 +85,14 @@ void J3DTevBlock4::initialize()
 	mTexNo[2] = 0xFFFF;
 	mTexNo[3] = 0xFFFF;
 
-	mTevStageNum = 1;
+	mTevStageNum = 0;
 
-	//mTevStage[0].mTevColorReg = 0xFFFF;
-	mTevStage[0].mTevAlphaReg = 0xC1;
-	//mTevStage[1].mTevColorReg = 0xC2;
-	mTevStage[1].mTevAlphaReg = 0xC3;
-	//mTevStage[2].mTevColorReg = 0xC4;
-	mTevStage[2].mTevAlphaReg = 0xC5;
-	//mTevStage[3].mTevColorReg = 0xC6;
-	mTevStage[3].mTevAlphaReg = 0xC7;
+	for (int i = 0; i < ARRAY_COUNT(mTevKColorSel); ++i)
+		mTevKColorSel[i] = 0xFF;
+	for (int i = 0; i < ARRAY_COUNT(mTevKAlphaSel); ++i)
+		mTevKAlphaSel[i] = 0xFF;
 
-
-	for (int i = 0; i < 3; ++i)
+	for (int i = 0; i < 4; ++i)
 		mTevColor[i] = j3dDefaultTevColor;
 
 	for (int i = 0; i < ARRAY_COUNT(mTevKColor); ++i)
@@ -115,19 +103,19 @@ void J3DTevBlock16::initialize()
 	for (int i = 0; i < ARRAY_COUNT(mTexNo); ++i)
 		mTexNo[i] = 0xFFFF;
 
-	mTevStageNum = 1;
+	mTevStageNum = 0;
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 4; i++)
 		mTevColor[i] = j3dDefaultTevColor;
 
 	for (int i = 0; i < ARRAY_COUNT(mTevKColor); ++i)
 		mTevKColor[i] = j3dDefaultTevKColor;
 
 	for (int i = 0; i < ARRAY_COUNT(mTevKColorSel); ++i)
-		mTevKColorSel[i] = GX_TEV_KCSEL_K0;
+		mTevKColorSel[i] = 0xFF;
 
 	for (int i = 0; i < ARRAY_COUNT(mTevKAlphaSel); ++i)
-		mTevKAlphaSel[i] = GX_TEV_KASEL_K0_A;
+		mTevKAlphaSel[i] = 0xFF;
 
 }
 
@@ -312,21 +300,20 @@ void J3DTevBlock1::load()
 
 void J3DTevBlock2::load()
 {
-	u8 tevStageNum = mTevStageNum;
 
-	loadTevStageNum(tevStageNum);
+	loadTevStageNum(mTevStageNum);
+
+	s32 tevStageNum = mTevStageNum;
+
 	for (u8 i = 0; i < 2; i++) {
 		if (mTexNo[i] != 0xffff) {
 			loadTexNo(i, mTexNo[i]);
 		}
 	}
-	JRNISetTevOrder(GX_TEVSTAGE0,
-	                (GXTexCoordID)mTevOrder[0].getTevOrderInfo().mTexCoord,
-	                (GXTexMapID)mTevOrder[0].getTevOrderInfo().mTexMap,
-	                (GXChannelID)mTevOrder[0].getTevOrderInfo().mColorChan,
-	                (GXTexCoordID)mTevOrder[1].getTevOrderInfo().mTexCoord,
-	                (GXTexMapID)mTevOrder[1].getTevOrderInfo().mTexMap,
-	                (GXChannelID)mTevOrder[1].getTevOrderInfo().mColorChan);
+
+	for (u8 i = 0; i < tevStageNum; i++) {
+		mTevOrder[i].load(i);
+	}
 
 
 	for (u8 i = 0; i < 4; i++) {
@@ -338,6 +325,18 @@ void J3DTevBlock2::load()
 	for (u8 i = 0; i < tevStageNum; i++) {
 		mTevStage[i].load(i);
 		mIndTevStage[i].load(i);
+	}
+
+	for (u8 i = 0; i < tevStageNum; i++) {
+		if (mTevKColorSel[i] != 0xFF)
+			loadTevKColorSel(i, mTevKColorSel[i]);
+	}
+	for (u8 i = 0; i < tevStageNum; i++) {
+		if (mTevKAlphaSel[i] != 0xFF)
+			loadTevKAlphaSel(i, mTevKAlphaSel[i]);
+	}
+	for (u8 i = 0; i < 4; i++) {
+		mTevSwapModeTable[i].load(i);
 	}
 
 }
