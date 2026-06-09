@@ -27,7 +27,6 @@ bool MessageSender::fn_800EA684(MessageReceiver* param_1) {
     return false;
 }
 
-//https://decomp.me/scratch/pKs7k
 s32 MessageSender::vt_14(MessageCallback1 fn, int arg0) {
     s32 funcCount = _4.getCurrentReceiverCount();
     MessageReceiver** instance = (MessageReceiver**)_4.mReceivers;
