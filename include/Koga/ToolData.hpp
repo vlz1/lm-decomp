@@ -2,7 +2,7 @@
 #define TOOL_DATA_H_
 
 #include "types.h"
-#include "JSystem/JORReflexible.hpp"
+#include <JSystem/JORReflexible.hpp>
 
 // Very similar to https://github.com/doldecomp/sms/blob/main/include/MarioUtil/ToolData.hpp
 // But searchItemInfo() isn't inlined here, and there are more getValue*() variants.
