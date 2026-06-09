@@ -82,13 +82,13 @@ namespace Koga {
         mJmpMsgSender->fn_800EA900(getMapSectionData("EnemyInfo"));
         mJmpMsgSender->fn_800EA900(getMapSectionData("ObserverInfo"));
 
-        mJmpMsgSender->addListener(mEnMgr);
+        mJmpMsgSender->addReceiver(mEnMgr);
     }
 
     void MissionMode::vt_10() {
         fn_800BAD88("/col.mp", "/jmp/PolygonInfo");
         EnTypesManager::getManager()->loadParameters();
-        mJmpMsgSender->addListener(mEnGenMgr);
+        mJmpMsgSender->addReceiver(mEnGenMgr);
     }
 
     //https://decomp.me/scratch/BIOPB

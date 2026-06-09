@@ -32,7 +32,7 @@ public:
     /* 0x14 */ virtual s32 vt_14(MessageCallback1 fn, int arg0);
     /* 0x18 */ virtual s32 vt_18(MessageCallback2 fn, int arg0, int arg1);
 
-    bool addReceiver(MessageReceiver*);
+    bool addReceiver(void*);
 
 public:
     /* 0x4 */ unkSubClass _4;

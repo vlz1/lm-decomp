@@ -50,9 +50,9 @@ s32 MessageSender::vt_18(MessageCallback2 fn, int arg0, int arg1) {
     return false;
 }
 
-bool MessageSender::addReceiver(MessageReceiver* receiver) {
+bool MessageSender::addReceiver(void* receiver) {
     if (_4.getCurrentReceiverCount() < 12) {
-        _4.addReceiver(&receiver);
+        _4.addReceiver((MessageReceiver**)&receiver);
         return true;
     }
 
