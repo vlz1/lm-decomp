@@ -9,6 +9,7 @@ typedef bool (MessageReceiver::*MessageCallback2)(int arg0, int arg1);
 
 class MessageSender {
 public:
+
     class unkSubClass {
     public:
         unkSubClass();
@@ -24,6 +25,12 @@ public:
         /* 0x30 */ s32 mCurReceiverCount;
     };
 
+    // HUH? This is required to match the constructor and deconstructor of Message Sender btw
+    class unkSubClass2 : public unkSubClass {
+    public:
+        ~unkSubClass2() { }
+    };
+
     MessageSender();
 
     /* 0x08 */ virtual ~MessageSender();
@@ -35,7 +42,7 @@ public:
     bool addReceiver(void*);
 
 public:
-    /* 0x4 */ unkSubClass _4;
+    /* 0x4 */ unkSubClass2 _4;
 };
 
 class IMessageReceiver {
