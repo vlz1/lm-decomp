@@ -2,8 +2,6 @@
 
 dummy_float_data()
 
-
-
 MessageReciever::MessageReciever() {}
 
 MessageReciever::~MessageReciever() {}
@@ -14,8 +12,10 @@ s32 MessageReciever::vt_10() { return 0; }
 
 s32 MessageReciever::vt_14() { return 0; }
 
+//https://decomp.me/scratch/FS7IN
 MessageSender::MessageSender() { }
 
+//https://decomp.me/scratch/AvZyL
 MessageSender::~MessageSender() { }
 
 bool MessageSender::fn_800EA684(MessageSenderCallback* param_1) {
@@ -27,6 +27,7 @@ bool MessageSender::fn_800EA684(MessageSenderCallback* param_1) {
     return false;
 }
 
+//https://decomp.me/scratch/pKs7k
 s32 MessageSender::vt_14(MessageSenderCallback* param_1, int param_2) {
     s32 funcCount = _4.getCurrentFuncCount();
     MessageSenderCallback* func = _4.mFuncCallbacks[0];
