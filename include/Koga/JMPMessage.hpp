@@ -15,8 +15,8 @@ public:
     /* 0x08 */ virtual ~JmpMessageSender();
     /* 0x0C */ virtual void vt_0C();
     /* 0x10 */ virtual void vt_10();
-    /* 0x14 */ virtual s32 vt_14(MessageSenderCallback* param_1, int param_2);
-    /* 0x18 */ virtual void vt_18();
+    /* 0x14 */ virtual s32 vt_14(MessageCallback1 fn, int arg0);
+    /* 0x18 */ virtual s32 vt_18(MessageCallback2 fn, int arg0, int arg1);
 
     void fn_800EA900(Koga::ToolData* data);
 
