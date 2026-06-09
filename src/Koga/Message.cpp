@@ -18,15 +18,6 @@ MessageSender::MessageSender() { }
 //https://decomp.me/scratch/AvZyL
 MessageSender::~MessageSender() { }
 
-bool MessageSender::addReceiver(MessageReceiver* receiver) {
-    if (_4.getCurrentReceiverCount() < 12) {
-        _4.addReceiver(&receiver);
-        return true;
-    }
-
-    return false;
-}
-
 s32 MessageSender::vt_14(MessageCallback1 fn, int arg0) {
     s32 funcCount = _4.getCurrentReceiverCount();
     MessageReceiver** instance = (MessageReceiver**)_4.mReceivers;
@@ -56,6 +47,15 @@ s32 MessageSender::vt_18(MessageCallback2 fn, int arg0, int arg1) {
         ++instance;
         ++i;
     }
+    return false;
+}
+
+bool MessageSender::addReceiver(MessageReceiver* receiver) {
+    if (_4.getCurrentReceiverCount() < 12) {
+        _4.addReceiver(&receiver);
+        return true;
+    }
+
     return false;
 }
 
