@@ -13,6 +13,7 @@ namespace Koga {
         static void newManager();
         static EnTypesManager* getManager() { return sManager; }
 
+        void loadParameters();
     public:
         /* 0x04 */  s32** _4;  //TODO: This is an array of TParams
 

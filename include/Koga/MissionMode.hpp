@@ -27,7 +27,11 @@ namespace Koga {
 
         static MissionMode* create();
 
+        void fn_800BAD88(const char* file, const char* path);
+
         ToolData* getMapSectionData(const char* name);
+
+
     public:
         /* 0x04 */ EnTypesManager* mEnTypesMgr;
         /* 0x08 */ EnManager* mEnMgr;

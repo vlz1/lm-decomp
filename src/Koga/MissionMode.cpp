@@ -85,6 +85,13 @@ namespace Koga {
         mJmpMsgSender->addListener(mEnMgr);
     }
 
+    void MissionMode::vt_10() {
+        fn_800BAD88("/col.mp", "/jmp/PolygonInfo");
+        EnTypesManager::getManager()->loadParameters();
+        mJmpMsgSender->addListener(mEnGenMgr);
+    }
+
+    //https://decomp.me/scratch/BIOPB
     ToolData* MissionMode::getMapSectionData(const char* name) {
         ToolData jmpToolData;
         jmpToolData.attach((ToolData::JMapData*)mMapArchive->getResource('JMP ', name));
