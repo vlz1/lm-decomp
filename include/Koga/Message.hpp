@@ -3,21 +3,23 @@
 
 #include "types.h"
 
+class MessageReceiver;
+typedef BOOL (MessageReceiver::*MessageCallback1)(int arg0);
+typedef BOOL (MessageReceiver::*MessageCallback2)(int arg0, int arg1);
+
 class MessageSender {
 public:
-    typedef bool (MessageSender::*MessageSenderCallback)(int val);
-
     class unkSubClass {
     public:
         unkSubClass();
         ~unkSubClass();
 
-        void addSenderCallback(MessageSenderCallback**);
-        s32 getCurrentFuncCount() const { return mCurFuncCount; }
-        MessageSenderCallback getFuncCallback(s32 idx) const { return *mFuncCallbacks[idx]; }
+        void addReceiver(MessageReceiver**);
+        s32 getCurrentReceiverCount() const { return mCurReceiverCount; }
+        MessageReceiver* getReceiver(s32 idx) const { return mReceivers[idx]; }
 
-        /* 0x00 */ MessageSenderCallback* mFuncCallbacks[12];
-        /* 0x30 */ s32 mCurFuncCount;
+        /* 0x00 */ MessageReceiver* mReceivers[12];
+        /* 0x30 */ s32 mCurReceiverCount;
     };
 
     MessageSender();
@@ -25,32 +27,32 @@ public:
     /* 0x08 */ virtual ~MessageSender();
     /* 0x0C */ virtual void vt_0C() = 0;
     /* 0x10 */ virtual void vt_10() = 0;
-    /* 0x14 */ virtual s32 vt_14(MessageSenderCallback* param_1, int param_2);
-    /* 0x18 */ virtual void vt_18();
+    /* 0x14 */ virtual s32 vt_14(MessageCallback1 fn, int arg0);
+    /* 0x18 */ virtual s32 vt_18(MessageCallback2 fn, int arg0, int arg1);
 
-    bool fn_800EA684(MessageSenderCallback*);
+    bool fn_800EA684(MessageReceiver*);
 
 public:
     /* 0x4 */ unkSubClass _4;
 };
 
-class IMessageReciever {
+class IMessageReceiver {
 public:
     //Seems to be inlined where its used and doesn't show up in the final binary
-    /* 0x08 */ inline virtual ~IMessageReciever() { }
+    /* 0x08 */ inline virtual ~IMessageReceiver() { }
     /* 0x0C */ virtual s32 vt_0C() = 0;
-    /* 0x10 */ virtual s32 vt_10() = 0;
-    /* 0x14 */ virtual s32 vt_14() = 0;
+    /* 0x10 */ virtual s32 vt_10(int arg0) = 0;
+    /* 0x14 */ virtual s32 vt_14(int arg0, int arg1) = 0;
 };
 
-class MessageReciever : public IMessageReciever {
+class MessageReceiver : public IMessageReceiver {
 public:
-    MessageReciever();
+    MessageReceiver();
 
-    /* 0x08 */ virtual ~MessageReciever();
+    /* 0x08 */ virtual ~MessageReceiver();
     /* 0x0C */ virtual s32 vt_0C();
-    /* 0x10 */ virtual s32 vt_10();
-    /* 0x14 */ virtual s32 vt_14();
+    /* 0x10 */ virtual s32 vt_10(int arg0);
+    /* 0x14 */ virtual s32 vt_14(int arg0, int arg1);
 };
 
 #endif

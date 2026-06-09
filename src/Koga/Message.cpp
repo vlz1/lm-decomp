@@ -2,15 +2,15 @@
 
 dummy_float_data()
 
-MessageReciever::MessageReciever() {}
+MessageReceiver::MessageReceiver() {}
 
-MessageReciever::~MessageReciever() {}
+MessageReceiver::~MessageReceiver() {}
 
-s32 MessageReciever::vt_0C() { return 0; }
+s32 MessageReceiver::vt_0C() { return 0; }
 
-s32 MessageReciever::vt_10() { return 0; }
+s32 MessageReceiver::vt_10(int arg0) { return 0; }
 
-s32 MessageReciever::vt_14() { return 0; }
+s32 MessageReceiver::vt_14(int arg0, int arg1) { return 0; }
 
 //https://decomp.me/scratch/FS7IN
 MessageSender::MessageSender() { }
@@ -18,9 +18,9 @@ MessageSender::MessageSender() { }
 //https://decomp.me/scratch/AvZyL
 MessageSender::~MessageSender() { }
 
-bool MessageSender::fn_800EA684(MessageSenderCallback* param_1) {
-    if (_4.getCurrentFuncCount() < 12) {
-        _4.addSenderCallback(&param_1);
+bool MessageSender::fn_800EA684(MessageReceiver* param_1) {
+    if (_4.getCurrentReceiverCount() < 12) {
+        _4.addReceiver(&param_1);
         return true;
     }
 
@@ -28,26 +28,45 @@ bool MessageSender::fn_800EA684(MessageSenderCallback* param_1) {
 }
 
 //https://decomp.me/scratch/pKs7k
-s32 MessageSender::vt_14(MessageSenderCallback* param_1, int param_2) {
-    s32 funcCount = _4.getCurrentFuncCount();
-    MessageSenderCallback* func = _4.mFuncCallbacks[0];
+s32 MessageSender::vt_14(MessageCallback1 fn, int arg0) {
+    s32 funcCount = _4.getCurrentReceiverCount();
+    MessageReceiver** instance = (MessageReceiver**)_4.mReceivers;
+    s32 i = 0;
+    while (i < funcCount) {
+        u32 result = (*instance->*fn)(arg0);
+        u32 value = result & 0xFF;
+        if (value != 0) {
+            return true;
+        }
+        ++instance;
+        ++i;
+    }
+    return false;
+}
 
-    for (s32 i = 0; i < funcCount; i++) {
-         if ((this->**func)(param_2)) return true;
-        //if (_4.getFuncCallback(i)) return true;
-        //func = ((func) + 1;
-        func = func + 1;
+s32 MessageSender::vt_18(MessageCallback2 fn, int arg0, int arg1) {
+    s32 funcCount = _4.getCurrentReceiverCount();
+    MessageReceiver** instance = (MessageReceiver**)_4.mReceivers;
+    s32 i = 0;
+    while (i < funcCount) {
+        u32 result = (*instance->*fn)(arg0, arg1);
+        u32 value = result & 0xFF;
+        if (value != 0) {
+            return true;
+        }
+        ++instance;
+        ++i;
     }
     return false;
 }
 
 MessageSender::unkSubClass::unkSubClass()
 {
-    mCurFuncCount = 0;
+    mCurReceiverCount = 0;
 }
 
 MessageSender::unkSubClass::~unkSubClass() {}
 
-void MessageSender::unkSubClass::addSenderCallback(MessageSenderCallback** newFunc) {
-    mFuncCallbacks[mCurFuncCount++] = *newFunc;
+void MessageSender::unkSubClass::addReceiver(MessageReceiver** receiver) {
+    mReceivers[mCurReceiverCount++] = *receiver;
 }
