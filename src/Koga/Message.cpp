@@ -19,34 +19,28 @@ MessageSender::MessageSender() { }
 MessageSender::~MessageSender() { }
 
 s32 MessageSender::vt_14(MessageCallback1 fn, int arg0) {
-    s32 funcCount = _4.getCurrentReceiverCount();
-    MessageReceiver** instance = (MessageReceiver**)_4.mReceivers;
-    s32 i = 0;
-    while (i < funcCount) {
-        u32 result = (*instance->*fn)(arg0);
-        u32 value = result & 0xFF;
-        if (value != 0) {
+    s32 receiverCount = _4.getCurrentReceiverCount();
+    MessageReceiver** instance = _4.getBaseReciever();
+
+    for (s32 i = 0; i < receiverCount; ++instance, ++i) {
+        if ((*instance->*fn)(arg0) != 0) {
             return true;
         }
-        ++instance;
-        ++i;
     }
+
     return false;
 }
 
 s32 MessageSender::vt_18(MessageCallback2 fn, int arg0, int arg1) {
-    s32 funcCount = _4.getCurrentReceiverCount();
-    MessageReceiver** instance = (MessageReceiver**)_4.mReceivers;
-    s32 i = 0;
-    while (i < funcCount) {
-        u32 result = (*instance->*fn)(arg0, arg1);
-        u32 value = result & 0xFF;
-        if (value != 0) {
+    s32 receiverCount = _4.getCurrentReceiverCount();
+    MessageReceiver** instance = _4.getBaseReciever();
+
+    for (s32 i = 0; i < receiverCount; ++instance, ++i) {
+        if ((*instance->*fn)(arg0, arg1) != 0) {
             return true;
         }
-        ++instance;
-        ++i;
     }
+
     return false;
 }
 

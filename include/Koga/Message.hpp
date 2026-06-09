@@ -17,6 +17,8 @@ public:
         void addReceiver(MessageReceiver**);
         s32 getCurrentReceiverCount() const { return mCurReceiverCount; }
         MessageReceiver* getReceiver(s32 idx) const { return mReceivers[idx]; }
+        //Maybe fabricated? Required for matching stack
+        MessageReceiver** getBaseReciever() { return mReceivers; }
 
         /* 0x00 */ MessageReceiver* mReceivers[12];
         /* 0x30 */ s32 mCurReceiverCount;
