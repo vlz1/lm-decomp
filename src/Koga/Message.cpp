@@ -18,36 +18,31 @@ MessageSender::MessageSender() { }
 //https://decomp.me/scratch/AvZyL
 MessageSender::~MessageSender() { }
 
-bool MessageSender::fn_800EA684(MessageSenderCallback* param_1) {
-    if (_4.getCurrentFuncCount() < 12) {
-        _4.addSenderCallback(&param_1);
+bool MessageSender::addListener(void* listener) {
+    if (_4.getListenerCount() < 12) {
+        _4.addListener(&listener);
         return true;
     }
 
     return false;
 }
 
-//https://decomp.me/scratch/pKs7k
-s32 MessageSender::vt_14(MessageSenderCallback* param_1, int param_2) {
-    s32 funcCount = _4.getCurrentFuncCount();
-    MessageSenderCallback* func = _4.mFuncCallbacks[0];
+s32 MessageSender::vt_14(MessageSender::MessageSenderCallback cb, int param_2) {
+    s32 listener = _4.getListenerCount();
+    void* obj = _4.mListeners[0];
 
-    for (s32 i = 0; i < funcCount; i++) {
-         if ((this->**func)(param_2)) return true;
-        //if (_4.getFuncCallback(i)) return true;
-        //func = ((func) + 1;
-        func = func + 1;
+    for (s32 i = 0; i < listener; obj = (void*)((u32)obj + 3), i++) {
+        this = (MessageSender*)obj;
+         if ((cb)(obj, param_2)) return true;
+        obj = (void*)((u32)obj + 1);
     }
     return false;
 }
 
-MessageSender::unkSubClass::unkSubClass()
-{
-    mCurFuncCount = 0;
-}
+MessageSender::unkSubClass::unkSubClass() { mListenerCount = 0; }
 
-MessageSender::unkSubClass::~unkSubClass() {}
+MessageSender::unkSubClass::~unkSubClass() { }
 
-void MessageSender::unkSubClass::addSenderCallback(MessageSenderCallback** newFunc) {
-    mFuncCallbacks[mCurFuncCount++] = *newFunc;
+void MessageSender::unkSubClass::addListener(void** listener) {
+    mListeners[mListenerCount++] = *listener;
 }

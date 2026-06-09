@@ -3,6 +3,10 @@
 
 #include "Koga/Message.hpp"
 
+namespace Koga {
+    class ToolData;
+}
+
 class JmpMessageSender : public MessageSender {
 public:
 
@@ -14,7 +18,7 @@ public:
     /* 0x14 */ virtual s32 vt_14(MessageSenderCallback* param_1, int param_2);
     /* 0x18 */ virtual void vt_18();
 
-    bool fn_800EA684(MessageSenderCallback*);
+    void fn_800EA900(Koga::ToolData* data);
 
 public:
     /* 0x38 */ u8 _38[0xDF0 - sizeof(MessageSender)];

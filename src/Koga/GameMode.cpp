@@ -7,7 +7,7 @@ namespace Koga {
     GameMode::GameMode() { }
     GameMode::~GameMode() { }
 
-    void GameMode::vt_C() { }
+    void GameMode::init() { }
     void GameMode::vt_10() { }
     void GameMode::vt_14() { }
     void GameMode::vt_18() { }

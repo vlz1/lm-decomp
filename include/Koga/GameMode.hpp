@@ -28,7 +28,7 @@ namespace Koga {
         // It does destructor-like things when overridden in Koga::MissionMode.
         /* 0x08 */ virtual void vt_8() = 0;
 
-        /* 0x0C */ virtual void vt_C();
+        /* 0x0C */ virtual void init();
         /* 0x10 */ virtual void vt_10();
         /* 0x14 */ virtual void vt_14();
         /* 0x18 */ virtual void vt_18();

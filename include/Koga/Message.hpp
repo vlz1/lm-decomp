@@ -5,19 +5,18 @@
 
 class MessageSender {
 public:
-    typedef bool (MessageSender::*MessageSenderCallback)(int val);
+    typedef bool (*MessageSenderCallback)(void*, int );
 
     class unkSubClass {
     public:
         unkSubClass();
         ~unkSubClass();
 
-        void addSenderCallback(MessageSenderCallback**);
-        s32 getCurrentFuncCount() const { return mCurFuncCount; }
-        MessageSenderCallback getFuncCallback(s32 idx) const { return *mFuncCallbacks[idx]; }
+        void addListener(void**);
+        s32 getListenerCount() const { return mListenerCount; }
 
-        /* 0x00 */ MessageSenderCallback* mFuncCallbacks[12];
-        /* 0x30 */ s32 mCurFuncCount;
+        /* 0x00 */ void* mListeners[12];
+        /* 0x30 */ s32 mListenerCount;
     };
 
     MessageSender();
@@ -25,10 +24,10 @@ public:
     /* 0x08 */ virtual ~MessageSender();
     /* 0x0C */ virtual void vt_0C() = 0;
     /* 0x10 */ virtual void vt_10() = 0;
-    /* 0x14 */ virtual s32 vt_14(MessageSenderCallback* param_1, int param_2);
+    /* 0x14 */ virtual s32 vt_14(MessageSenderCallback param_1, int param_2);
     /* 0x18 */ virtual void vt_18();
 
-    bool fn_800EA684(MessageSenderCallback*);
+    bool addListener(void*);
 
 public:
     /* 0x4 */ unkSubClass _4;

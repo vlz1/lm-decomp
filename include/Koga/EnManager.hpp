@@ -4,6 +4,8 @@
 #include "types.h"
 #include <JSystem/JORReflexible.hpp>
 
+class JKRArchive;
+
 namespace Koga {
     class EnManager : public JORReflexible {
     public:
@@ -12,6 +14,8 @@ namespace Koga {
         /* 0x0C */ virtual void vt_C();
         /* 0x10 */ virtual void vt_10();
         /* 0x14 */ virtual void vt_14();
+
+        void load(JKRArchive* archive);
 
     public:
         /* 0x04 */  u8 _4[0xE44]; //For matching size, will replace later
