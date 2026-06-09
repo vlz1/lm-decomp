@@ -32,7 +32,7 @@ Koga/CharacterEventObserver.cpp:
 	.sdata      start:0x804D3F68 end:0x804D3F78
 
 Koga/Message.cpp:
-	.text       start:0x800EA454 end:0x800EA684
+	.text       start:0x800EA548 end:0x800EA820
 	.data       start:0x803640D8 end:0x80364180
 	.sdata      start:0x804D3F78 end:0x804D3F90
 
