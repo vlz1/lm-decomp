@@ -4,13 +4,11 @@
 #include "types.h"
 
 class MessageReceiver;
-typedef BOOL (MessageReceiver::*MessageCallback1)(int arg0);
-typedef BOOL (MessageReceiver::*MessageCallback2)(int arg0, int arg1);
+typedef bool (MessageReceiver::*MessageCallback1)(int arg0);
+typedef bool (MessageReceiver::*MessageCallback2)(int arg0, int arg1);
 
 class MessageSender {
 public:
-    typedef bool (*MessageSenderCallback)(void*, int );
-
     class unkSubClass {
     public:
         unkSubClass();
