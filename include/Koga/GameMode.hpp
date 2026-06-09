@@ -15,6 +15,7 @@ namespace Koga {
         GameModeBase();
         inline ~GameModeBase() { sGameModeCount -= 1; }
 
+        inline static int getGameModeCount() { return sGameModeCount; }
         static void incrementGameModeCount();
     };
 

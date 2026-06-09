@@ -23,6 +23,7 @@ Koga/GameMode.cpp:
 
 Koga/MissionMode.cpp:
 	.text       start:0x800BA8C8 end:0x800BB1A4
+	.data       start:0x80359E48 end:0x80359F98
 
 Koga/ToolData.cpp:
 	.text       start:0x800BC9FC end:0x800BCEF8
