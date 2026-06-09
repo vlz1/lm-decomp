@@ -90,6 +90,7 @@ JSystem/J3D/J3DGraphBase/J3DTransform.cpp:
 JSystem/J3D/J3DGraphBase/J3DPacket.cpp:
 	.text       start:0x801B73CC end:0x801B79FC
 	.data       start:0x80392050 end:0x80392168
+	.sdata      start:0x804D7A10 end:0x804D7A38
 	.sbss       start:0x804D94D0 end:0x804D94D8
 
 JSystem/J3D/J3DGraphBase/J3DShape.cpp:
@@ -138,6 +139,12 @@ JSystem/J3D/J3DGraphAnimator/J3DModel.cpp:
 	.text       start:0x801C6A6C end:0x801C7D40
 	.data       start:0x80393210 end:0x80393290
 	.sdata      start:0x804D7BC0 end:0x804D7BD0
+
+JSystem/J3D/J3DGraphAnimator/J3DAnimation.cpp:
+	.text       start:0x801C7D40 end:0x801CA7A4
+	.data       start:0x80393290 end:0x80393478
+	.sdata      start:0x804D7BD0 end:0x804D7C20
+	.sdata2     start:0x804DD5E0 end:0x804DD604
 
 JSystem/JKernel/JKRHeap.cpp:
 	.text       start:0x801CDFBC end:0x801CE9DC

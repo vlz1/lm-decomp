@@ -435,6 +435,7 @@ config.libs = [
         Object(Equivalent, "JSystem/J3D/J3DGraphLoader/J3DAnmLoader.cpp"),
 
         Object(NonMatching, "JSystem/J3D/J3DGraphAnimator/J3DModel.cpp"),
+        Object(NonMatching, "JSystem/J3D/J3DGraphAnimator/J3DAnimation.cpp"),
 
         # Kernel
         Object(Matching, "JSystem/JKernel/JKRHeap.cpp"),
