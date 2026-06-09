@@ -746,7 +746,7 @@ void J3DAnmTevRegKey::getTevColorReg(u16 idx, GXColorS10* dst) const
 			dst->r = 0;
 			break;
 		case 1:
-			dst->r = mAnmCRegDataR[mAnmCRegKeyTable[idx].mRTable.mOffset];
+			dst->r = (u8)mAnmCRegDataR[mAnmCRegKeyTable[idx].mRTable.mOffset];
 			break;
 		default:
 			f32 v = J3DGetKeyFrameInterpolation<s16>(
@@ -767,7 +767,7 @@ void J3DAnmTevRegKey::getTevColorReg(u16 idx, GXColorS10* dst) const
 			dst->g = 0;
 			break;
 		case 1:
-			dst->g = mAnmCRegDataG[mAnmCRegKeyTable[idx].mGTable.mOffset];
+			dst->g = (u8)mAnmCRegDataG[mAnmCRegKeyTable[idx].mGTable.mOffset];
 			break;
 		default:
 			f32 v = J3DGetKeyFrameInterpolation<s16>(
@@ -788,7 +788,7 @@ void J3DAnmTevRegKey::getTevColorReg(u16 idx, GXColorS10* dst) const
 			dst->b = 0;
 			break;
 		case 1:
-			dst->b = mAnmCRegDataB[mAnmCRegKeyTable[idx].mBTable.mOffset];
+			dst->b = (u8)mAnmCRegDataB[mAnmCRegKeyTable[idx].mBTable.mOffset];
 			break;
 		default:
 			f32 v = J3DGetKeyFrameInterpolation<s16>(
@@ -809,7 +809,7 @@ void J3DAnmTevRegKey::getTevColorReg(u16 idx, GXColorS10* dst) const
 			dst->a = 0;
 			break;
 		case 1:
-			dst->a = mAnmCRegDataA[mAnmCRegKeyTable[idx].mATable.mOffset];
+			dst->a = (u8)mAnmCRegDataA[mAnmCRegKeyTable[idx].mATable.mOffset];
 			break;
 		default:
 			f32 v = J3DGetKeyFrameInterpolation<s16>(
