@@ -11,6 +11,7 @@ namespace Koga {
         /* 0x08 */ virtual ~EnTypesManager();
 
         static void newManager();
+        static void deleteManager();
         static EnTypesManager* getManager() { return sManager; }
 
         void loadParameters();

@@ -16,6 +16,7 @@ namespace Koga {
         /* 0x14 */ virtual void vt_14();
 
         void load(JKRArchive* archive);
+        void fn_800E5AE8();
 
     public:
         /* 0x04 */  u8 _4[0xE44]; //For matching size, will replace later

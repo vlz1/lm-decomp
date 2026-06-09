@@ -42,6 +42,24 @@ namespace Koga {
         init();
     }
 
+    inline Koga::MissionMode::~MissionMode() {
+        mMapArchive->unmount();
+        SimpleModeler::getCurSimpleModeler()->deleteSimpleModeler();
+        delete mEnGenMgr;
+        delete mJmpMsgSender;
+        delete mCharColMgr;
+        delete[] mMapData;
+        delete mEnMgr;
+        EnTypesManager::deleteManager();
+        MapColl::deleteMapColl();
+        sMissionMode = 0;
+    }
+
+    //https://decomp.me/scratch/A4A11
+    void Koga::MissionMode::vt_8() {
+        delete this;
+    }
+
     MissionMode* Koga::MissionMode::create() {
         // If we are on the TitleScreen
         if (Koga::GameModeBase::getGameModeCount() == 0)
@@ -86,15 +104,58 @@ namespace Koga {
     }
 
     void MissionMode::vt_10() {
-        fn_800BAD88("/col.mp", "/jmp/PolygonInfo");
+        loadCollisionInfo("/col.mp", "/jmp/PolygonInfo");
         EnTypesManager::getManager()->loadParameters();
         mJmpMsgSender->addReceiver(mEnGenMgr);
     }
 
+    void MissionMode::loadCollisionInfo(const char* pFile, const char* pPath) {
+        MapColl* curColl = MapColl::getCurMapColl();
+
+        curColl->load(mMapArchive->getResource(pFile), mMapArchive->getResource(pPath));
+    }
+
+    void MissionMode::loadEnemyInfo(Mission mission) {
+        switch (mission) {
+        case MISSION_BLACKOUT:
+            mJmpMsgSender->fn_800EA958(getMapSectionData("TeidenEnemyInfo"));
+            mJmpMsgSender->fn_800EA958(getMapSectionData("TeidenCharacterInfo"));
+            mJmpMsgSender->fn_800EA958(getMapSectionData("TeidenObserverInfo"));
+            mJmpMsgSender->fn_800EA958(getMapSectionData("TeidenKeyInfo"));
+
+            mJmpMsgSender->fn_800EA900(getMapSectionData("EnemyInfo"));
+            mJmpMsgSender->fn_800EA900(getMapSectionData("CharacterInfo"));
+            mJmpMsgSender->fn_800EA900(getMapSectionData("ObserverInfo"));
+            mJmpMsgSender->fn_800EA900(getMapSectionData("KeyInfo"));
+            break;
+        case MISSION_DEFAULT:
+            mJmpMsgSender->fn_800EA958(getMapSectionData("EnemyInfo"));
+            mJmpMsgSender->fn_800EA958(getMapSectionData("CharacterInfo"));
+            mJmpMsgSender->fn_800EA958(getMapSectionData("ObserverInfo"));
+            mJmpMsgSender->fn_800EA958(getMapSectionData("KeyInfo"));
+
+            mJmpMsgSender->fn_800EA900(getMapSectionData("TeidenEnemyInfo"));
+            mJmpMsgSender->fn_800EA900(getMapSectionData("TeidenCharacterInfo"));
+            mJmpMsgSender->fn_800EA900(getMapSectionData("TeidenObserverInfo"));
+            mJmpMsgSender->fn_800EA900(getMapSectionData("TeidenKeyInfo"));
+            break;
+        }
+        mJmpMsgSender->vt_10();
+    }
+
+    void MissionMode::addJmpReceiver(void* pReceiver) {
+        mJmpMsgSender->addReceiver(pReceiver);
+    }
+
+    void* MissionMode::getMapArchiveResource(const char* name, u32 type) {
+        return mMapArchive->getResource(type, name);
+    }
+
+
     //https://decomp.me/scratch/BIOPB
-    ToolData* MissionMode::getMapSectionData(const char* name) {
+    ToolData* MissionMode::getMapSectionData(const char* pName) {
         ToolData jmpToolData;
-        jmpToolData.attach((ToolData::JMapData*)mMapArchive->getResource('JMP ', name));
+        jmpToolData.attach((ToolData::JMapData*)mMapArchive->getResource('JMP ', pName));
         ToolData* mapData = &mMapData[0];
         ToolData* maxData = &mMapData[mJmpCount];
 
@@ -104,5 +165,16 @@ namespace Koga {
             return nullptr;
 
         return mapData;
+    }
+
+    void MissionMode::vt_14() {
+        mEnMgr->fn_800E5AE8();
+        mJmpMsgSender->vt_0C();
+        mEnGenMgr->fn_800C2F44();
+        MapColl::getCurMapColl()->fn_800BC898();
+    }
+
+    void MissionMode::vt_18() {
+        SimpleModeler::getCurSimpleModeler()->fn_800BB778();
     }
 }

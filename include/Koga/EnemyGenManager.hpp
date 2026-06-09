@@ -13,6 +13,7 @@ namespace Koga {
         /* 0x10 */ virtual void vt_10();
         /* 0x14 */ virtual void vt_14();
 
+        void fn_800C2F44();
     public:
         /* 0x4 */  s32** _4; //An array, probably of Enemies
         /* 0x8 */ u8 _8;

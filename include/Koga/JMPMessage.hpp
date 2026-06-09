@@ -19,6 +19,7 @@ public:
     /* 0x18 */ virtual s32 vt_18(MessageCallback2 fn, int arg0, int arg1);
 
     void fn_800EA900(Koga::ToolData* data);
+    void fn_800EA958(Koga::ToolData* data);
 
 public:
     /* 0x38 */ u8 _38[0xDF0 - sizeof(MessageSender)];

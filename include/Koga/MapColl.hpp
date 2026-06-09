@@ -11,6 +11,13 @@ namespace Koga {
         /* 0x08 */ virtual ~MapColl();
 
         static void newMapColl();
+        static void deleteMapColl();
+        static MapColl* getCurMapColl() { return sCurMapColl; }
+
+        void load(void*, void*);
+
+        // Is stubbed out
+        void fn_800BC898();
 
     public:
         /* 0x04 */  s32 _4;

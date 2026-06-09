@@ -1,6 +1,7 @@
 #ifndef MISSION_MODE_H_
 #define MISSION_MODE_H_
 
+#include "JSystem/JORReflexible.hpp"
 #include "Koga/GameMode.hpp"
 
 class CharacterColManager;
@@ -13,8 +14,14 @@ namespace Koga {
     class EnemyGenManager;
     class ToolData;
 
-    class MissionMode : public GameMode {
+    class MissionMode : public GameMode, public JORReflexible {
     public:
+        /* TODO: Maybe change the name? */
+        enum Mission {
+            MISSION_BLACKOUT,
+            MISSION_DEFAULT,
+        };
+
         MissionMode();
         ~MissionMode();
 
@@ -27,9 +34,12 @@ namespace Koga {
 
         static MissionMode* create();
 
-        void fn_800BAD88(const char* file, const char* path);
+        void loadCollisionInfo(const char* pFile, const char* pPath);
+        void loadEnemyInfo(Mission mission);
+        void addJmpReceiver(void* pReceiver);
+        void* getMapArchiveResource(const char* name, u32 type);
 
-        ToolData* getMapSectionData(const char* name);
+        ToolData* getMapSectionData(const char* pName);
 
 
     public:
