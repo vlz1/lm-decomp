@@ -3,6 +3,9 @@
 
 #include "types.h"
 
+// TODO: This may not actually exist (ordering and the weird inline stuff).
+// I want it to exist since if it doesn't then that means Koga wrote like 50 different variants of something that could've been written inside of a template.
+// It also could exist because of the fact classes like MessageRecieverArray need to inherit something else in order to matchs
 namespace Koga {
     template <typename T, s32 S>
     class Array {
