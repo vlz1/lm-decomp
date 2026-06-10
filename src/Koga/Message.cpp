@@ -19,8 +19,8 @@ MessageSender::MessageSender() { }
 MessageSender::~MessageSender() { }
 
 s32 MessageSender::vt_14(MessageCallback1 fn, int arg0) {
-    s32 receiverCount = _4.getCurrentReceiverCount();
-    MessageReceiver** instance = _4.getBaseReciever();
+    s32 receiverCount = _4.getArraySize();
+    MessageReceiver** instance = _4.getArray();
 
     for (s32 i = 0; i < receiverCount; ++instance, ++i) {
         if ((*instance->*fn)(arg0) != 0) {
@@ -32,8 +32,8 @@ s32 MessageSender::vt_14(MessageCallback1 fn, int arg0) {
 }
 
 s32 MessageSender::vt_18(MessageCallback2 fn, int arg0, int arg1) {
-    s32 receiverCount = _4.getCurrentReceiverCount();
-    MessageReceiver** instance = _4.getBaseReciever();
+    s32 receiverCount = _4.getArraySize();
+    MessageReceiver** instance = _4.getArray();
 
     for (s32 i = 0; i < receiverCount; ++instance, ++i) {
         if ((*instance->*fn)(arg0, arg1) != 0) {
@@ -45,18 +45,10 @@ s32 MessageSender::vt_18(MessageCallback2 fn, int arg0, int arg1) {
 }
 
 bool MessageSender::addReceiver(void* receiver) {
-    if (_4.getCurrentReceiverCount() < 12) {
-        _4.addReceiver((MessageReceiver**)&receiver);
+    if (_4.getArraySize() < 12) {
+        _4.add((MessageReceiver**)&receiver);
         return true;
     }
 
     return false;
-}
-
-MessageSender::unkSubClass::unkSubClass() { mCurReceiverCount = 0; }
-
-MessageSender::unkSubClass::~unkSubClass() { }
-
-void MessageSender::unkSubClass::addReceiver(MessageReceiver** receiver) {
-    mReceivers[mCurReceiverCount++] = *receiver;
 }

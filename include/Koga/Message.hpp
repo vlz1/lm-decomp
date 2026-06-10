@@ -1,36 +1,22 @@
 #ifndef MESSAGE_H_
 #define MESSAGE_H_
 
+#include "Koga/Array.hpp"
 #include "types.h"
 
 class MessageReceiver;
 typedef bool (MessageReceiver::*MessageCallback1)(int arg0);
 typedef bool (MessageReceiver::*MessageCallback2)(int arg0, int arg1);
 
+class MessageRecieverArray : public Koga::Array<MessageReceiver*, 12> {
+public:
+    MessageRecieverArray() { }
+    ~MessageRecieverArray() { }
+    void add(MessageReceiver** member) { Koga::Array<MessageReceiver*, 12>::add(member); }
+};
+
 class MessageSender {
 public:
-
-    class unkSubClass {
-    public:
-        unkSubClass();
-        ~unkSubClass();
-
-        void addReceiver(MessageReceiver**);
-        s32 getCurrentReceiverCount() const { return mCurReceiverCount; }
-        MessageReceiver* getReceiver(s32 idx) const { return mReceivers[idx]; }
-        //Maybe fabricated? Required for matching stack
-        MessageReceiver** getBaseReciever() { return mReceivers; }
-
-        /* 0x00 */ MessageReceiver* mReceivers[12];
-        /* 0x30 */ s32 mCurReceiverCount;
-    };
-
-    // HUH? This is required to match the constructor and deconstructor of Message Sender btw
-    class unkSubClass2 : public unkSubClass {
-    public:
-        ~unkSubClass2() { }
-    };
-
     MessageSender();
 
     /* 0x08 */ virtual ~MessageSender();
@@ -42,7 +28,7 @@ public:
     bool addReceiver(void*);
 
 public:
-    /* 0x4 */ unkSubClass2 _4;
+    /* 0x4 */ MessageRecieverArray _4;
 };
 
 class IMessageReceiver {

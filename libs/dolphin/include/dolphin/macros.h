@@ -58,5 +58,4 @@
 #define FORCE_DONT_INLINE REPEAT((void)0;, 10)
 /*end of rip */
 
-
 #endif // _H_MACROS_

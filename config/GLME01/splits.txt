@@ -42,6 +42,11 @@ Koga/Message.cpp:
 	.data       start:0x803640D8 end:0x80364180
 	.sdata      start:0x804D3F78 end:0x804D3F90
 
+Koga/JmpMessage.cpp:
+	.text       start:0x800EA820 end:0x800EBD50
+	.data       start:0x80364180 end:0x80364258
+	.sdata      start:0x804D3F90 end:0x804D3FD0
+
 JSystem/J2D/J2DGrafContext.cpp:
 	.text       start:0x801ADEE4 end:0x801AE564
 	.data       start:0x80391BD0 end:0x80391C08

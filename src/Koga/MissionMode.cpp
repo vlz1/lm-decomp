@@ -5,7 +5,7 @@
 #include "Koga/EnTypesManager.hpp"
 #include "Koga/EnManager.hpp"
 #include "Koga/EnemyGenManager.hpp"
-#include "Koga/JMPMessage.hpp"
+#include "Koga/JmpMessage.hpp"
 #include "Koga/CharacterColManager.hpp"
 #include "Koga/SimpleModeler.hpp"
 #include "Koga/ToolData.hpp"

@@ -7,6 +7,31 @@ namespace Koga {
     class ToolData;
 }
 
+class unkJmpMessageSender1 {
+public:
+    unkJmpMessageSender1();
+
+    /* 0x0 */ s32 _0;
+    /* 0x4 */ u8 _4[0xC];
+};
+
+class unkJmpMessageSender1Arr {
+public:
+    unkJmpMessageSender1Arr();
+    ~unkJmpMessageSender1Arr();
+
+
+    /* 0x000 */ unkJmpMessageSender1 _0[200];
+    /* 0xC80 */ s32 _C80;
+};
+
+class unkJmpMessageSender2 : public Koga::Array<Koga::ToolData*, 10> {
+public:
+    unkJmpMessageSender2() { }
+    ~unkJmpMessageSender2() { }
+    void add(Koga::ToolData** member) { Koga::Array<Koga::ToolData*, 10>::add(member); }
+};
+
 class JmpMessageSender : public MessageSender {
 public:
 
@@ -15,14 +40,15 @@ public:
     /* 0x08 */ virtual ~JmpMessageSender();
     /* 0x0C */ virtual void vt_0C();
     /* 0x10 */ virtual void vt_10();
-    /* 0x14 */ virtual s32 vt_14(MessageCallback1 fn, int arg0);
-    /* 0x18 */ virtual s32 vt_18(MessageCallback2 fn, int arg0, int arg1);
 
-    void fn_800EA900(Koga::ToolData* data);
+    BOOL fn_800EA900(Koga::ToolData* data);
     void fn_800EA958(Koga::ToolData* data);
 
 public:
-    /* 0x38 */ u8 _38[0xDF0 - sizeof(MessageSender)];
+    /* 0x038 */ unkJmpMessageSender1Arr _38;
+    /* 0xCBC */ unkJmpMessageSender2 _CBC;
+    /* 0xCE8 */ u8 _CE8;
+    /* 0xCEC */ u8 _CEC[0xDF0 - 0xCEC];
 };
 
 #endif
