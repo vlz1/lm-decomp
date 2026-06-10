@@ -10,14 +10,13 @@ JmpMessageSender::JmpMessageSender() {
 JmpMessageSender::~JmpMessageSender() { }
 
 BOOL JmpMessageSender::fn_800EA900(Koga::ToolData* data) {
-    Koga::ToolData* toolData = data;
-
     if (_CBC.getArraySize() >= 10) {
         return FALSE;
     }
-    if (toolData == nullptr) return FALSE;
 
-    _CBC.add(&toolData);
+    if (data == nullptr) return FALSE;
+
+    _CBC.add(&data);
     return true;
 }
 
