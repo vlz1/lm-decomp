@@ -1,7 +1,6 @@
-#ifndef ENEMY_GEN_MANAGER_H_
-#define ENEMY_GEN_MANAGER_H_
+#ifndef KOGA_ARRAY_H_
+#define KOGA_ARRAY_H_
 
-#include "dolphin/macros.h"
 #include "types.h"
 
 namespace Koga {
