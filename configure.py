@@ -652,6 +652,8 @@ config.libs = [
         Object(Matching, "Koga/CharacterEventObserver.cpp"),
         Object(NonMatching, "Koga/Message.cpp"),
         Object(NonMatching, "Koga/JmpMessage.cpp"),
+        Object(NonMatching, "Koga/EnAttackBase.cpp"),
+        Object(NonMatching, "Sato/EnemyStrategy.cpp"),
         Object(NonMatching, "Koga/SimpleModeler.cpp"),
 
         # Unsorted
