@@ -23,7 +23,6 @@ void fn_800061B8(u8 param_1);
 u8 getCurHeapGroupId();
 void fn_80006204();
 s32 fn_80006228();
-void fn_80006258(u32 size, int align);
 
 extern JKRExpHeap* lbl_804D8014;
 extern JKRExpHeap* lbl_804D801C;
