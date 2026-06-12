@@ -5,6 +5,6 @@
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 
 
-void fn_80006258(u32 size, int align) {
-    fn_80006080(size, align);
+void* fn_80006258(u32 size, int align) {
+    return fn_80006080(size, align);
 }
