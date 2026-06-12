@@ -647,6 +647,10 @@ config.libs = [
     ]),
 
     Game([
+        # Sato
+        Object(Matching, "Sato/EnemyStrategy.cpp"),
+        Object(NonMatching, "Sato/EnemyStrategyInit.cpp"),
+
         # Koga
         Object(Matching, "Koga/GameModeUtil.cpp"),
         Object(NonMatching, "Koga/800B9F7C.cpp"),
@@ -661,9 +665,6 @@ config.libs = [
         Object(NonMatching, "Koga/JmpMessage.cpp"),
         Object(NonMatching, "Koga/EnAttackBase.cpp"),
         Object(NonMatching, "Koga/SimpleModeler.cpp"),
-
-        # Sato
-        Object(NonMatching, "Sato/EnemyStrategy.cpp"),
 
         # Unsorted
         Object(Matching, "Unsorted/staticData.cpp"),  # TODO Verify this is a seperate file
